@@ -1,0 +1,13 @@
+----------------------------------------------------------------
+Tue May 16 23:06:26 CEST 2017:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.13.1.1 - (1765088): instance a816c00e-015c-1315-5c98-00000966bbc0 
+on database directory /home/gszabo97/workspace/agro-helper/agrohelperdb with class loader java.net.URLClassLoader@c0498dc 
+Loaded from file:/home/gszabo97/.m2/repository/org/apache/derby/derby/10.13.1.1/derby-10.13.1.1.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.8.0_101-b13
+user.dir=/home/gszabo97/workspace/agro-helper
+os.name=Linux
+os.arch=amd64
+os.version=4.2.0-42-generic
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''
