@@ -25,6 +25,9 @@ public class AgWork {
 		this.munkavegzesAra = munkavegzesAra;
 	}
 	
+	@Column(name="ORCHARD_ID")
+	private int orchardID;
+	
 	public AgWork() {}
 
 	public int getId() {

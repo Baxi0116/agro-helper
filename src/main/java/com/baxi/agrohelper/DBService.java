@@ -1,12 +1,14 @@
 package com.baxi.agrohelper;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 
+import com.baxi.agrohelper.model.AgWork;
 import com.baxi.agrohelper.model.Crop;
 import com.baxi.agrohelper.model.Orchard;
-import com.baxi.agrohelper.model.AgWork;
 
 public class DBService {
 
@@ -76,5 +78,10 @@ public class DBService {
 	public Crop findCrop(int id){
 		Crop crop = entityManager.find(Crop.class, id);
 		return crop;
+	}
+	
+	public List<Orchard> findAllOrchards(){
+		TypedQuery<Orchard> query = entityManager.createQuery("SELECT o FROM com.baxi.agrohelper.model.Orchard o", Orchard.class);
+		return query.getResultList();
 	}
 }

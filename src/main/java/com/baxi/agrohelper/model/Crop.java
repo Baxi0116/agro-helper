@@ -23,6 +23,9 @@ public class Crop {
 	@Column(name = "CROP_NAME", nullable=false)
 	private String nev;
 	
+	@Column(name="ORCHARD_ID")
+	private int orchardId;
+	
 	@OneToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "VARIETY_ID", referencedColumnName = "CROP_ID")
 	private List<Variety> fajtak;

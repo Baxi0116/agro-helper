@@ -28,14 +28,16 @@ public class Orchard {
 	@Column(name = "NUMBER_OF_TREES")
 	private int fakSzama;
 	
-	@ManyToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinTable(name = "ORCHARD_CROP", catalog = "agrohelperdb", 
-	joinColumns = { @JoinColumn(name = "ORCHARD_ID")}, inverseJoinColumns = {@ JoinColumn(name = "CROP_ID")})
+				joinColumns = @JoinColumn(name = "ORCHARD_ID"),
+				inverseJoinColumns = @JoinColumn(name = "CROP_ID"))
 	private List<Crop> kulturak;
 
-	@ManyToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinTable(name = "ORCHARD_WORK", catalog = "agrohelperdb", 
-	joinColumns = { @JoinColumn(name = "ORCHARD_ID")}, inverseJoinColumns = {@ JoinColumn(name = "WORK_ID")})
+				joinColumns = @JoinColumn(name = "ORCHARD_ID"), 
+				inverseJoinColumns = @JoinColumn(name = "WORK_ID"))
 	private List<AgWork> munkalatok;
 
 	public Orchard(String nev, LocalDate telepitesEve, String helyrajziSzam, String meparKod, int fakSzama) {
