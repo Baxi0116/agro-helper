@@ -22,10 +22,20 @@ public class AgWork {
 	
 	@Column(name="WORK_PRICE", nullable=false)
 	private int workPrice;
+	
+	@Column(name="WORK_NOTE")
+	private String workNote;
 
 	public AgWork(String workDesignation, int workPrice) {
 		this.workDesignation = workDesignation;
 		this.workPrice = workPrice;
+		this.workNote = "";
+	}
+	
+	public AgWork(String workDesignation, int workPrice, String workNote) {
+		this.workDesignation = workDesignation;
+		this.workPrice = workPrice;
+		this.workNote = workNote;
 	}
 	
 	@ManyToOne(fetch = FetchType.LAZY, targetEntity=Orchard.class)
@@ -60,7 +70,7 @@ public class AgWork {
 
 	@Override
 	public String toString() {
-		return "AgWork [workDesignation=" + workDesignation + ", workPrice=" + workPrice + "]";
+		return workDesignation;
 	}
 
 	public Orchard getOrchard() {
@@ -71,9 +81,12 @@ public class AgWork {
 		this.orchard = orchard;
 	}
 
-	
-	
-	
-	
-	
+	public String getNoteText() {
+		return workNote;
+	}
+
+	public void setNoteText(String workNote) {
+		this.workNote = workNote;
+	}
+
 }

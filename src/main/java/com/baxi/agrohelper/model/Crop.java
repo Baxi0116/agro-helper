@@ -2,6 +2,7 @@ package com.baxi.agrohelper.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -27,8 +28,7 @@ public class Crop {
 	@JoinColumn(name="ORCHARD_ID", nullable = false)
 	private Orchard orchard;
 	
-	@OneToMany(fetch = FetchType.LAZY)
-	@JoinColumn(name = "VARIETY_ID", referencedColumnName = "CROP_ID")
+	@OneToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY, mappedBy="crop")
 	private List<Variety> varieties;
 
 	public Crop(String cropName) {
