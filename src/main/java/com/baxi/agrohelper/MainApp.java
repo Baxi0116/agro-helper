@@ -43,9 +43,7 @@ public class MainApp extends Application {
     	this.orchardData = FXCollections.observableArrayList(orchardList);
     }
     
-    public MainApp(){
-    	this.orchardService = new OrchardServiceImpl(new OrchardDao(EntityManagerProvider.provideEntityManager()));
-    }
+    public MainApp(){}
     
     public OrchardService provideOrchardService(){
     	return this.orchardService;
@@ -68,6 +66,7 @@ public class MainApp extends Application {
     
     @Override
     public void init(){
+    	this.orchardService = new OrchardServiceImpl(new OrchardDao(EntityManagerProvider.provideEntityManager()));
     	this.orchardData = FXCollections.observableArrayList(orchardService.findAllOrchards());
     }
 

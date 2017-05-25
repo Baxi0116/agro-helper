@@ -10,7 +10,7 @@
 			<property name="hibernate.archive.autodetection" value="class" />
 			<property name="hibernate.dialect" value="org.hibernate.dialect.DerbyTenSevenDialect"/>
 			<property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.EmbeddedDriver"/>
-			<property name="javax.persistence.jdbc.url" value="jdbc:derby:agrohelperdb"/>
+			<property name="javax.persistence.jdbc.url" value="jdbc:derby:agrohelperdb;create=true"/>
 			<property name="javax.persistence.jdbc.user" value="baxi"/>
 			<property name="javax.persistence.jdbc.password" value="asd123"/>
 			<property name="javax.persistence.schema-generation.database.action" value="create"/> 
