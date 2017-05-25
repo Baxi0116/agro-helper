@@ -125,12 +125,13 @@ public class OrchardOverviewController {
     @FXML
     private void handleNewOrchard() {
         Orchard orchard = new Orchard();
+    	mainApp.provideOrchardService().createOrchard(orchard);
         boolean okClicked = mainApp.showOrchardEditDialog(orchard);
         if (okClicked) {
-        	mainApp.provideOrchardService().createOrchard(orchard);
+        	mainApp.provideOrchardService().updateOrchard(orchard);
             mainApp.getOrchardData().add(orchard);
         }else{
-        	mainApp.provideOrchardService().updateOrchard(orchard);
+        	mainApp.provideOrchardService().removeOrchard(orchard.getId());
         }
     }
 

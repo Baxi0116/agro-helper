@@ -42,7 +42,11 @@ public class Orchard {
 		this.numberOfTrees = numberOfTrees;
 	}
 	
-	public Orchard(){}
+	public Orchard(){
+		this.orchardName = "";
+		this.meparCode = "";
+		this.topographicNumber = "";
+	}
 
 	public int getId() {
 		return id;

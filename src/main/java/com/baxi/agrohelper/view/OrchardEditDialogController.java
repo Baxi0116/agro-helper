@@ -103,7 +103,7 @@ public class OrchardEditDialogController {
 	        orchard.setYearOfPlantation(DateUtil.parse(plantationYearTextField.getText()));
 	        orchard.setNumberOfTrees(Integer.parseInt(numberOfTreesTextField.getText()));
 	        List<String> cropNameList = ListUtil.parseInput(cropsTextField.getText());
-	        cropService.deleteAllCropsForOrchard(orchard.getId());
+	        cropService.deleteAllCropsForOrchard(orchard.getId());	
 	        List<Crop> cropList = new ArrayList<Crop>();
 	        orchard.setCrops(cropList);
 	        for(String name : cropNameList){
