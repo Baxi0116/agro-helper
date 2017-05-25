@@ -1,8 +1,9 @@
 package com.baxi.agrohelper.view;
 
-import com.baxi.agrohelper.UIService;
+import com.baxi.agrohelper.MainApp;
 import com.baxi.agrohelper.model.Orchard;
 import com.baxi.agrohelper.util.DateUtil;
+import com.baxi.agrohelper.util.ListUtil;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -36,7 +37,10 @@ public class OrchardOverviewController {
 	@FXML
 	private Label numberOfTreesLabel;
 	
-	private UIService mainApp;
+	@FXML
+	private Label cropLabel;
+	
+	private MainApp mainApp;
 	
 	/**
 	 * Constructor
@@ -46,7 +50,7 @@ public class OrchardOverviewController {
 	@FXML
 	public void initialize(){
 		
-		orchardNameColumn.setCellValueFactory(new PropertyValueFactory<Orchard, String>("nev"));
+		orchardNameColumn.setCellValueFactory(new PropertyValueFactory<Orchard, String>("orchardName"));
 		
 		showOrchardDetails(null);
 		
@@ -58,21 +62,24 @@ public class OrchardOverviewController {
 	
 	public void showOrchardDetails(Orchard orchard){
 		if(orchard != null){
-			nameLabel.setText(orchard.getNev());
-			topographicNumberLabel.setText(orchard.getHelyrajziSzam());
-			meparCodeLabel.setText(orchard.getMeparKod());
-			plantationDateLabel.setText(DateUtil.format(orchard.getTelepitesEve()));
-			numberOfTreesLabel.setText(Integer.toString(orchard.getFakSzama()));
+			nameLabel.setText(orchard.getOrchardName());
+			topographicNumberLabel.setText(orchard.getTopographicNumber());
+			meparCodeLabel.setText(orchard.getMeparCode());
+			plantationDateLabel.setText(DateUtil.format(orchard.getYearOfPlantation()));
+			numberOfTreesLabel.setText(Integer.toString(orchard.getNumberOfTrees()));
+			cropLabel.setText(ListUtil.formatOutput(orchard.getCrops()));
+			
 		}else{
 			nameLabel.setText("");
 			topographicNumberLabel.setText("");
 			meparCodeLabel.setText("");
 			plantationDateLabel.setText("");
 			numberOfTreesLabel.setText("");
+			cropLabel.setText("");
 		}
 	}
 
-	public void setMainApp(UIService mainApp){
+	public void setMainApp(MainApp mainApp){
 		this.mainApp = mainApp;
 		
 		orchardTable.setItems(mainApp.getOrchardData());
@@ -84,6 +91,7 @@ public class OrchardOverviewController {
     @FXML
     private void handleDeleteOrchard() {
         int selectedIndex = orchardTable.getSelectionModel().getSelectedIndex();
+        Orchard selectedOrchard = orchardTable.getSelectionModel().getSelectedItem();
         if (selectedIndex >= 0) {
             Alert alert = new Alert(AlertType.CONFIRMATION);
             alert.initOwner(mainApp.getPrimaryStage());
@@ -93,6 +101,7 @@ public class OrchardOverviewController {
 
             alert.showAndWait().ifPresent(response -> {
                 if (response == ButtonType.OK) {
+                	mainApp.provideOrchardService().removeOrchard(selectedOrchard.getId());
                 	orchardTable.getItems().remove(selectedIndex);
                 }
             });
@@ -118,7 +127,10 @@ public class OrchardOverviewController {
         Orchard orchard = new Orchard();
         boolean okClicked = mainApp.showOrchardEditDialog(orchard);
         if (okClicked) {
+        	mainApp.provideOrchardService().createOrchard(orchard);
             mainApp.getOrchardData().add(orchard);
+        }else{
+        	mainApp.provideOrchardService().updateOrchard(orchard);
         }
     }
 
@@ -132,7 +144,10 @@ public class OrchardOverviewController {
         if (selectedOrchard != null) {
             boolean okClicked = mainApp.showOrchardEditDialog(selectedOrchard);
             if (okClicked) {
-                showOrchardDetails(selectedOrchard);
+            	mainApp.provideOrchardService().updateOrchard(selectedOrchard);
+            	showOrchardDetails(selectedOrchard);
+            }else{
+            	mainApp.provideOrchardService().updateOrchard(selectedOrchard);
             }
 
         } else {

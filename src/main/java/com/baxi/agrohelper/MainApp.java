@@ -1,13 +1,16 @@
 package com.baxi.agrohelper;
 
 import java.io.IOException;
-import java.time.LocalDate;
 import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.baxi.agrohelper.dao.OrchardDao;
 import com.baxi.agrohelper.model.Orchard;
+import com.baxi.agrohelper.service.OrchardService;
+import com.baxi.agrohelper.service.OrchardServiceImpl;
+import com.baxi.agrohelper.util.EntityManagerProvider;
 import com.baxi.agrohelper.view.OrchardEditDialogController;
 import com.baxi.agrohelper.view.OrchardOverviewController;
 
@@ -21,26 +24,31 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-public class UIService extends Application {
+public class MainApp extends Application {
 
 	private Stage primaryStage;
     private BorderPane rootLayout;
     
-    private static Logger logger = LoggerFactory.getLogger(UIService.class);
+    private OrchardService orchardService;
     
-    ObservableList<Orchard> orchardData = FXCollections.observableArrayList();
+    private static Logger logger = LoggerFactory.getLogger(MainApp.class);
+    
+    ObservableList<Orchard> orchardData;
     
     public ObservableList<Orchard> getOrchardData(){
     	return orchardData;
     }
     
     public void setOrchardData(List<Orchard> orchardList){
-    	this.orchardData = (ObservableList<Orchard>) orchardList;
+    	this.orchardData = FXCollections.observableArrayList(orchardList);
     }
     
-    public UIService(){
-    	orchardData.add(new Orchard("Teszt", LocalDate.now(), "asd123", "asd123", 5));
-    	orchardData.add(new Orchard("Teszt2", LocalDate.now(), "asd1234", "asd1234", 7));
+    public MainApp(){
+    	this.orchardService = new OrchardServiceImpl(new OrchardDao(EntityManagerProvider.provideEntityManager()));
+    }
+    
+    public OrchardService provideOrchardService(){
+    	return this.orchardService;
     }
 
     @Override
@@ -52,6 +60,16 @@ public class UIService extends Application {
 
         showOrchardOverview();
     }
+    
+    @Override
+    public void stop(){
+    	EntityManagerProvider.closeConnection();
+    }
+    
+    @Override
+    public void init(){
+    	this.orchardData = FXCollections.observableArrayList(orchardService.findAllOrchards());
+    }
 
     /**
      * Initializes the root layout.
@@ -60,7 +78,7 @@ public class UIService extends Application {
         try {
             // Load root layout from fxml file.
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(UIService.class.getResource("view/RootLayout.fxml"));
+            loader.setLocation(MainApp.class.getResource("view/RootLayout.fxml"));
             logger.debug(loader.getLocation().toString());
             rootLayout = (BorderPane) loader.load();
 
@@ -80,7 +98,7 @@ public class UIService extends Application {
         try {
             // Load person overview.
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(UIService.class.getResource("view/OrchardOverview.fxml"));
+            loader.setLocation(MainApp.class.getResource("view/OrchardOverview.fxml"));
             logger.debug(loader.getLocation().toString());
             AnchorPane orchardOverview = (AnchorPane) loader.load();
 
@@ -106,8 +124,8 @@ public class UIService extends Application {
         try {
             // Load the fxml file and create a new stage for the popup dialog.
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(UIService.class.getResource("view/OrchardEditDialog.fxml"));
-            System.out.println(loader.getLocation());
+            loader.setLocation(MainApp.class.getResource("view/OrchardEditDialog.fxml"));
+            logger.debug(loader.getLocation().toString());
             AnchorPane page = (AnchorPane) loader.load();
 
             // Create the dialog Stage.

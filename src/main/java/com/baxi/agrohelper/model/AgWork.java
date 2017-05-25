@@ -2,9 +2,12 @@ package com.baxi.agrohelper.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class AgWork {
@@ -15,18 +18,19 @@ public class AgWork {
 	private int id;
 	
 	@Column(name="WORK_DESIGNATION", nullable=false)
-	private String munkavegzesNeve;
+	private String workDesignation;
 	
 	@Column(name="WORK_PRICE", nullable=false)
-	private int munkavegzesAra;
+	private int workPrice;
 
-	public AgWork(String munkavegzesNeve, int munkavegzesAra) {
-		this.munkavegzesNeve = munkavegzesNeve;
-		this.munkavegzesAra = munkavegzesAra;
+	public AgWork(String workDesignation, int workPrice) {
+		this.workDesignation = workDesignation;
+		this.workPrice = workPrice;
 	}
 	
-	@Column(name="ORCHARD_ID")
-	private int orchardID;
+	@ManyToOne(fetch = FetchType.LAZY, targetEntity=Orchard.class)
+	@JoinColumn(name = "ORCHARD_ID", nullable = false)
+	private Orchard orchard;
 	
 	public AgWork() {}
 
@@ -38,26 +42,36 @@ public class AgWork {
 		this.id = id;
 	}
 
-	public String getMunkavegzesNeve() {
-		return munkavegzesNeve;
+	public String getWorkDesignation() {
+		return workDesignation;
 	}
 
-	public void setMunkavegzesNeve(String munkavegzesNeve) {
-		this.munkavegzesNeve = munkavegzesNeve;
+	public void setWorkDesignation(String workDesignation) {
+		this.workDesignation = workDesignation;
 	}
 
-	public int getMunkavegzesAra() {
-		return munkavegzesAra;
+	public int getWorkPrice() {
+		return workPrice;
 	}
 
-	public void setMunkavegzesAra(int munkavegzesAra) {
-		this.munkavegzesAra = munkavegzesAra;
+	public void setWorkPrice(int workPrice) {
+		this.workPrice = workPrice;
 	}
 
 	@Override
 	public String toString() {
-		return "Work [id=" + id + ", munkavegzesNeve=" + munkavegzesNeve + ", munkavegzesAra=" + munkavegzesAra + "]";
+		return "AgWork [workDesignation=" + workDesignation + ", workPrice=" + workPrice + "]";
 	}
+
+	public Orchard getOrchard() {
+		return orchard;
+	}
+
+	public void setOrchard(Orchard orchard) {
+		this.orchard = orchard;
+	}
+
+	
 	
 	
 	

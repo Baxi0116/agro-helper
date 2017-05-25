@@ -12,20 +12,9 @@ public class Main {
 	
 	public static void main(String[] args){
 		
-	//	EntityManagerFactory emf = Persistence.createEntityManagerFactory("AgroHelperPersistenceUnit");
-	//	EntityManager em = emf.createEntityManager();
-	//	DBService dbservice = new DBService(em);
-		UIService uiservice = new UIService();
+		MainApp uiService = new MainApp();
 		
-	//	em.getTransaction().begin();
-	//	Orchard orchard = dbservice.createOrchard("Teszt", LocalDate.now(), "asd123", "asd123", 5);		
-	//	em.getTransaction().commit();
-		
-		
-	//	em.close();
-	//	emf.close();
-		
-		//uiservice.setOrchardData(dbservice.findAllOrchards());
+		uiService.launch(args);
 		
 	}
 	

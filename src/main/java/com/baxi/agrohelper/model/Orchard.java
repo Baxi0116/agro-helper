@@ -14,38 +14,32 @@ public class Orchard {
 	private int id;
 	
 	@Column(name = "ORCHARD_NAME", nullable = false)
-	private String nev;
+	private String orchardName;
 	
 	@Column(name = "DATE_OF_PLANTATION")
-	private LocalDate telepitesEve;
+	private LocalDate yearOfPlantation;
 	
 	@Column(name= "TOPOGRAPHIC_NUMBER", nullable=false)
-	private String helyrajziSzam;
+	private String topographicNumber;
 	
 	@Column(name = "MEPAR_CODE", nullable=false)
-	private String meparKod;
+	private String meparCode;
 	
 	@Column(name = "NUMBER_OF_TREES")
-	private int fakSzama;
+	private int numberOfTrees;
 	
-	@OneToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinTable(name = "ORCHARD_CROP", catalog = "agrohelperdb", 
-				joinColumns = @JoinColumn(name = "ORCHARD_ID"),
-				inverseJoinColumns = @JoinColumn(name = "CROP_ID"))
-	private List<Crop> kulturak;
+	@OneToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY, mappedBy="orchard")
+	private List<Crop> crops;
 
-	@OneToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY)
-	@JoinTable(name = "ORCHARD_WORK", catalog = "agrohelperdb", 
-				joinColumns = @JoinColumn(name = "ORCHARD_ID"), 
-				inverseJoinColumns = @JoinColumn(name = "WORK_ID"))
-	private List<AgWork> munkalatok;
+	@OneToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "orchard")
+	private List<AgWork> works;
 
-	public Orchard(String nev, LocalDate telepitesEve, String helyrajziSzam, String meparKod, int fakSzama) {
-		this.nev = nev;
-		this.telepitesEve = telepitesEve;
-		this.helyrajziSzam = helyrajziSzam;
-		this.meparKod = meparKod;
-		this.fakSzama = fakSzama;
+	public Orchard(String orchardName, LocalDate yearOfPlantation, String topographicNumber, String meparCode, int numberOfTrees) {
+		this.orchardName = orchardName;
+		this.yearOfPlantation = yearOfPlantation;
+		this.topographicNumber = topographicNumber;
+		this.meparCode = meparCode;
+		this.numberOfTrees = numberOfTrees;
 	}
 	
 	public Orchard(){}
@@ -58,68 +52,70 @@ public class Orchard {
 		this.id = id;
 	}
 
-	public String getNev() {
-		return nev;
+	public String getOrchardName() {
+		return orchardName;
 	}
 
-	public void setNev(String nev) {
-		this.nev = nev;
+	public void setOrchardName(String orchardName) {
+		this.orchardName = orchardName;
 	}
 
-	public LocalDate getTelepitesEve() {
-		return telepitesEve;
+	public LocalDate getYearOfPlantation() {
+		return yearOfPlantation;
 	}
 
-	public void setTelepitesEve(LocalDate telepitesEve) {
-		this.telepitesEve = telepitesEve;
+	public void setYearOfPlantation(LocalDate yearOfPlantation) {
+		this.yearOfPlantation = yearOfPlantation;
 	}
 
-	public String getHelyrajziSzam() {
-		return helyrajziSzam;
+	public String getTopographicNumber() {
+		return topographicNumber;
 	}
 
-	public void setHelyrajziSzam(String helyrajziSzam) {
-		this.helyrajziSzam = helyrajziSzam;
+	public void setTopographicNumber(String topographicNumber) {
+		this.topographicNumber = topographicNumber;
 	}
 
-	public String getMeparKod() {
-		return meparKod;
+	public String getMeparCode() {
+		return meparCode;
 	}
 
-	public void setMeparKod(String meparKod) {
-		this.meparKod = meparKod;
+	public void setMeparCode(String meparCode) {
+		this.meparCode = meparCode;
 	}
 	
-	public List<Crop> getKulturak() {
-		return kulturak;
+	public List<Crop> getCrops() {
+		return crops;
 	}
 
-	public void setKulturak(List<Crop> kulturak) {
-		this.kulturak = kulturak;
+	public void setCrops(List<Crop> crops) {
+		this.crops = crops;
 	}
 
-	public int getFakSzama() {
-		return fakSzama;
+	public int getNumberOfTrees() {
+		return numberOfTrees;
 	}
 
-	public void setFakSzama(int fakSzama) {
-		this.fakSzama = fakSzama;
+	public void setNumberOfTrees(int numberOfTrees) {
+		this.numberOfTrees = numberOfTrees;
 	}
 
-	public List<AgWork> getMunkalatok() {
-		return munkalatok;
+	public List<AgWork> getWorks() {
+		return works;
 	}
 
-	public void setMunkalatok(List<AgWork> munkalatok) {
-		this.munkalatok = munkalatok;
+	public void setWorks(List<AgWork> works) {
+		this.works = works;
 	}
 
 	@Override
 	public String toString() {
-		return "Field [id=" + id + ", nev=" + nev + ", telepitesEve=" + telepitesEve + ", helyrajziSzam="
-				+ helyrajziSzam + ", meparKod=" + meparKod + ", fakSzama=" + fakSzama
-				+  "]";
+		return "Orchard [id=" + id + ", orchardName=" + orchardName + ", yearOfPlantation=" + yearOfPlantation
+				+ ", topographicNumber=" + topographicNumber + ", meparCode=" + meparCode + ", numberOfTrees="
+				+ numberOfTrees + "]";
 	}
+
+	
 	
 	
 	

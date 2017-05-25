@@ -6,11 +6,16 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
+
 import com.baxi.agrohelper.model.AgWork;
 import com.baxi.agrohelper.model.Crop;
 import com.baxi.agrohelper.model.Orchard;
 
 public class DBService {
+	
+	private static Logger logger = LoggerFactory.getLogger(DBService.class);
 
 	private EntityManager entityManager;
 	
@@ -18,28 +23,33 @@ public class DBService {
 		this.entityManager = entityManager;
 	}
 	
+	public EntityManager getEntityManager(){
+		return this.entityManager;
+	}
+	
 	public Orchard createOrchard(String nev, LocalDate telepitesEve, String helyrajziSzam, String meparKod, int fakSzama){
 		Orchard orchard = new Orchard();
-		orchard.setNev(nev);
-		orchard.setTelepitesEve(telepitesEve);
-		orchard.setHelyrajziSzam(helyrajziSzam);
-		orchard.setMeparKod(meparKod);
-		orchard.setFakSzama(fakSzama);
+		logger.debug("Creating Orchard");
+		orchard.setOrchardName(nev);
+		orchard.setYearOfPlantation(telepitesEve);
+		orchard.setTopographicNumber(helyrajziSzam);
+		orchard.setMeparCode(meparKod);
+		orchard.setNumberOfTrees(fakSzama);
 		entityManager.persist(orchard);
 		return orchard;
 	}
 	
 	public AgWork createWork(String munkavegzesNeve, int munkavegzesAra){
 		AgWork work = new AgWork();
-		work.setMunkavegzesNeve(munkavegzesNeve);
-		work.setMunkavegzesAra(munkavegzesAra);
+		work.setWorkDesignation(munkavegzesNeve);
+		work.setWorkPrice(munkavegzesAra);
 		entityManager.persist(work);
 		return work;
 	}
 	
 	public Crop createCrop(String nev){
 		Crop crop = new Crop();
-		crop.setNev(nev);
+		crop.setCropName(nev);
 		entityManager.persist(crop);
 		return crop;
 	}

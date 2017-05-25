@@ -36,6 +36,7 @@
             <TextField fx:id="plantationYearTextField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
             <TextField fx:id="numberOfTreesTextField" GridPane.columnIndex="1" GridPane.rowIndex="4" />
             <Label text="Kultúra:" GridPane.rowIndex="5" />
+            <TextField fx:id="cropsTextField" GridPane.columnIndex="1" GridPane.rowIndex="5" />
          </children>
       </GridPane>
       <ButtonBar layoutX="208.0" layoutY="246.0" prefHeight="40.0" prefWidth="200.0" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="10.0">

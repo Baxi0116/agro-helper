@@ -2,7 +2,6 @@ package com.baxi.agrohelper.model;
 
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -10,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -21,17 +21,18 @@ public class Crop {
 	private int id;
 	
 	@Column(name = "CROP_NAME", nullable=false)
-	private String nev;
+	private String cropName;
 	
-	@Column(name="ORCHARD_ID")
-	private int orchardId;
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="ORCHARD_ID", nullable = false)
+	private Orchard orchard;
 	
-	@OneToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToMany(fetch = FetchType.LAZY)
 	@JoinColumn(name = "VARIETY_ID", referencedColumnName = "CROP_ID")
-	private List<Variety> fajtak;
+	private List<Variety> varieties;
 
-	public Crop(String nev) {
-		this.nev = nev;
+	public Crop(String cropName) {
+		this.cropName = cropName;
 	}
 	
 	public Crop(){}
@@ -44,18 +45,36 @@ public class Crop {
 		this.id = id;
 	}
 
-	public String getNev() {
-		return nev;
+	public String getCropName() {
+		return cropName;
 	}
 
-	public void setNev(String nev) {
-		this.nev = nev;
+	public void setCropName(String nev) {
+		this.cropName = nev;
 	}
 
 	@Override
 	public String toString() {
-		return "Crop [id=" + id + ", nev=" + nev + "]";
+		return cropName;
 	}
+
+
+	public List<Variety> getVarieties() {
+		return varieties;
+	}
+
+	public void setVarieties(List<Variety> varieties) {
+		this.varieties = varieties;
+	}
+
+	public Orchard getOrchard() {
+		return orchard;
+	}
+
+	public void setOrchard(Orchard orchard) {
+		this.orchard = orchard;
+	}
+
 	
 	
 	
