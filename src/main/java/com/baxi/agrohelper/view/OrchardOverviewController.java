@@ -314,5 +314,28 @@ public class OrchardOverviewController {
             alert.showAndWait();
         }
     }
+    
+    @FXML
+    private void handleWorks(){
+		try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(OrchardOverviewController.class.getResource("WorkHandlerDialog.fxml"));
+            AnchorPane page = (AnchorPane) loader.load();
+
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Új munka");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+
+            WorkHandlerController controller = loader.getController();
+            controller.setDialogStage(dialogStage);
+            
+            dialogStage.showAndWait();
+            
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 	
 }

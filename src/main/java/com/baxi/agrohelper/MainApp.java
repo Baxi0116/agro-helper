@@ -10,7 +10,6 @@ import com.baxi.agrohelper.util.EntityManagerProvider;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
@@ -29,7 +28,6 @@ public class MainApp extends Application {
         this.primaryStage.setTitle("AgroHelper");
 
         initRootLayout();
-        showOrchardOverview();
     }
     
     @Override
@@ -43,30 +41,13 @@ public class MainApp extends Application {
     public void initRootLayout() {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainApp.class.getResource("view/RootLayout.fxml"));
+            loader.setLocation(MainApp.class.getResource("view/OrchardOverview.fxml"));
             logger.debug(loader.getLocation().toString());
             rootLayout = (BorderPane) loader.load();
 
             Scene scene = new Scene(rootLayout);
             primaryStage.setScene(scene);
             primaryStage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    /**
-     * Shows the orchard overview inside the root layout.
-     */
-    public void showOrchardOverview() {
-        try {
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainApp.class.getResource("view/OrchardOverview.fxml"));
-            logger.debug(loader.getLocation().toString());
-            AnchorPane orchardOverview = (AnchorPane) loader.load();
-
-            rootLayout.setCenter(orchardOverview);
-            
         } catch (IOException e) {
             e.printStackTrace();
         }

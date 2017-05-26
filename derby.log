@@ -1,13 +1,13 @@
 ----------------------------------------------------------------
-Fri May 26 22:14:10 CEST 2017:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.13.1.1 - (1765088): instance a816c00e-015c-4665-1c3f-00000466ab28 
-on database directory C:\Users\Gergely\Documents\agro-helper\agrohelperdb with class loader sun.misc.Launcher$AppClassLoader@73d16e93 
-Loaded from file:/C:/Users/Gergely/.m2/repository/org/apache/derby/derby/10.13.1.1/derby-10.13.1.1.jar
+Sat May 27 00:53:25 CEST 2017:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.13.1.1 - (1765088): instance a816c00e-015c-46f6-e606-000007e95830 
+on database directory /home/gszabo97/workspace/agro-helper/agrohelperdb with class loader sun.misc.Launcher$AppClassLoader@73d16e93 
+Loaded from file:/home/gszabo97/.m2/repository/org/apache/derby/derby/10.13.1.1/derby-10.13.1.1.jar
 java.vendor=Oracle Corporation
-java.runtime.version=1.8.0_77-b03
-user.dir=C:\Users\Gergely\Documents\agro-helper
-os.name=Windows 8.1
+java.runtime.version=1.8.0_101-b13
+user.dir=/home/gszabo97/workspace/agro-helper
+os.name=Linux
 os.arch=amd64
-os.version=6.3
+os.version=4.2.0-42-generic
 derby.system.home=null
 Database Class Loader started - derby.database.classpath=''

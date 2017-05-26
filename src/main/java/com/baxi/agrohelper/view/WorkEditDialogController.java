@@ -1,8 +1,11 @@
 package com.baxi.agrohelper.view;
 
 import com.baxi.agrohelper.dao.WorkDao;
+import com.baxi.agrohelper.dao.WorkNameDao;
 import com.baxi.agrohelper.model.AgWork;
 import com.baxi.agrohelper.model.Orchard;
+import com.baxi.agrohelper.service.WorkNameService;
+import com.baxi.agrohelper.service.WorkNameServiceImpl;
 import com.baxi.agrohelper.service.WorkService;
 import com.baxi.agrohelper.service.WorkServiceImpl;
 import com.baxi.agrohelper.util.EntityManagerProvider;
@@ -35,10 +38,12 @@ public class WorkEditDialogController {
 	private boolean okClicked = false;
 	
 	private WorkService workService;
+	private WorkNameService workNameService;
 	
 	@FXML
 	private void initialize(){
 		workService = new WorkServiceImpl(new WorkDao(EntityManagerProvider.provideEntityManager()));
+		workNameService = new WorkNameServiceImpl(new WorkNameDao(EntityManagerProvider.provideEntityManager()));
 	}
 	
 	public void setDialogStage(Stage dialogStage){
@@ -50,10 +55,7 @@ public class WorkEditDialogController {
 		
 		//datePicker = new DatePicker();
 		priceTextField.setText("0");
-		nameBox.getItems().addAll(
-				"Permetezés",
-				"Gallykaparás"
-				);
+		nameBox.getItems().addAll(workNameService.getAllWorkNames());
 		nameBox.setTooltip(new Tooltip("Válasszon a listából"));
 	}
 	
@@ -104,7 +106,6 @@ public class WorkEditDialogController {
 		if(errorMessage.length() == 0){
 			return true;
 		}else{
-            // Show the error message.
             Alert alert = new Alert(AlertType.ERROR);
             alert.initOwner(dialogStage);
             alert.setTitle("Hibás mezők");

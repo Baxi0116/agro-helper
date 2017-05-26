@@ -1,7 +1,10 @@
 package com.baxi.agrohelper.service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import com.baxi.agrohelper.dao.WorkDao;
 import com.baxi.agrohelper.model.AgWork;
@@ -53,6 +56,15 @@ public class WorkServiceImpl implements WorkService {
 	@Override
 	public List<AgWork> findAllWorks() {
 		return workDao.findAll();
+	}
+
+	@Override
+	public List<String> getAllWorkNames() {
+		List<AgWork> works = findAllWorks();
+		return works.stream()
+					.map(AgWork::getWorkDesignation)
+					.distinct()
+					.collect(Collectors.toList());
 	}
 
 	

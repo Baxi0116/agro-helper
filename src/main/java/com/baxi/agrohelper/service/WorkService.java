@@ -21,4 +21,6 @@ public interface WorkService {
 	
 	public List<AgWork> findAllWorks();
 	
+	public List<String> getAllWorkNames();
+	
 }
