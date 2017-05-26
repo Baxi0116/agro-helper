@@ -82,5 +82,4 @@ public class OrchardServiceImpl implements OrchardService{
 	public void createOrchard(Orchard orchard) {
 		orchardDao.persist(orchard);
 	}
-
 }

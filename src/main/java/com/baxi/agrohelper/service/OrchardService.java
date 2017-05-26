@@ -22,4 +22,5 @@ public interface OrchardService {
 	public int countExpensesForOrchard(int id);
 	
 	public int countExpensesForAllOrchard();
+	
 }

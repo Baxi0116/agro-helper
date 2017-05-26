@@ -1,5 +1,6 @@
 package com.baxi.agrohelper.service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import com.baxi.agrohelper.dao.WorkDao;
@@ -14,15 +15,15 @@ public class WorkServiceImpl implements WorkService {
 	}
 	
 	@Override
-	public AgWork createWork(String workDesignation, int workPrice, String workNote) {
-		AgWork work = new AgWork(workDesignation, workPrice, workNote);
+	public AgWork createWork(String workDesignation, int workPrice, String workNote, LocalDate workDate) {
+		AgWork work = new AgWork(workDesignation, workPrice, workNote, workDate);
 		workDao.persist(work);
 		return work;
 	}
 
 	@Override
-	public AgWork createWork(String workDesignation, int workPrice) {
-		AgWork work = new AgWork(workDesignation, workPrice);
+	public AgWork createWork(String workDesignation, int workPrice, LocalDate workDate) {
+		AgWork work = new AgWork(workDesignation, workPrice, workDate);
 		workDao.persist(work);
 		return work;
 	}

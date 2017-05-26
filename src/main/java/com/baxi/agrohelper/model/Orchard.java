@@ -1,9 +1,17 @@
 package com.baxi.agrohelper.model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Orchard {
@@ -40,12 +48,16 @@ public class Orchard {
 		this.topographicNumber = topographicNumber;
 		this.meparCode = meparCode;
 		this.numberOfTrees = numberOfTrees;
+		this.works = new ArrayList<AgWork>();
+		this.crops = new ArrayList<Crop>();
 	}
 	
 	public Orchard(){
 		this.orchardName = "";
 		this.meparCode = "";
 		this.topographicNumber = "";
+		this.works = new ArrayList<AgWork>();
+		this.crops = new ArrayList<Crop>();
 	}
 
 	public int getId() {

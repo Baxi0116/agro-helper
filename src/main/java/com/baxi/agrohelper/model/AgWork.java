@@ -1,5 +1,7 @@
 package com.baxi.agrohelper.model;
 
+import java.time.LocalDate;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -25,24 +27,30 @@ public class AgWork {
 	
 	@Column(name="WORK_NOTE")
 	private String workNote;
+	
+	@Column(name="WORK_DATE", nullable=false)
+	private LocalDate workDate;
 
-	public AgWork(String workDesignation, int workPrice) {
+	public AgWork(String workDesignation, int workPrice, LocalDate workDate) {
 		this.workDesignation = workDesignation;
 		this.workPrice = workPrice;
 		this.workNote = "";
+		this.workDate = workDate;
 	}
 	
-	public AgWork(String workDesignation, int workPrice, String workNote) {
+	public AgWork(String workDesignation, int workPrice, String workNote, LocalDate workDate) {
 		this.workDesignation = workDesignation;
 		this.workPrice = workPrice;
 		this.workNote = workNote;
+		this.workDate = workDate;
 	}
 	
 	@ManyToOne(fetch = FetchType.LAZY, targetEntity=Orchard.class)
 	@JoinColumn(name = "ORCHARD_ID", nullable = false)
 	private Orchard orchard;
 	
-	public AgWork() {}
+	public AgWork() {
+	}
 
 	public int getId() {
 		return id;
@@ -81,12 +89,22 @@ public class AgWork {
 		this.orchard = orchard;
 	}
 
-	public String getNoteText() {
+	public LocalDate getWorkDate() {
+		return workDate;
+	}
+
+	public void setWorkDate(LocalDate workDate) {
+		this.workDate = workDate;
+	}
+
+	public String getWorkNote() {
 		return workNote;
 	}
 
-	public void setNoteText(String workNote) {
+	public void setWorkNote(String workNote) {
 		this.workNote = workNote;
 	}
+	
+	
 
 }

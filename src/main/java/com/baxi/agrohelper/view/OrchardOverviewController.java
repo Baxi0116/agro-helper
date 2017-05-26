@@ -1,11 +1,16 @@
 package com.baxi.agrohelper.view;
 
 import java.io.IOException;
+import java.time.LocalDate;
 
 import com.baxi.agrohelper.dao.OrchardDao;
+import com.baxi.agrohelper.dao.WorkDao;
+import com.baxi.agrohelper.model.AgWork;
 import com.baxi.agrohelper.model.Orchard;
 import com.baxi.agrohelper.service.OrchardService;
 import com.baxi.agrohelper.service.OrchardServiceImpl;
+import com.baxi.agrohelper.service.WorkService;
+import com.baxi.agrohelper.service.WorkServiceImpl;
 import com.baxi.agrohelper.util.DateUtil;
 import com.baxi.agrohelper.util.EntityManagerProvider;
 import com.baxi.agrohelper.util.ListUtil;
@@ -52,9 +57,27 @@ public class OrchardOverviewController {
 	@FXML
 	private Label cropLabel;
 	
-	ObservableList<Orchard> orchardData;
+	private ObservableList<Orchard> orchardData;
 	
 	private OrchardService orchardService;
+	
+	@FXML
+	private TableView<AgWork> workTable;
+	
+	@FXML
+	private TableColumn<AgWork, String> workNameColumn;
+	
+	@FXML
+	private TableColumn<AgWork, Integer> workPriceColumn;
+	
+	@FXML
+	private TableColumn<AgWork, String> workNoteColumn;
+	
+	@FXML
+	private TableColumn<AgWork, LocalDate> workDateColumn;
+	
+	private ObservableList<AgWork> workData;
+	private WorkService workService;
 	
 	/**
 	 * Constructor
@@ -65,10 +88,18 @@ public class OrchardOverviewController {
 	public void initialize(){
 		
 		orchardService = new OrchardServiceImpl(new OrchardDao(EntityManagerProvider.provideEntityManager()));
+		workService = new WorkServiceImpl(new WorkDao(EntityManagerProvider.provideEntityManager()));
 		orchardData = FXCollections.observableArrayList(orchardService.findAllOrchards());
 		orchardTable.setItems(orchardData);
+		workData = FXCollections.observableArrayList();
+		workTable.setItems(workData);
 		
 		orchardNameColumn.setCellValueFactory(new PropertyValueFactory<Orchard, String>("orchardName"));
+		
+		workNameColumn.setCellValueFactory(new PropertyValueFactory<AgWork, String>("workDesignation"));
+		workPriceColumn.setCellValueFactory(new PropertyValueFactory<AgWork, Integer>("workPrice"));
+		workNoteColumn.setCellValueFactory(new PropertyValueFactory<AgWork, String>("workNote"));
+		workDateColumn.setCellValueFactory(new PropertyValueFactory<AgWork, LocalDate>("workDate"));
 		
 		showOrchardDetails(null);
 		
@@ -86,6 +117,8 @@ public class OrchardOverviewController {
 			plantationDateLabel.setText(DateUtil.format(orchard.getYearOfPlantation()));
 			numberOfTreesLabel.setText(Integer.toString(orchard.getNumberOfTrees()));
 			cropLabel.setText(ListUtil.formatOutput(orchard.getCrops()));
+			workData = FXCollections.observableArrayList(orchard.getWorks());
+			workTable.setItems(workData);
 			
 		}else{
 			nameLabel.setText("");
@@ -129,6 +162,31 @@ public class OrchardOverviewController {
         }
     }
 	
+	public boolean showWorkEditDialog(Orchard orchard){
+		try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(OrchardOverviewController.class.getResource("WorkEditDialog.fxml"));
+            AnchorPane page = (AnchorPane) loader.load();
+
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Új munka");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+
+            WorkEditDialogController controller = loader.getController();
+            controller.setDialogStage(dialogStage);
+            controller.setOrchard(orchard);
+            
+            dialogStage.showAndWait();
+
+            return controller.isOkClicked();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+	}
+	
     /**
      * Called when the user clicks on the delete button.
      */
@@ -139,7 +197,7 @@ public class OrchardOverviewController {
         if (selectedIndex >= 0) {
             Alert alert = new Alert(AlertType.CONFIRMATION);
             alert.setTitle("");
-            alert.setHeaderText("Biztosan törli?.");
+            alert.setHeaderText("Biztosan törli?");
             alert.setContentText("Törlés után az adatok végleg elvesznek.");
 
             alert.showAndWait().ifPresent(response -> {
@@ -199,6 +257,59 @@ public class OrchardOverviewController {
             alert.setTitle("Hiba");
             alert.setHeaderText("Nincs kiválasztva kert.");
             alert.setContentText("Válasszon kertet a táblázatból.");
+
+            alert.showAndWait();
+        }
+    }
+    
+    @FXML
+    private void handleAddWorkButton(){
+    	Orchard selectedOrchard = orchardTable.getSelectionModel().getSelectedItem();
+    	if (selectedOrchard != null) {
+            boolean okClicked = showWorkEditDialog(selectedOrchard);
+            if (okClicked) {
+            	orchardService.updateOrchard(selectedOrchard);
+            	showOrchardDetails(selectedOrchard);
+            }else{
+            	orchardService.updateOrchard(selectedOrchard);
+            }
+
+        } else {
+            // Nothing selected.
+            Alert alert = new Alert(AlertType.WARNING);
+            alert.setTitle("Hiba");
+            alert.setHeaderText("Nincs kiválasztva kert.");
+            alert.setContentText("Válasszon kertet a táblázatból.");
+
+            alert.showAndWait();
+        }
+    }
+    
+    @FXML
+    private void handleDeleteWorkButton(){
+    	int selectedIndex = workTable.getSelectionModel().getSelectedIndex();
+        AgWork selectedWork = workTable.getSelectionModel().getSelectedItem();
+        Orchard selectedOrchard = orchardTable.getSelectionModel().getSelectedItem();
+        if (selectedIndex >= 0) {
+            Alert alert = new Alert(AlertType.CONFIRMATION);
+            alert.setTitle("");
+            alert.setHeaderText("Biztosan törli?");
+            alert.setContentText("Törlés után az adatok végleg elvesznek.");
+
+            alert.showAndWait().ifPresent(response -> {
+                if (response == ButtonType.OK) {
+                	selectedOrchard.getWorks().remove(selectedWork);
+                	workService.deleteWork(selectedWork.getId());
+                	workTable.getItems().remove(selectedIndex);
+                }
+            });
+            
+        } else {
+            // Nothing selected.
+            Alert alert = new Alert(AlertType.WARNING);
+            alert.setTitle("Hiba");
+            alert.setHeaderText("Nincs kiválasztva munka");
+            alert.setContentText("Válasszon munkálatot a táblázatból.");
 
             alert.showAndWait();
         }
