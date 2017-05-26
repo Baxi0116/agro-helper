@@ -135,13 +135,13 @@ public class OrchardEditDialogController {
         String errorMessage = "";
 
         if (nameTextField.getText() == null || nameTextField.getText().length() == 0) {
-            errorMessage += "Hibás név!\n"; 
+            errorMessage += "Név mező nem lehet üres!\n"; 
         }
         if (topographicNumberTextField.getText() == null || topographicNumberTextField.getText().length() == 0) {
-            errorMessage += "Hibás helyrajzi szám!\n"; 
+            errorMessage += "Helyrajzi szám mező nem lehet üres!\n"; 
         }
         if (meparCodeTextField.getText() == null || meparCodeTextField.getText().length() == 0) {
-            errorMessage += "Hibás MEPAR kód!\n"; 
+            errorMessage += "MEPAR kód mező nem lehet üres!\n"; 
         }
         try {
         	Integer.parseInt(numberOfTreesTextField.getText());

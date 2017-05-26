@@ -1,11 +1,20 @@
 package com.baxi.agrohelper.view;
 
-import com.baxi.agrohelper.MainApp;
+import java.io.IOException;
+
+import com.baxi.agrohelper.dao.OrchardDao;
 import com.baxi.agrohelper.model.Orchard;
+import com.baxi.agrohelper.service.OrchardService;
+import com.baxi.agrohelper.service.OrchardServiceImpl;
 import com.baxi.agrohelper.util.DateUtil;
+import com.baxi.agrohelper.util.EntityManagerProvider;
 import com.baxi.agrohelper.util.ListUtil;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
@@ -13,6 +22,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 public class OrchardOverviewController {
 	
@@ -40,7 +52,9 @@ public class OrchardOverviewController {
 	@FXML
 	private Label cropLabel;
 	
-	private MainApp mainApp;
+	ObservableList<Orchard> orchardData;
+	
+	private OrchardService orchardService;
 	
 	/**
 	 * Constructor
@@ -49,6 +63,10 @@ public class OrchardOverviewController {
 	
 	@FXML
 	public void initialize(){
+		
+		orchardService = new OrchardServiceImpl(new OrchardDao(EntityManagerProvider.provideEntityManager()));
+		orchardData = FXCollections.observableArrayList(orchardService.findAllOrchards());
+		orchardTable.setItems(orchardData);
 		
 		orchardNameColumn.setCellValueFactory(new PropertyValueFactory<Orchard, String>("orchardName"));
 		
@@ -78,12 +96,38 @@ public class OrchardOverviewController {
 			cropLabel.setText("");
 		}
 	}
+    /**
+     * Opens a dialog to edit details for the specified orchard. If the user
+     * clicks OK, the changes are saved into the provided orchard object and true
+     * is returned.
+     * 
+     * @param orchard the orchard object to be edited
+     * @return true if the user clicked OK, false otherwise.
+     */
+	public boolean showOrchardEditDialog(Orchard orchard) {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(OrchardOverviewController.class.getResource("OrchardEditDialog.fxml"));
+            AnchorPane page = (AnchorPane) loader.load();
 
-	public void setMainApp(MainApp mainApp){
-		this.mainApp = mainApp;
-		
-		orchardTable.setItems(mainApp.getOrchardData());
-	}
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Szerkesztés");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+
+            OrchardEditDialogController controller = loader.getController();
+            controller.setDialogStage(dialogStage);
+            controller.setOrchard(orchard);
+            
+            dialogStage.showAndWait();
+
+            return controller.isOkClicked();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
 	
     /**
      * Called when the user clicks on the delete button.
@@ -94,14 +138,13 @@ public class OrchardOverviewController {
         Orchard selectedOrchard = orchardTable.getSelectionModel().getSelectedItem();
         if (selectedIndex >= 0) {
             Alert alert = new Alert(AlertType.CONFIRMATION);
-            alert.initOwner(mainApp.getPrimaryStage());
             alert.setTitle("");
             alert.setHeaderText("Biztosan törli?.");
             alert.setContentText("Törlés után az adatok végleg elvesznek.");
 
             alert.showAndWait().ifPresent(response -> {
                 if (response == ButtonType.OK) {
-                	mainApp.provideOrchardService().removeOrchard(selectedOrchard.getId());
+                	orchardService.removeOrchard(selectedOrchard.getId());
                 	orchardTable.getItems().remove(selectedIndex);
                 }
             });
@@ -109,7 +152,6 @@ public class OrchardOverviewController {
         } else {
             // Nothing selected.
             Alert alert = new Alert(AlertType.WARNING);
-            alert.initOwner(mainApp.getPrimaryStage());
             alert.setTitle("Hiba");
             alert.setHeaderText("Nincs kiválasztva kert");
             alert.setContentText("Válasszon kertet a táblázatból.");
@@ -125,13 +167,13 @@ public class OrchardOverviewController {
     @FXML
     private void handleNewOrchard() {
         Orchard orchard = new Orchard();
-    	mainApp.provideOrchardService().createOrchard(orchard);
-        boolean okClicked = mainApp.showOrchardEditDialog(orchard);
+        orchardService.createOrchard(orchard);
+        boolean okClicked = showOrchardEditDialog(orchard);
         if (okClicked) {
-        	mainApp.provideOrchardService().updateOrchard(orchard);
-            mainApp.getOrchardData().add(orchard);
+        	orchardService.updateOrchard(orchard);
+        	orchardData.add(orchard);
         }else{
-        	mainApp.provideOrchardService().removeOrchard(orchard.getId());
+        	orchardService.removeOrchard(orchard.getId());
         }
     }
 
@@ -143,18 +185,17 @@ public class OrchardOverviewController {
     private void handleEditOrchard() {
         Orchard selectedOrchard = orchardTable.getSelectionModel().getSelectedItem();
         if (selectedOrchard != null) {
-            boolean okClicked = mainApp.showOrchardEditDialog(selectedOrchard);
+            boolean okClicked = showOrchardEditDialog(selectedOrchard);
             if (okClicked) {
-            	mainApp.provideOrchardService().updateOrchard(selectedOrchard);
+            	orchardService.updateOrchard(selectedOrchard);
             	showOrchardDetails(selectedOrchard);
             }else{
-            	mainApp.provideOrchardService().updateOrchard(selectedOrchard);
+            	orchardService.updateOrchard(selectedOrchard);
             }
 
         } else {
             // Nothing selected.
             Alert alert = new Alert(AlertType.WARNING);
-            alert.initOwner(mainApp.getPrimaryStage());
             alert.setTitle("Hiba");
             alert.setHeaderText("Nincs kiválasztva kert.");
             alert.setContentText("Válasszon kertet a táblázatból.");

@@ -40,11 +40,11 @@ public class DateUtil {
      * @return the date object or null if it could not be converted
      */
     public static LocalDate parse(String dateString) {
-        try {
-            return DATE_FORMATTER.parse(dateString, LocalDate::from);
-        } catch (DateTimeParseException e) {
-            return null;
-        }
+    	try {
+    		return DATE_FORMATTER.parse(dateString, LocalDate::from);
+    	} catch (DateTimeParseException | NullPointerException e) {
+    		return null;
+    	}
     }
 
     /**
