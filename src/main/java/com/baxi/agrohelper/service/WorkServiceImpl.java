@@ -63,8 +63,6 @@ public class WorkServiceImpl implements WorkService {
 					.map(AgWork::getWorkDesignation)
 					.distinct()
 					.collect(Collectors.toList());
-	}
-
-	
+	}	
 	
 }

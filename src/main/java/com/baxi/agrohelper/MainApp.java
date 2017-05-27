@@ -2,9 +2,6 @@ package com.baxi.agrohelper;
 
 import java.io.IOException;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.baxi.agrohelper.util.EntityManagerProvider;
 
 import javafx.application.Application;
@@ -13,23 +10,47 @@ import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
+/**
+ *
+ * Main class of the Agro-Helper application.
+ * 
+ * @author Gergely Szabó
+ *
+ */
+
 public class MainApp extends Application {
 
+	/**
+	 * Primary stage of this application.
+	 */
 	private Stage primaryStage;
+	
+	/**
+	 * Root layout of this application.
+	 */
     private BorderPane rootLayout;
-    
-    private static Logger logger = LoggerFactory.getLogger(MainApp.class);
-    
+ 
+    /**
+     * Constructor
+     */
     public MainApp(){}
 
+    /**
+     * Start method required for application initialization.
+     * 
+     * @param primaryStage giving stage for the application
+     */
     @Override
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle("AgroHelper");
-
         initRootLayout();
     }
     
+    /**
+     * Stop method invoked when the user quits from the application.
+     * Shuts down the connection to the database.
+     */
     @Override
     public void stop(){
     	EntityManagerProvider.closeConnection();
@@ -42,9 +63,7 @@ public class MainApp extends Application {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainApp.class.getResource("view/OrchardOverview.fxml"));
-            logger.debug(loader.getLocation().toString());
             rootLayout = (BorderPane) loader.load();
-
             Scene scene = new Scene(rootLayout);
             primaryStage.setScene(scene);
             primaryStage.show();
@@ -55,7 +74,6 @@ public class MainApp extends Application {
 
     /**
      * Returns the main stage.
-     * @return
      */
     public Stage getPrimaryStage() {
         return primaryStage;

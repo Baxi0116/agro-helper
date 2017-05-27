@@ -21,8 +21,8 @@ public class Variety {
 	private String varietyName;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="CROP_ID", nullable=false)
-	private Crop crop;
+	@JoinColumn(name="ORCHARD_ID", nullable=false)
+	private Orchard orchard;
 	
 	public Variety() {}
 
@@ -51,14 +51,12 @@ public class Variety {
 		this.varietyName = varietyName;
 	}
 
-	public Crop getCrop() {
-		return crop;
+	public Orchard getOrchard() {
+		return orchard;
 	}
 
-	public void setCrop(Crop crop) {
-		this.crop = crop;
+	public void setOrchard(Orchard orchard) {
+		this.orchard = orchard;
 	}
-	
-	
 	
 }

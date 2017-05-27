@@ -214,7 +214,6 @@
             <items>
               <MenuItem mnemonicParsing="false" onAction="#handleNewOrchard" text="Új kert" />
                   <MenuItem mnemonicParsing="false" onAction="#handleWorks" text="Munkák kezelése" />
-                  <MenuItem mnemonicParsing="false" text="Fajták kezelése" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Szerkeszt">

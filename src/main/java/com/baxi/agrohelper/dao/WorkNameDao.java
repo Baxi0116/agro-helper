@@ -7,6 +7,12 @@ import javax.persistence.TypedQuery;
 
 import com.baxi.agrohelper.model.WorkName;
 
+/** 
+ * Implementation of a Data Access Object for {@code WorkName} type entities.
+ * 
+ * @author gszabo97
+ *
+ */
 public class WorkNameDao implements GenericDaoInterface<WorkName, Integer> {
 
 	private EntityManager entityManager;

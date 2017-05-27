@@ -104,7 +104,5 @@ public class AgWork {
 	public void setWorkNote(String workNote) {
 		this.workNote = workNote;
 	}
-	
-	
 
 }

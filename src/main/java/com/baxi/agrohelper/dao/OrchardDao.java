@@ -7,6 +7,12 @@ import javax.persistence.TypedQuery;
 
 import com.baxi.agrohelper.model.Orchard;
 
+/**
+ * Implementation of a Data Access Object for {@code Orchard} type entities.
+ * 
+ * @author gszabo97
+ *
+ */
 public class OrchardDao implements GenericDaoInterface<Orchard, Integer> {
 	
 	private EntityManager entityManager;

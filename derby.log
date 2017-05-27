@@ -1,6 +1,6 @@
 ----------------------------------------------------------------
-Sat May 27 00:53:25 CEST 2017:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.13.1.1 - (1765088): instance a816c00e-015c-46f6-e606-000007e95830 
+Sat May 27 02:16:23 CEST 2017:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.13.1.1 - (1765088): instance a816c00e-015c-4742-dd6e-0000078034f0 
 on database directory /home/gszabo97/workspace/agro-helper/agrohelperdb with class loader sun.misc.Launcher$AppClassLoader@73d16e93 
 Loaded from file:/home/gszabo97/.m2/repository/org/apache/derby/derby/10.13.1.1/derby-10.13.1.1.jar
 java.vendor=Oracle Corporation

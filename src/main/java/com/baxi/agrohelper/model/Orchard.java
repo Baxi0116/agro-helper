@@ -41,6 +41,9 @@ public class Orchard {
 
 	@OneToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "orchard")
 	private List<AgWork> works;
+	
+	@OneToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "orchard")
+	private List<Variety> varieties;
 
 	public Orchard(String orchardName, LocalDate yearOfPlantation, String topographicNumber, String meparCode, int numberOfTrees) {
 		this.orchardName = orchardName;
@@ -50,6 +53,7 @@ public class Orchard {
 		this.numberOfTrees = numberOfTrees;
 		this.works = new ArrayList<AgWork>();
 		this.crops = new ArrayList<Crop>();
+		this.varieties = new ArrayList<Variety>();
 	}
 	
 	public Orchard(){
@@ -58,6 +62,7 @@ public class Orchard {
 		this.topographicNumber = "";
 		this.works = new ArrayList<AgWork>();
 		this.crops = new ArrayList<Crop>();
+		this.varieties = new ArrayList<Variety>();
 	}
 
 	public int getId() {
@@ -131,9 +136,12 @@ public class Orchard {
 				+ numberOfTrees + "]";
 	}
 
-	
-	
-	
-	
+	public List<Variety> getVarieties() {
+		return varieties;
+	}
+
+	public void setVarieties(List<Variety> varieties) {
+		this.varieties = varieties;
+	}
 	
 }
