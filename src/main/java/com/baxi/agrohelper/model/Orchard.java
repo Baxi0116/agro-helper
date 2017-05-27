@@ -45,6 +45,9 @@ public class Orchard {
 	@OneToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "orchard")
 	private List<Variety> varieties;
 
+	@OneToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "orchard")
+	private List<FStatement> statements;
+	
 	public Orchard(String orchardName, LocalDate yearOfPlantation, String topographicNumber, String meparCode, int numberOfTrees) {
 		this.orchardName = orchardName;
 		this.yearOfPlantation = yearOfPlantation;
@@ -54,6 +57,7 @@ public class Orchard {
 		this.works = new ArrayList<AgWork>();
 		this.crops = new ArrayList<Crop>();
 		this.varieties = new ArrayList<Variety>();
+		this.statements = new ArrayList<FStatement>();
 	}
 	
 	public Orchard(){
@@ -63,6 +67,7 @@ public class Orchard {
 		this.works = new ArrayList<AgWork>();
 		this.crops = new ArrayList<Crop>();
 		this.varieties = new ArrayList<Variety>();
+		this.statements = new ArrayList<FStatement>();
 	}
 
 	public int getId() {
@@ -143,5 +148,12 @@ public class Orchard {
 	public void setVarieties(List<Variety> varieties) {
 		this.varieties = varieties;
 	}
-	
+
+	public List<FStatement> getStatements() {
+		return statements;
+	}
+
+	public void setStatements(List<FStatement> statements) {
+		this.statements = statements;
+	}
 }

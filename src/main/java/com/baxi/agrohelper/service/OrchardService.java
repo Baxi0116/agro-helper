@@ -19,8 +19,4 @@ public interface OrchardService {
 	
 	public List<Orchard> findAllOrchards();
 	
-	public int countExpensesForOrchard(int id);
-	
-	public int countExpensesForAllOrchard();
-	
 }

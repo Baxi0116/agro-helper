@@ -7,7 +7,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.baxi.agrohelper.dao.OrchardDao;
-import com.baxi.agrohelper.model.AgWork;
 import com.baxi.agrohelper.model.Orchard;
 
 public class OrchardServiceImpl implements OrchardService{
@@ -51,25 +50,6 @@ public class OrchardServiceImpl implements OrchardService{
 	public List<Orchard> findAllOrchards() {
 		return orchardDao.findAll();
 
-	}
-
-	@Override
-	public int countExpensesForOrchard(int id) {
-		Orchard orchard = orchardDao.findById(id);
-		int expenses = 0;
-		for(AgWork work : orchard.getWorks()){
-			expenses += work.getWorkPrice();
-		}
-		return expenses;
-	}
-
-	@Override
-	public int countExpensesForAllOrchard() {
-		int expenses = 0;
-		for(Orchard orchard : orchardDao.findAll()){
-			expenses += countExpensesForOrchard(orchard.getId());
-		}	
-		return expenses;
 	}
 
 	@Override
