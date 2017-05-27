@@ -62,7 +62,7 @@ public class MainApp extends Application {
     public void initRootLayout() {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainApp.class.getResource("view/OrchardOverview.fxml"));
+            loader.setLocation(MainApp.class.getResource("/view/OrchardOverview.fxml"));
             rootLayout = (BorderPane) loader.load();
             Scene scene = new Scene(rootLayout);
             primaryStage.setScene(scene);
@@ -74,6 +74,8 @@ public class MainApp extends Application {
 
     /**
      * Returns the main stage.
+     * 
+     * @return primary stage of this class
      */
     public Stage getPrimaryStage() {
         return primaryStage;

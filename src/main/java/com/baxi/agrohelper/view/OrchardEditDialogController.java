@@ -19,9 +19,6 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-/**
- * Dialog to edit details of a person.
- */
 public class OrchardEditDialogController {
 
 	@FXML
@@ -47,29 +44,16 @@ public class OrchardEditDialogController {
 	private boolean OkClicked = false;
 	
 	private CropService cropService;
-	
-    /**
-     * Initializes the controller class.
-     */
+
 	@FXML
 	private void initialize(){
 		cropService = new CropServiceImpl(new CropDao(EntityManagerProvider.provideEntityManager()));
 	}
 	
-    /**
-     * Sets the stage of this dialog.
-     * 
-     * @param stage
-     */
 	public void setDialogStage(Stage stage){
 		this.dialogStage = stage;
 	}
-	
-    /**
-     * Sets the orchard to be edited in the dialog.
-     * 
-     * @param orchard
-     */
+
 	public void setOrchard(Orchard orchard){
 		this.orchard = orchard;
 		
@@ -81,19 +65,11 @@ public class OrchardEditDialogController {
 		numberOfTreesTextField.setText(Integer.toString(orchard.getNumberOfTrees()));
 		cropsTextField.setText(ListUtil.formatOutput(orchard.getCrops()));
 	}
-	
-    /**
-     * Returns true if the user clicked OK, false otherwise.
-     * 
-     * @return
-     */
+
 	public boolean isOkClicked(){
 		return OkClicked;
 	}
-	
-	/**
-     * Called when the user clicks ok.
-     */
+
 	@FXML
 	public void handleOk(){
 		if(isInputValid()){
@@ -118,19 +94,11 @@ public class OrchardEditDialogController {
 		}
 	}
 	
-    /**
-     * Called when the user clicks cancel.
-     */
     @FXML
     private void handleCancel() {
         dialogStage.close();
     }
-    
-    /**
-     * Validates the user input in the text fields.
-     * 
-     * @return true if the input is valid
-     */
+
     private boolean isInputValid() {
         String errorMessage = "";
 
@@ -156,7 +124,6 @@ public class OrchardEditDialogController {
         if (errorMessage.length() == 0) {
             return true;
         } else {
-            // Show the error message.
             Alert alert = new Alert(AlertType.ERROR);
             alert.initOwner(dialogStage);
             alert.setTitle("Hibás mezők");

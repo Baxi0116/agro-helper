@@ -11,38 +11,39 @@ import java.util.List;
  */
 public interface GenericDaoInterface <T, Id extends Serializable>{
 
-	/*
+	/**
 	 * Method for persisting a database entity.
 	 * 
-	 * @param entity to be saved in the database
+	 * @param entity the entity to be saved in the database
 	 */
 	public void persist(T entity);
 	
-	/*
+	/**
 	 * Method for updating a database entity.
 	 * 
-	 * @param entity to be updated
+	 * @param entity the entity to be updated
 	 */
 	public void update(T entity);
 	
-	/*
+	/**
 	 * Method for getting an entity from the database.
 	 * 
-	 * @param id of the target entity
+	 * @param id  the id of the target entity
+	 * @return T a {@code T} typed entity
 	 */
 	public T findById(Id id);
 	
 	/**
 	 * Method for removing an entity from the database.
 	 * 
-	 * @param entity
+	 * @param entity the entity to be removed
 	 */
 	public void delete(T entity);
 	
 	/**
 	 * Method for getting all entities with the same type.
 	 * 
-	 * @return List<T> with all T typed entities
+	 * @return List {@link java.util.List} with all the entities
 	 */
 	public List<T> findAll();
 	

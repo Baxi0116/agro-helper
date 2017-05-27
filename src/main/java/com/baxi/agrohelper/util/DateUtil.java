@@ -9,10 +9,14 @@ import java.time.format.DateTimeParseException;
  */
 public class DateUtil {
 
-    /** The date pattern that is used for conversion. */
+    /**
+     * The date pattern that is used for conversion. 
+     */
     private static final String DATE_PATTERN = "yyyy.MM.dd.";
 
-    /** The date formatter. */
+    /** 
+     * The date formatter. 
+     */
     private static final DateTimeFormatter DATE_FORMATTER = 
             DateTimeFormatter.ofPattern(DATE_PATTERN);
 
@@ -50,7 +54,7 @@ public class DateUtil {
     /**
      * Checks the String whether it is a valid date.
      * 
-     * @param dateString
+     * @param dateString the date as String
      * @return true if the String is a valid date
      */
     public static boolean validDate(String dateString) {
