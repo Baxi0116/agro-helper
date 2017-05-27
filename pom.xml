@@ -14,7 +14,11 @@
 			<organization>University of Debrecen, Faculty of Informatics</organization>
 		</developer>
 	</developers>
-	<scm />
+	<scm>
+		<connection>scm:git:https://github.com/Baxi0116/agro-helper</connection>
+		<developerConnection>scm:git:https://github.com/Baxi0116/agro-helper</developerConnection>
+		<url>https://github.com/Baxi0116/agro-helper</url>
+	</scm>
 	<licenses />
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
