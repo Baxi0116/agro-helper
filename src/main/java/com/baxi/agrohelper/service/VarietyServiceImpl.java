@@ -5,17 +5,17 @@ import java.util.List;
 import com.baxi.agrohelper.dao.VarietyDao;
 import com.baxi.agrohelper.model.Variety;
 
-public class VarietySeviceImpl implements VarietyService {
+public class VarietyServiceImpl implements VarietyService {
 
 	private VarietyDao varietyDao;
 	
-	public VarietySeviceImpl(VarietyDao varietyDao) {
+	public VarietyServiceImpl(VarietyDao varietyDao) {
 		this.varietyDao = varietyDao;
 	}
 	
 	@Override
-	public Variety createVariety(String name) {
-		Variety variety = new Variety(name);
+	public Variety createVariety(String name, double varietyArea) {
+		Variety variety = new Variety(name, varietyArea);
 		varietyDao.persist(variety);
 		return variety;
 	}

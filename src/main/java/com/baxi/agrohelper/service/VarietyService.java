@@ -6,7 +6,7 @@ import com.baxi.agrohelper.model.Variety;
 
 public interface VarietyService {
 
-public Variety createVariety(String name);
+public Variety createVariety(String name, double varietyArea);
 	
 	public void createVariety(Variety variety);
 	

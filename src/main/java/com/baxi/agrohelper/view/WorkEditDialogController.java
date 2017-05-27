@@ -52,8 +52,6 @@ public class WorkEditDialogController {
 	
 	public void setOrchard(Orchard orchard){
 		this.orchard = orchard;
-		
-		//datePicker = new DatePicker();
 		priceTextField.setText("0");
 		nameBox.getItems().addAll(workNameService.getAllWorkNames());
 		nameBox.setTooltip(new Tooltip("Válasszon a listából"));

@@ -10,13 +10,21 @@ import com.baxi.agrohelper.model.AgWork;
 /**
  * Implementation of a Data Access Object for {@code AgWork} type entities.
  * 
- * @author gszabo97
+ * @author Gergely Szabó
  *
  */
 public class WorkDao implements GenericDaoInterface<AgWork, Integer>{
 
+	/**
+	 * EntityManager for database access.
+	 */
 	private EntityManager entityManager;
 	
+	/**
+	 * Constructor.
+	 * 
+	 * @param entityManager  EntityManager for database access
+	 */
 	public WorkDao(EntityManager entityManager){
 		this.entityManager = entityManager;
 	}

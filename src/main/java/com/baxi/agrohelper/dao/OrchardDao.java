@@ -10,13 +10,21 @@ import com.baxi.agrohelper.model.Orchard;
 /**
  * Implementation of a Data Access Object for {@code Orchard} type entities.
  * 
- * @author gszabo97
+ * @author Gergely Szabó
  *
  */
 public class OrchardDao implements GenericDaoInterface<Orchard, Integer> {
 	
+	/**
+	 * EntityManager for database access.
+	 */
 	private EntityManager entityManager;
 	
+	/**
+	 * Constructor.
+	 * 
+	 * @param entityManager  EntityManager for database access
+	 */
 	public OrchardDao(EntityManager entityManager){
 		this.entityManager = entityManager;
 	}

@@ -15,8 +15,8 @@
 		</developer>
 	</developers>
 	<scm>
-		<connection>scm:git:https://github.com/Baxi0116/agro-helper</connection>
-		<developerConnection>scm:git:https://github.com/Baxi0116/agro-helper</developerConnection>
+		<connection>scm:git:git@github.com:Baxi0116/agro-helper.git</connection>
+		<developerConnection>scm:git:git@github.com:Baxi0116/agro-helper.git</developerConnection>
 		<url>https://github.com/Baxi0116/agro-helper</url>
 	</scm>
 	<licenses />

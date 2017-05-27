@@ -10,7 +10,7 @@ import com.baxi.agrohelper.model.Crop;
 /**
  * Implementation of a Data Access Object for {@code Crop} type entities.
  * 
- * @author gszabo97
+ * @author Gergely Szabó
  *
  */
 public class CropDao implements GenericDaoInterface<Crop, Integer>{
