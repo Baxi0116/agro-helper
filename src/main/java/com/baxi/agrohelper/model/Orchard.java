@@ -13,9 +13,18 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+/**
+ * Java abstraction of orchard entities.
+ * 
+ * @author Gergely Szabó
+ *
+ */
 @Entity
 public class Orchard {
 
+	/**
+	 * Id of this entity.
+	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="ORCHARD_ID")
@@ -134,6 +143,10 @@ public class Orchard {
 		this.works = works;
 	}
 
+	/**
+	 * Creates a {@code String} representation for the object.
+	 * @return the String representation of the object
+	 */
 	@Override
 	public String toString() {
 		return "Orchard [id=" + id + ", orchardName=" + orchardName + ", yearOfPlantation=" + yearOfPlantation

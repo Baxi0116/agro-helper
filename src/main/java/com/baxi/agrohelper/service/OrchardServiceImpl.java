@@ -7,7 +7,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.baxi.agrohelper.dao.GenericDaoInterface;
-import com.baxi.agrohelper.dao.OrchardDao;
 import com.baxi.agrohelper.model.Orchard;
 
 /**

@@ -7,6 +7,12 @@ import javax.persistence.TypedQuery;
 
 import com.baxi.agrohelper.model.VarietyName;
 
+/**
+ * Implementation of a Data Access Object for {@code VarietyName} type entities.
+ * 
+ * @author Gergely Szabó
+ *
+ */
 public class VarietyNameDao implements GenericDaoInterface<VarietyName, Integer>{
 
 	/**

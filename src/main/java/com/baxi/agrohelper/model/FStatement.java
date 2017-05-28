@@ -11,9 +11,18 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+/**
+ * Java abstraction of financial statement entities.
+ * 
+ * @author Gergely Szabó
+ *
+ */
 @Entity
 public class FStatement {
 
+	/**
+	 * Id of this entity.
+	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="STATEMENT_ID")
@@ -93,6 +102,10 @@ public class FStatement {
 		this.orchard = orchard;
 	}
 
+	/**
+	 * Creates a {@code String} representation for the object.
+	 * @return the String representation of the object
+	 */
 	@Override
 	public String toString() {
 		return "Statement [statementDate=" + statementDate + ", expenses=" + expenses + ", incomes=" + income

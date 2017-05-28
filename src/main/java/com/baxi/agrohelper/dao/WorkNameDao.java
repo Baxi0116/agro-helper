@@ -54,7 +54,7 @@ public class WorkNameDao implements GenericDaoInterface<WorkName, Integer> {
 		entityManager.remove(entity);
 		entityManager.getTransaction().commit();
 	}
-
+	
 	@Override
 	public List<WorkName> findAll() {
 		TypedQuery<WorkName> query = entityManager.createQuery("SELECT w FROM com.baxi.agrohelper.model.WorkName w", WorkName.class);

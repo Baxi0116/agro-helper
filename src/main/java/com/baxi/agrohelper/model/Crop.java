@@ -9,6 +9,12 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+/**
+ * Java abstraction of crop entities.
+ * 
+ * @author Gergely Szabó
+ *
+ */
 @Entity
 public class Crop {
 	

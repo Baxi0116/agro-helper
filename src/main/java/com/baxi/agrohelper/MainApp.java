@@ -31,7 +31,7 @@ public class MainApp extends Application {
     private BorderPane rootLayout;
  
     /**
-     * Constructor
+     * Constructor.
      */
     public MainApp(){}
 
@@ -81,6 +81,11 @@ public class MainApp extends Application {
         return primaryStage;
     }
     
+    /**
+     * Main method of the application.
+     * 
+     * @param args command line arguments
+     */
     public static void main(String[] args) {
 		launch(args);
 	}

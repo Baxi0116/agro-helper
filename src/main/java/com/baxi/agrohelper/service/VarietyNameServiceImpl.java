@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import com.baxi.agrohelper.dao.GenericDaoInterface;
-import com.baxi.agrohelper.dao.VarietyNameDao;
 import com.baxi.agrohelper.model.VarietyName;
 
 public class VarietyNameServiceImpl implements VarietyNameService {

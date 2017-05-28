@@ -6,9 +6,20 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+/**
+ * Java abstraction of variety types.
+ * 
+ * This class is for segregating the variety types from the actual varieties for an orchard.
+ * 
+ * @author Gergely Szabó
+ *
+ */
 @Entity
 public class VarietyName {
 
+	/**
+	 * Id of this entity.
+	 */
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "VARIETY_NAME_ID")
@@ -39,6 +50,10 @@ public class VarietyName {
 		this.name = name;
 	}
 
+	/**
+	 * Creates a {@code String} representation for the object.
+	 * @return the String representation of the object
+	 */
 	@Override
 	public String toString() {
 		return name;

@@ -1,7 +1,8 @@
 package com.baxi.agrohelper.service;
 
-//import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
+import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
 import static org.mockito.Mockito.when;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,7 +43,7 @@ public class OrchardServiceTestCase {
 		
 		List<Orchard> orchardList = orchardService.findAllOrchards();
 		
-//		AssertThat(orchardList, hasSize(3));
+		assertThat(orchardList, hasSize(3));
 		
 	}
 	

@@ -9,9 +9,18 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+/**
+ * Java abstraction of plant variety entities.
+ * 
+ * @author Gergely Szabó
+ *
+ */
 @Entity
 public class Variety {
 
+	/**
+	 * Id of this entity.
+	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "VARIETY_ID")
@@ -48,11 +57,6 @@ public class Variety {
 
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	@Override
-	public String toString() {
-		return varietyName;
 	}
 
 	public String getVarietyName() {
@@ -94,5 +98,12 @@ public class Variety {
 	public void setVarietyArea(double varietyArea) {
 		this.varietyArea = varietyArea;
 	}
-	
+	/**
+	 * Creates a {@code String} representation for the object.
+	 * @return the String representation of the object
+	 */
+	@Override
+	public String toString() {
+		return varietyName;
+	}
 }

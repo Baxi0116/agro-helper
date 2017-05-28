@@ -30,7 +30,7 @@ public interface OrchardService {
 	/**
 	 * Method to create an {@link com.baxi.agrohelper.model.Orchard} in the database from an existing object.
 	 * 
-	 * @param id id of the target Orchard
+	 * @param orchard the target Orchard
 	 */
 	public void createOrchard(Orchard orchard);
 	
