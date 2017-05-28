@@ -82,7 +82,7 @@ public class AgWork {
 	}
 	
 	/**
-	 * Many to one connection between the {@link com.baxi.agrohelper.model.Orchard} Entity.
+	 * Many to one connection with the {@link com.baxi.agrohelper.model.Orchard} Entity.
 	 */
 	@ManyToOne(fetch = FetchType.LAZY, targetEntity=Orchard.class)
 	@JoinColumn(name = "ORCHARD_ID", nullable = false)

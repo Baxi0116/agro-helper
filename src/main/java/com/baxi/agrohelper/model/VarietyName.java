@@ -25,27 +25,57 @@ public class VarietyName {
 	@Column(name = "VARIETY_NAME_ID")
 	private int id;
 	
+	/**
+	 * Designation of the work type.
+	 */
 	@Column(name = "VARIETY_NAME")
 	private String name;
 	
+	/**
+	 * Constructor.
+	 */
 	public VarietyName(){}
 	
+	/**
+	 * Constructor.
+	 * 
+	 * @param name name to set for this entity
+	 */
 	public VarietyName(String name){
 		this.name = name;
 	}
 
+	/**
+	 * Getter method for the {@code id}.
+	 * @return id
+	 */
 	public int getId() {
 		return id;
 	}
 
+	/**
+	 * Setter method for the {@code id}.
+	 * 
+	 * @param id id to set
+	 */
 	public void setId(int id) {
 		this.id = id;
 	}
 
+	/**
+	 * Getter method for {@code name}.
+	 * 
+	 * @return name
+	 */
 	public String getName() {
 		return name;
 	}
 
+	/**
+	 * Setter method for {@code name}.
+	 * 
+	 * @param name name to set
+	 */
 	public void setName(String name) {
 		this.name = name;
 	}

@@ -52,6 +52,7 @@ public interface OrchardService {
 	 * Method to find an {@link com.baxi.agrohelper.model.Orchard} in the database by its id.
 	 * 
 	 * @param id id of the target Orchard
+	 * @return the found Orchard if present, or null if not
 	 */
 	public Orchard findOrchardById(int id);
 	

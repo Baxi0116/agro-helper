@@ -18,51 +18,98 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Crop {
 	
+	/**
+	 * Id of this entity.
+	 */
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="CROP_ID")
 	private int id;
 	
+	/**
+	 * Name of the crop.
+	 */
 	@Column(name = "CROP_NAME", nullable=false)
 	private String cropName;
 	
+	/**
+	 * Many to one connection with {@link com.baxi.agrohelper.model.Orchard}.
+	 */
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="ORCHARD_ID", nullable = false)
 	private Orchard orchard;
 
+	/**
+	 * Constructor.
+	 * 
+	 * @param cropName cropName to set
+	 */
 	public Crop(String cropName) {
 		this.cropName = cropName;
 	}
 	
+	/**
+	 * Constructor.
+	 */
 	public Crop(){}
 
+	/**
+	 * Getter method for {@code id}.
+	 * @return id
+	 */
 	public int getId() {
 		return id;
 	}
 
+	/**
+	 * Setter method for {@code id}.
+	 * @param id id to set
+	 */
 	public void setId(int id) {
 		this.id = id;
 	}
 
+	/**
+	 * Getter method for {@code cropName}.
+	 * @return cropName
+	 */
 	public String getCropName() {
 		return cropName;
 	}
-
-	public void setCropName(String nev) {
-		this.cropName = nev;
+	
+	/**
+	 * Setter method for {@code cropName}.
+	 * 
+	 * @param name cropName to set
+	 */
+	public void setCropName(String name) {
+		this.cropName = name;
 	}
 
-	@Override
-	public String toString() {
-		return cropName;
-	}
-
+	/**
+	 * Getter method for {@code orchard}.
+	 * 
+	 * @return orchard
+	 */
 	public Orchard getOrchard() {
 		return orchard;
 	}
-
+	
+	/**
+	 * Setter method for {@code orchard}.
+	 * 
+	 * @param orchard orchard to set
+	 */
 	public void setOrchard(Orchard orchard) {
 		this.orchard = orchard;
 	}
 
+	/**
+	 * Creates a {@code String} representation for the object.
+	 * @return the String representation of the object
+	 */
+	@Override
+	public String toString() {
+		return cropName;
+	}
 }

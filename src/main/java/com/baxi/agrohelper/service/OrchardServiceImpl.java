@@ -18,6 +18,9 @@ import com.baxi.agrohelper.model.Orchard;
  */
 public class OrchardServiceImpl implements OrchardService{
 	
+	/**
+	 * Static logger for debug purposes.
+	 */
 	private static Logger logger = LoggerFactory.getLogger(OrchardServiceImpl.class);
 	
 	/**
@@ -26,9 +29,9 @@ public class OrchardServiceImpl implements OrchardService{
 	private GenericDaoInterface<Orchard, Integer> orchardDao;
 	
 	/**
-	 * Constructor
+	 * Constructor.
 	 * 
-	 * @param orchardDao {@link com.baxi.agrohelper.dao.OrchardDao} object for initialization
+	 * @param orchardDao {@link com.baxi.agrohelper.dao.GenericDaoInterface} object for initialization
 	 */
 	public OrchardServiceImpl(GenericDaoInterface<Orchard, Integer> orchardDao){
 		this.orchardDao = orchardDao;
@@ -48,7 +51,7 @@ public class OrchardServiceImpl implements OrchardService{
 	@Override
 	public Orchard createOrchard(String orchardName, LocalDate plantationYear, String topographicNumber, String meparCode,
 			int numberOfTrees) {
-		logger.info("Creating orchard {}", orchardName);
+		logger.info("Creating ORCHARD {}", orchardName);
 		Orchard orchard = new Orchard();
 		orchard.setOrchardName(orchardName);
 		orchard.setYearOfPlantation(plantationYear);
@@ -68,7 +71,7 @@ public class OrchardServiceImpl implements OrchardService{
 	@Override
 	public void removeOrchard(int id) {
 		Orchard orchard = orchardDao.findById(id);
-		logger.info("Removing orchard {}", orchard.getOrchardName());
+		logger.warn("Removing orchard {}", orchard.getOrchardName());
 		orchardDao.delete(orchard);
 	}
 
