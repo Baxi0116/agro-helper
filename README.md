@@ -14,7 +14,7 @@ You can run the jar with java -jar target/<jar-with-dependencies file name>
 ### About the program
 This program meant to make the life of farmers easier. It combines the standard records they have to manage in one place where it is easier to handle.
 
-###Usage
+### Usage
 You can create new orchards by clicking _Új..._ or choosing the _Új kert_ option from the _File_ menu.
 You can manage the choosable varieties and works at their corresponding tab or by selecting the corresponding
 choice from the _File_ menu.
