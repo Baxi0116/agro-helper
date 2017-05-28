@@ -17,15 +17,17 @@ public interface GenericDaoInterface <T, Id extends Serializable>{
 	 * Method for persisting a database entity.
 	 * 
 	 * @param entity the entity to be saved in the database
+	 * @return the persisted T entity
 	 */
-	public void persist(T entity);
+	public T persist(T entity);
 	
 	/**
 	 * Method for updating a database entity.
 	 * 
 	 * @param entity the entity to be updated
+	 * @return the updated T entity
 	 */
-	public void update(T entity);
+	public T update(T entity);
 	
 	/**
 	 * Method for getting an entity from the database.
@@ -39,8 +41,9 @@ public interface GenericDaoInterface <T, Id extends Serializable>{
 	 * Method for removing an entity from the database.
 	 * 
 	 * @param entity the entity to be removed
+	 * @return the removed T entity
 	 */
-	public void delete(T entity);
+	public T delete(T entity);
 	
 	/**
 	 * Method for getting all entities with the same type.

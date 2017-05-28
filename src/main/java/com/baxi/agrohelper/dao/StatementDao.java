@@ -30,17 +30,19 @@ public class StatementDao implements GenericDaoInterface<FStatement, Integer> {
 	}
 	
 	@Override
-	public void persist(FStatement entity) {
+	public FStatement persist(FStatement entity) {
 		entityManager.getTransaction().begin();
 		entityManager.persist(entity);
 		entityManager.getTransaction().commit();
+		return entity;
 	}
 
 	@Override
-	public void update(FStatement entity) {
+	public FStatement update(FStatement entity) {
 		entityManager.getTransaction().begin();
 		entityManager.merge(entity);
 		entityManager.getTransaction().commit();
+		return entity;
 	}
 
 	@Override
@@ -49,10 +51,11 @@ public class StatementDao implements GenericDaoInterface<FStatement, Integer> {
 	}
 
 	@Override
-	public void delete(FStatement entity) {
+	public FStatement delete(FStatement entity) {
 		entityManager.getTransaction().begin();
 		entityManager.remove(entity);
 		entityManager.getTransaction().commit();
+		return entity;
 	}
 
 	@Override

@@ -59,21 +59,36 @@ public class OrchardServiceTest {
 		assertThat(orchardService.findOrchardById(8).getOrchardName(), is(equalTo("teszt")));
 	}
 	
+	@Test
+	public void testCreateOrchard(){
+		Orchard orchard = new Orchard();
+		orchard.setOrchardName("Teszt");
+		
+		when(mockDao.persist(orchard)).thenReturn(orchard);
+		
+		assertThat(orchardService.createOrchard(orchard), is(equalTo(orchard)));
+	}
 	
+	@Test
+	public void testUpdateOrchard(){
+		Orchard orchard = new Orchard();
+		orchard.setOrchardName("Teszt");
+		
+		when(mockDao.update(orchard)).thenReturn(orchard);
+		
+		assertThat(orchardService.updateOrchard(orchard), is(equalTo(orchard)));
+	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	@Test
+	public void testDeleteOrchard(){
+		Orchard orchard = new Orchard();
+		orchard.setOrchardName("Teszt");
+		orchard.setId(1);
+		
+		when(mockDao.findById(1)).thenReturn(orchard);
+		when(mockDao.delete(orchard)).thenReturn(orchard);
+		
+		assertThat(orchardService.removeOrchard(1), is(equalTo(orchard)));
+	}
+		
 }

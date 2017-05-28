@@ -31,17 +31,19 @@ public class VarietyNameDao implements GenericDaoInterface<VarietyName, Integer>
 	}
 	
 	@Override
-	public void persist(VarietyName entity) {
+	public VarietyName persist(VarietyName entity) {
 		entityManager.getTransaction().begin();
 		entityManager.persist(entity);
 		entityManager.getTransaction().commit();
+		return entity;
 	}
 
 	@Override
-	public void update(VarietyName entity) {
+	public VarietyName update(VarietyName entity) {
 		entityManager.getTransaction().begin();
 		entityManager.merge(entity);
 		entityManager.getTransaction().commit();
+		return entity;
 	}
 
 	@Override
@@ -50,10 +52,11 @@ public class VarietyNameDao implements GenericDaoInterface<VarietyName, Integer>
 	}
 
 	@Override
-	public void delete(VarietyName entity) {
+	public VarietyName delete(VarietyName entity) {
 		entityManager.getTransaction().begin();
 		entityManager.remove(entity);
 		entityManager.getTransaction().commit();
+		return entity;
 	}
 
 	@Override

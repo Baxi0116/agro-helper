@@ -30,17 +30,19 @@ public class WorkNameDao implements GenericDaoInterface<WorkName, Integer> {
 	}
 	
 	@Override
-	public void persist(WorkName entity) {
+	public WorkName persist(WorkName entity) {
 		entityManager.getTransaction().begin();
 		entityManager.persist(entity);
 		entityManager.getTransaction().commit();
+		return entity;
 	}
 
 	@Override
-	public void update(WorkName entity) {
+	public WorkName update(WorkName entity) {
 		entityManager.getTransaction().begin();
 		entityManager.merge(entity);
 		entityManager.getTransaction().commit();
+		return entity;
 	}
 
 	@Override
@@ -49,10 +51,11 @@ public class WorkNameDao implements GenericDaoInterface<WorkName, Integer> {
 	}
 
 	@Override
-	public void delete(WorkName entity) {
+	public WorkName delete(WorkName entity) {
 		entityManager.getTransaction().begin();
 		entityManager.remove(entity);
 		entityManager.getTransaction().commit();
+		return entity;
 	}
 	
 	@Override

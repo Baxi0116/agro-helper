@@ -33,24 +33,28 @@ public class CropDao implements GenericDaoInterface<Crop, Integer>{
 	 * Method for persisting a Crop entity.
 	 * 
 	 * @param entity 	entity to be persisted
+	 * @return the perisited entity
 	 */
 	@Override
-	public void persist(Crop entity) {
+	public Crop persist(Crop entity) {
 		entityManager.getTransaction().begin();
 		entityManager.persist(entity);
 		entityManager.getTransaction().commit();
+		return entity;
 	}
 
 	/**
 	 * Method for updating a Crop entity.
 	 * 
 	 * @param entity	 entity to be updated
+	 * @return the updated Crop entity;
 	 */
 	@Override
-	public void update(Crop entity) {
+	public Crop update(Crop entity) {
 		entityManager.getTransaction().begin();
 		entityManager.merge(entity);
 		entityManager.getTransaction().commit();
+		return entity;
 	}
 
 	/**
@@ -67,15 +71,17 @@ public class CropDao implements GenericDaoInterface<Crop, Integer>{
 	}
 
 	/**
-	 * Method for deleting a Crop object rom the database.
+	 * Method for deleting a Crop object from the database.
 	 * 
 	 * @param entity	Crop entity to be removed
+	 * @return the removed Crop entity
 	 */
 	@Override
-	public void delete(Crop entity) {
+	public Crop delete(Crop entity) {
 		entityManager.getTransaction().begin();
 		entityManager.remove(entity);
 		entityManager.getTransaction().commit();
+		return entity;
 	}
 
 	/**

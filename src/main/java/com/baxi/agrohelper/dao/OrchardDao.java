@@ -30,17 +30,19 @@ public class OrchardDao implements GenericDaoInterface<Orchard, Integer> {
 	}
 
 	@Override
-	public void persist(Orchard entity) {
+	public Orchard persist(Orchard entity) {
 		entityManager.getTransaction().begin();
 		entityManager.persist(entity);
 		entityManager.getTransaction().commit();
+		return entity;
 	}
 
 	@Override
-	public void update(Orchard entity) {
+	public Orchard update(Orchard entity) {
 		entityManager.getTransaction().begin();
 		entityManager.merge(entity);
 		entityManager.getTransaction().commit();
+		return entity;
 	}
 
 	@Override
@@ -50,11 +52,11 @@ public class OrchardDao implements GenericDaoInterface<Orchard, Integer> {
 	}
 
 	@Override
-	public void delete(Orchard entity) {	
+	public Orchard delete(Orchard entity) {	
 		entityManager.getTransaction().begin();
 		entityManager.remove(entity);
 		entityManager.getTransaction().commit();
-		
+		return entity;
 	}
 
 	@Override

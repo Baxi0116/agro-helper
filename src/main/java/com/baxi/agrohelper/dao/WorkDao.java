@@ -30,17 +30,19 @@ public class WorkDao implements GenericDaoInterface<AgWork, Integer>{
 	}
 	
 	@Override
-	public void persist(AgWork entity) {
+	public AgWork persist(AgWork entity) {
 		entityManager.getTransaction().begin();
 		entityManager.persist(entity);
 		entityManager.getTransaction().commit();
+		return entity;
 	}
 
 	@Override
-	public void update(AgWork entity) {
+	public AgWork update(AgWork entity) {
 		entityManager.getTransaction().begin();
 		entityManager.merge(entity);
 		entityManager.getTransaction().commit();
+		return entity;
 	}
 
 	@Override
@@ -49,10 +51,11 @@ public class WorkDao implements GenericDaoInterface<AgWork, Integer>{
 	}
 
 	@Override
-	public void delete(AgWork entity) {
+	public AgWork delete(AgWork entity) {
 		entityManager.getTransaction().begin();
 		entityManager.remove(entity);
 		entityManager.getTransaction().commit();
+		return entity;
 	}
 
 	@Override
