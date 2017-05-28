@@ -51,7 +51,7 @@ public class Variety {
 	private double varietyArea;
 	
 	/**
-	 * Many to one connection with the {@link com.baxi.agrohelper.model.Orchard} entity.
+	 * Many to one relation with the {@link com.baxi.agrohelper.model.Orchard} entity.
 	 */
 	@ManyToOne(fetch=FetchType.LAZY, targetEntity=Orchard.class)
 	@JoinColumn(name="ORCHARD_ID", nullable=false)

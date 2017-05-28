@@ -7,8 +7,8 @@ import java.util.List;
  * Provides Data Access Object abstraction for basic CRUD operations on the database.
  * 
  * @author Gergely Szabó
- * @param T type of the entity this object will manage
- * @param Id type of the id of that entity
+ * @param <T> type of the entity this object will manage
+ * @param <Id> type of the id of that entity
  * 
  */
 public interface GenericDaoInterface <T, Id extends Serializable>{

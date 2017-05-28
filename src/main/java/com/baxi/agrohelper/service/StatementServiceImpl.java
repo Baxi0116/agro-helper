@@ -3,22 +3,40 @@ package com.baxi.agrohelper.service;
 import java.time.LocalDate;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.baxi.agrohelper.dao.GenericDaoInterface;
 import com.baxi.agrohelper.model.AgWork;
 import com.baxi.agrohelper.model.FStatement;
 import com.baxi.agrohelper.model.Orchard;
 import com.baxi.agrohelper.model.Variety;
 
+/**
+ * 
+ * Implementation of the {@code StatementService} interface.
+ * 
+ * @author Gergely Szabó
+ *
+ */
 public class StatementServiceImpl implements StatementService {
+	
+	private static Logger logger = LoggerFactory.getLogger(StatementServiceImpl.class);
 
 	private GenericDaoInterface<FStatement, Integer> statementDao;
 	
+	/**
+	 * Constructor.
+	 * 
+	 * @param statementDao {@link com.baxi.agrohelper.dao.GenericDaoInterface} object for initializtaion
+	 */
 	public StatementServiceImpl(GenericDaoInterface<FStatement, Integer> statementDao){
 		this.statementDao = statementDao;
 	}
 	
 	@Override
 	public FStatement createStatement(LocalDate date, double expenses, double income, double profit) {
+		logger.info("Creating statement");
 		FStatement statement = new FStatement(date, expenses, income, profit);
 		statementDao.persist(statement);
 		return statement;
@@ -26,17 +44,20 @@ public class StatementServiceImpl implements StatementService {
 
 	@Override
 	public void createStatement(FStatement statement) {
+		logger.info("Creating STATEMENT for orchard: {}", statement.getOrchard());
 		statementDao.persist(statement);
 	}
 
 	@Override
 	public void updateStatement(FStatement statement) {
+		logger.info("Updating STATEMENT for orchard: {}", statement.getOrchard());
 		statementDao.update(statement);
 	}
 
 	@Override
 	public void removeStatement(int id) {
 		FStatement statement = statementDao.findById(id);
+		logger.warn("Removing STATEMENT for orchard: {}", statement.getOrchard());
 		statementDao.delete(statement);
 	}
 
@@ -52,6 +73,7 @@ public class StatementServiceImpl implements StatementService {
 
 	@Override
 	public double countExpensesForOrchard(Orchard orchard) {
+		logger.warn("Counting expenses for Orchard: {}", orchard.getOrchardName());
 		List<AgWork> workList = orchard.getWorks();
 		double expenses = 0;
 		for(AgWork work : workList){
@@ -62,6 +84,7 @@ public class StatementServiceImpl implements StatementService {
 
 	@Override
 	public double countIncomeForOrchard(Orchard orchard) {
+		logger.warn("Counting income for Orchard: {}", orchard.getOrchardName());
 		List<Variety> varietyList = orchard.getVarieties();
 		double income = 0;
 		for(Variety variety : varietyList){
@@ -73,6 +96,7 @@ public class StatementServiceImpl implements StatementService {
 
 	@Override
 	public double countProfitForOrchard(Orchard orchard) {
+		logger.warn("Counting profit for Orchard: {}", orchard.getOrchardName());
 		double profit = countIncomeForOrchard(orchard) - countExpensesForOrchard(orchard);
 		return profit;
 	}

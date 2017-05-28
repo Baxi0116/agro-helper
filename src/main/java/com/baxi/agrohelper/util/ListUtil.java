@@ -17,6 +17,7 @@ public class ListUtil {
 	 * The list elements follow each other, they are separated by a comma.
 	 * 
 	 * @param list {@link java.util.List} to be formated
+	 * @param <T> type of the elements in the list
 	 * @return formated String which contains the elements
 	 */
 	public static <T> String formatOutput(List<T> list){

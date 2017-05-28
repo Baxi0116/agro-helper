@@ -33,7 +33,7 @@ public class Crop {
 	private String cropName;
 	
 	/**
-	 * Many to one connection with {@link com.baxi.agrohelper.model.Orchard}.
+	 * Many to one relation with {@link com.baxi.agrohelper.model.Orchard}.
 	 */
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="ORCHARD_ID", nullable = false)
