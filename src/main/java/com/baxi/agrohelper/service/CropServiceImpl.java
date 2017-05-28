@@ -6,15 +6,16 @@ import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 import com.baxi.agrohelper.dao.CropDao;
+import com.baxi.agrohelper.dao.GenericDaoInterface;
 import com.baxi.agrohelper.model.Crop;
 import com.baxi.agrohelper.util.EntityManagerProvider;
 
 
 public class CropServiceImpl implements CropService{
 
-	private CropDao cropDao;
+	private GenericDaoInterface<Crop, Integer> cropDao;
 	
-	public CropServiceImpl(CropDao cropDao){
+	public CropServiceImpl(GenericDaoInterface<Crop, Integer> cropDao){
 		this.cropDao = cropDao;
 	}
 	

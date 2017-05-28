@@ -2,14 +2,14 @@ package com.baxi.agrohelper.service;
 
 import java.util.List;
 
-import com.baxi.agrohelper.dao.VarietyDao;
+import com.baxi.agrohelper.dao.GenericDaoInterface;
 import com.baxi.agrohelper.model.Variety;
 
 public class VarietyServiceImpl implements VarietyService {
 
-	private VarietyDao varietyDao;
+	private GenericDaoInterface<Variety, Integer> varietyDao;
 	
-	public VarietyServiceImpl(VarietyDao varietyDao) {
+	public VarietyServiceImpl(GenericDaoInterface<Variety, Integer> varietyDao) {
 		this.varietyDao = varietyDao;
 	}
 	

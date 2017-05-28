@@ -3,6 +3,7 @@ package com.baxi.agrohelper.service;
 import java.time.LocalDate;
 import java.util.List;
 
+import com.baxi.agrohelper.dao.GenericDaoInterface;
 import com.baxi.agrohelper.dao.StatementDao;
 import com.baxi.agrohelper.model.AgWork;
 import com.baxi.agrohelper.model.FStatement;
@@ -11,9 +12,9 @@ import com.baxi.agrohelper.model.Variety;
 
 public class StatementServiceImpl implements StatementService {
 
-	private StatementDao statementDao;
+	private GenericDaoInterface<FStatement, Integer> statementDao;
 	
-	public StatementServiceImpl(StatementDao statementDao){
+	public StatementServiceImpl(GenericDaoInterface<FStatement, Integer> statementDao){
 		this.statementDao = statementDao;
 	}
 	

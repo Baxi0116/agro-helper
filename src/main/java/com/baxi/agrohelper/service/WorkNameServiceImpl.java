@@ -3,14 +3,15 @@ package com.baxi.agrohelper.service;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.baxi.agrohelper.dao.GenericDaoInterface;
 import com.baxi.agrohelper.dao.WorkNameDao;
 import com.baxi.agrohelper.model.WorkName;
 
 public class WorkNameServiceImpl implements WorkNameService {
 
-	private WorkNameDao workNameDao;
+	private GenericDaoInterface<WorkName, Integer> workNameDao;
 	
-	public WorkNameServiceImpl(WorkNameDao workNameDao) {
+	public WorkNameServiceImpl(GenericDaoInterface<WorkName, Integer> workNameDao) {
 		this.workNameDao = workNameDao;
 	}
 	

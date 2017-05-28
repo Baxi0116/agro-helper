@@ -38,7 +38,7 @@ public class MainApp extends Application {
     /**
      * Start method required for application initialization.
      * 
-     * @param primaryStage giving stage for the application
+     * @param primaryStage {@link javafx.stage.Stage} for the application
      */
     @Override
     public void start(Stage primaryStage) {
@@ -75,7 +75,7 @@ public class MainApp extends Application {
     /**
      * Returns the main stage.
      * 
-     * @return primary stage of this class
+     * @return primaryStage of this class
      */
     public Stage getPrimaryStage() {
         return primaryStage;

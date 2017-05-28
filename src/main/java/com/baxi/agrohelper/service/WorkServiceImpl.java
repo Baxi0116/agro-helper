@@ -4,14 +4,14 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.baxi.agrohelper.dao.WorkDao;
+import com.baxi.agrohelper.dao.GenericDaoInterface;
 import com.baxi.agrohelper.model.AgWork;
 
 public class WorkServiceImpl implements WorkService {
 
-	private WorkDao workDao;
+	private GenericDaoInterface<AgWork, Integer> workDao;
 	
-	public WorkServiceImpl(WorkDao workDao) {
+	public WorkServiceImpl(GenericDaoInterface<AgWork, Integer> workDao) {
 		this.workDao = workDao;
 	}
 	
