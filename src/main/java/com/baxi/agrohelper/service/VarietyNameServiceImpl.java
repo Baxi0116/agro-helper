@@ -3,33 +3,47 @@ package com.baxi.agrohelper.service;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.baxi.agrohelper.dao.GenericDaoInterface;
 import com.baxi.agrohelper.model.VarietyName;
 
+/**
+ * 
+ * Implementation of the {@code VarietyNameService} interface.
+ * 
+ * @author Gergely Szabó
+ *
+ */
 public class VarietyNameServiceImpl implements VarietyNameService {
 
+	private static Logger logger = LoggerFactory.getLogger(VarietyNameServiceImpl.class);
+	
 	private GenericDaoInterface<VarietyName, Integer> varietyNameDao;
 	
+	/**
+	 * Constructor.
+	 * 
+	 * @param varietyNameDao {@link com.baxi.agrohelper.dao.GenericDaoInterface} object for initialization
+	 */
 	public VarietyNameServiceImpl(GenericDaoInterface<VarietyName, Integer> varietyNameDao) {
 		this.varietyNameDao = varietyNameDao;
 	}
-	
+
 	@Override
-	public VarietyName createVarietyName(String name) {
-		VarietyName varietyName = new VarietyName(name);
+	public VarietyName createVarietyName(VarietyName varietyName) {
+		logger.info("Creating VARIETYNAME {}", varietyName.getName());
 		varietyNameDao.persist(varietyName);
 		return varietyName;
 	}
 
 	@Override
-	public void createVarietyName(VarietyName varietyName) {
-		varietyNameDao.persist(varietyName);
-	}
-
-	@Override
-	public void deleteVarietyName(int id) {
+	public VarietyName deleteVarietyName(int id) {
 		VarietyName varietyName = varietyNameDao.findById(id);
+		logger.warn("Deleting VARIETYNAME {}", varietyName.getName());
 		varietyNameDao.delete(varietyName);
+		return varietyName;
 	}
 
 	@Override
@@ -38,8 +52,10 @@ public class VarietyNameServiceImpl implements VarietyNameService {
 	}
 
 	@Override
-	public void updateVariety(VarietyName varietyName) {
+	public VarietyName updateVariety(VarietyName varietyName) {
+		logger.info("Updating VARIETYNAME {}", varietyName.getName());
 		varietyNameDao.update(varietyName);
+		return varietyName;
 	}
 
 	@Override
@@ -54,7 +70,5 @@ public class VarietyNameServiceImpl implements VarietyNameService {
 						.distinct()
 						.collect(Collectors.toList());
 	}
-
-
 	
 }

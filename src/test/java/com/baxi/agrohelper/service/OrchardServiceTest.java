@@ -1,8 +1,10 @@
 package com.baxi.agrohelper.service;
 
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
 import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
 import static org.mockito.Mockito.when;
-import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +19,7 @@ import com.baxi.agrohelper.dao.GenericDaoInterface;
 import com.baxi.agrohelper.model.Orchard;
 
 @RunWith(MockitoJUnitRunner.class)
-public class OrchardServiceTestCase {
+public class OrchardServiceTest {
 
 	private OrchardService orchardService;
 	
@@ -44,7 +46,34 @@ public class OrchardServiceTestCase {
 		List<Orchard> orchardList = orchardService.findAllOrchards();
 		
 		assertThat(orchardList, hasSize(3));
-		
 	}
+	
+	@Test
+	public void testFindOrchardById(){
+		Orchard orchard = new Orchard();
+		orchard.setId(8);
+		orchard.setOrchardName("teszt");
+		
+		when(mockDao.findById(8)).thenReturn(orchard);
+		
+		assertThat(orchardService.findOrchardById(8).getOrchardName(), is(equalTo("teszt")));
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }

@@ -1,6 +1,5 @@
 package com.baxi.agrohelper.service;
 
-import java.time.LocalDate;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -33,32 +32,27 @@ public class StatementServiceImpl implements StatementService {
 	public StatementServiceImpl(GenericDaoInterface<FStatement, Integer> statementDao){
 		this.statementDao = statementDao;
 	}
-	
+
 	@Override
-	public FStatement createStatement(LocalDate date, double expenses, double income, double profit) {
-		logger.info("Creating statement");
-		FStatement statement = new FStatement(date, expenses, income, profit);
+	public FStatement createStatement(FStatement statement) {
+		logger.info("Creating STATEMENT for orchard: {}", statement.getOrchard());
 		statementDao.persist(statement);
 		return statement;
 	}
 
 	@Override
-	public void createStatement(FStatement statement) {
-		logger.info("Creating STATEMENT for orchard: {}", statement.getOrchard());
-		statementDao.persist(statement);
-	}
-
-	@Override
-	public void updateStatement(FStatement statement) {
+	public FStatement updateStatement(FStatement statement) {
 		logger.info("Updating STATEMENT for orchard: {}", statement.getOrchard());
 		statementDao.update(statement);
+		return statement;
 	}
 
 	@Override
-	public void removeStatement(int id) {
+	public FStatement removeStatement(int id) {
 		FStatement statement = statementDao.findById(id);
 		logger.warn("Removing STATEMENT for orchard: {}", statement.getOrchard());
 		statementDao.delete(statement);
+		return statement;
 	}
 
 	@Override

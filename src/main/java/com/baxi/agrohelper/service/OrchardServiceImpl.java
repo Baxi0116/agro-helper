@@ -1,6 +1,5 @@
 package com.baxi.agrohelper.service;
 
-import java.time.LocalDate;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -36,49 +35,26 @@ public class OrchardServiceImpl implements OrchardService{
 	public OrchardServiceImpl(GenericDaoInterface<Orchard, Integer> orchardDao){
 		this.orchardDao = orchardDao;
 	}
-	
-	/**
-	 * Implementation of the {@code createOrchard} method defined in {@link com.baxi.agrohelper.service.OrchardService}.
-	 * 
-	 * @param orchardName name of the Orchard
-	 * @param plantationYear year of plantation Orchard
-	 * @param topographicNumber topographic number of the code Orchard
-	 * @param meparCode MEPAR code of the Orchard
-	 * @param numberOfTrees number of trees in the code Orchard
-	 * 
-	 * @return Orchard object created in the database
-	 */
-	@Override
-	public Orchard createOrchard(String orchardName, LocalDate plantationYear, String topographicNumber, String meparCode,
-			int numberOfTrees) {
-		logger.info("Creating ORCHARD {}", orchardName);
-		Orchard orchard = new Orchard();
-		orchard.setOrchardName(orchardName);
-		orchard.setYearOfPlantation(plantationYear);
-		orchard.setTopographicNumber(topographicNumber);
-		orchard.setMeparCode(meparCode);
-		orchard.setNumberOfTrees(numberOfTrees);
-		orchardDao.persist(orchard);
-		return orchard;
-
-	}
 
 	/**
 	 * Implementation of the {@code removeOrchard} method defined in {@link com.baxi.agrohelper.service.OrchardService}.
 	 * 
 	 * @param id id of the target Orchard
+	 * @return the removed Orchard
 	 */
 	@Override
-	public void removeOrchard(int id) {
+	public Orchard removeOrchard(int id) {
 		Orchard orchard = orchardDao.findById(id);
 		logger.warn("Removing orchard {}", orchard.getOrchardName());
 		orchardDao.delete(orchard);
+		return orchard;
 	}
 
 	/**
 	 * Implementation of the {@code findOrchardById} method defined in {@link com.baxi.agrohelper.service.OrchardService}.
 	 * 
 	 * @param id Orchard to be found
+	 * @return the found Orchard if present, null otherwise
 	 */
 	@Override
 	public Orchard findOrchardById(int id) {
@@ -100,20 +76,23 @@ public class OrchardServiceImpl implements OrchardService{
 	 * Implementation of the {@code updateOrchard} method defined in {@link com.baxi.agrohelper.service.OrchardService}.
 	 * 
 	 * @param orchard Orchard to be updated
+	 * @return the updated Orchard
 	 */
 	@Override
-	public void updateOrchard(Orchard orchard) {
+	public Orchard updateOrchard(Orchard orchard) {
 		orchardDao.update(orchard);
-		
+		return orchard;
 	}
 
 	/**
 	 * Implementation of the {@code createOrchard} method defined in {@link com.baxi.agrohelper.service.OrchardService}.
 	 * 
 	 * @param orchard orchard to create
+	 * @return the created Orchard
 	 */
 	@Override
-	public void createOrchard(Orchard orchard) {
+	public Orchard createOrchard(Orchard orchard) {
 		orchardDao.persist(orchard);
+		return orchard;
 	}
 }

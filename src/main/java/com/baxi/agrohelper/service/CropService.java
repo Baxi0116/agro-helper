@@ -12,32 +12,27 @@ import com.baxi.agrohelper.model.Crop;
  *
  */
 public interface CropService {
-
-	/**
-	 * Method for creating {@link com.baxi.agrohelper.model.Crop} object in the database.
-	 * 
-	 * @param name name of the Crop
-	 * @return Crop object created int the database
-	 */
-	public Crop createCrop(String name);
 	
 	/**
 	 * Method for persisting a {@link com.baxi.agrohelper.model.Crop} object.
 	 * @param crop the Crop object to be persisited
+	 * @return the created Crop object
 	 */
-	public void createCrop(Crop crop);
+	public Crop createCrop(Crop crop);
 	
 	/**
 	 * Method for updating a {@link com.baxi.agrohelper.model.Crop} object.
 	 * @param crop the target Crop object
+	 * @return the updated Crop object
 	 */
-	public void updateCrop(Crop crop);
+	public Crop updateCrop(Crop crop);
 	
 	/**
-	 * Method for removing a {@link com.baxi.agrohelper.model.Crop} object.
+	 * Method for removing a {@link com.baxi.agrohelper.model.Crop} object from the database.
 	 * @param id id of the target Crop object
+	 * @return the removed Crop object
 	 */
-	public void removeCrop(int id);
+	public Crop removeCrop(int id);
 	
 	/**
 	 * Method for finding a {@link com.baxi.agrohelper.model.Crop} object.

@@ -254,6 +254,8 @@ public class OrchardOverviewController {
 			 numberOfTreesLabel.setText("");
 			 cropLabel.setText("");
 			 showStatements(statementTable.getSelectionModel().getSelectedItem());
+			 workData = FXCollections.observableArrayList();
+			 workTable.setItems(workData);
 		 }
 	 }
 
@@ -438,7 +440,7 @@ public class OrchardOverviewController {
 					 selectedOrchard.getWorks().remove(selectedWork);
 					 workService.deleteWork(selectedWork.getId());
 					 workTable.getItems().remove(selectedIndex);
-					 showOrchardDetails(orchardTable.getSelectionModel().getSelectedItem());
+					 showOrchardDetails(null);
 				 }
 			 });
 

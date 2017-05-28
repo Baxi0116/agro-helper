@@ -1,16 +1,13 @@
 package com.baxi.agrohelper.service;
 
 import java.util.List;
-
-import javax.persistence.EntityManager;
-import javax.persistence.Query;
+import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.baxi.agrohelper.dao.GenericDaoInterface;
 import com.baxi.agrohelper.model.Crop;
-import com.baxi.agrohelper.util.EntityManagerProvider;
 
 /**
  * 
@@ -38,32 +35,27 @@ public class CropServiceImpl implements CropService{
 	public CropServiceImpl(GenericDaoInterface<Crop, Integer> cropDao){
 		this.cropDao = cropDao;
 	}
-	
+
 	@Override
-	public Crop createCrop(String name) {
-		logger.info("Creating CROP {}", name);
-		Crop crop = new Crop(name);
+	public Crop createCrop(Crop crop) {
+		logger.info("Creating CROP {}", crop.getCropName());
 		cropDao.persist(crop);
 		return crop;
 	}
 
 	@Override
-	public void createCrop(Crop crop) {
-		logger.info("Creating CROP {}", crop.getCropName());
-		cropDao.persist(crop);
-	}
-
-	@Override
-	public void updateCrop(Crop crop) {
+	public Crop updateCrop(Crop crop) {
 		logger.info("Updating CROP {}", crop.getCropName());
 		cropDao.update(crop);
+		return crop;
 	}
 
 	@Override
-	public void removeCrop(int id) {
+	public Crop removeCrop(int id) {
 		Crop crop = findCropById(id);
 		logger.warn("Removing CROP {}", crop.getCropName());
 		cropDao.delete(crop);
+		return crop;
 	}
 
 	@Override
@@ -75,16 +67,16 @@ public class CropServiceImpl implements CropService{
 	public List<Crop> findAllCrops() {
 		return cropDao.findAll();
 	}
-
+	
 	@Override
 	public void deleteAllCropsForOrchard(int id) {
-		EntityManager em = EntityManagerProvider.provideEntityManager();
-		em.getTransaction().begin();
-		Query query = em.createQuery("DELETE FROM Crop WHERE ORCHARD_ID = :oid");
-		query.setParameter("oid", id);
-		query.executeUpdate();
-		em.getTransaction().commit();
-		
+		List<Crop> cropList = findAllCrops();
+		List<Crop> forDelete = cropList.stream()
+			.filter(c -> c.getOrchard().getId() == id)
+			.collect(Collectors.toList());
+		for(Crop crop : forDelete){
+			cropDao.delete(crop);
+		}
 	}
 
 }
