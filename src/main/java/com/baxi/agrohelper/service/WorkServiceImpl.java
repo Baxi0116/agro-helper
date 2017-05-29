@@ -28,7 +28,7 @@ public class WorkServiceImpl implements WorkService {
 	private GenericDaoInterface<AgWork, Integer> workDao;
 	
 	/**
-	 * Constructor.
+	 * Constructs a newly allocated {@code WorkServiceImpl} object, and initializes its DAO..
 	 * 
 	 * @param workDao {@link com.baxi.agrohelper.dao.GenericDaoInterface} object for initialization
 	 */

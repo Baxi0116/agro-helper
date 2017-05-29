@@ -32,12 +32,12 @@ public class VarietyName {
 	private String name;
 	
 	/**
-	 * Constructor.
+	 * Constructs a newly allocated {@code VarietyName} object.
 	 */
 	public VarietyName(){}
 	
 	/**
-	 * Constructor.
+	 * Constructs a newly allocated {@code VarietyName} object, with the given parameters.
 	 * 
 	 * @param name name to set for this entity
 	 */

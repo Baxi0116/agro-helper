@@ -25,7 +25,7 @@ public class StatementServiceImpl implements StatementService {
 	private GenericDaoInterface<FStatement, Integer> statementDao;
 	
 	/**
-	 * Constructor.
+	 * Constructs a newly allocated {@code StatementServiceImpl} object, and initializes its DAO..
 	 * 
 	 * @param statementDao {@link com.baxi.agrohelper.dao.GenericDaoInterface} object for initializtaion
 	 */

@@ -22,7 +22,7 @@ public class VarietyNameDao implements GenericDaoInterface<VarietyName, Integer>
 	
 	
 	/**
-	 * Constructor.
+	 * Constructs a newly allocated {@code VarietyNameDao} object, and initializes its connection to the database.
 	 * 
 	 * @param entityManager  EntityManager for database access
 	 */

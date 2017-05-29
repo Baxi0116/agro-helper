@@ -6,7 +6,7 @@ import com.baxi.agrohelper.model.Variety;
 
 /**
  * 
- * Service using Data Access Object to reach the database.
+ * Service using Data Access Object to reach the database, manages {@code Variety} entities.
  * 
  * @author Gergely Szabó
  *

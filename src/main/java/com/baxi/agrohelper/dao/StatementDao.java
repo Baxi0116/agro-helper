@@ -21,7 +21,7 @@ public class StatementDao implements GenericDaoInterface<FStatement, Integer> {
 	private EntityManager entityManager;
 	
 	/**
-	 * Constructor.
+	 * Constructs a newly allocated {@code StatementDao} object, and initializes its connection to the database.
 	 * 
 	 * @param entityManager  EntityManager for database access
 	 */

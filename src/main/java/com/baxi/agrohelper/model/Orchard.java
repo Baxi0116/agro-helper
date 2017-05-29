@@ -85,7 +85,7 @@ public class Orchard {
 	private List<FStatement> statements;
 	
 	/**
-	 * Constructor.
+	 * Constructs a newly allocated {@code Orchard} object, with the given parameters.
 	 * 
 	 * @param orchardName name of the Orchard
 	 * @param yearOfPlantation plantation date of the Orchard
@@ -106,7 +106,7 @@ public class Orchard {
 	}
 	
 	/**
-	 * Constructor.
+	 * Constructs a newly allocated {@code Orchard} object.
 	 */
 	public Orchard(){
 		this.orchardName = "";

@@ -53,7 +53,7 @@ public class AgWork {
 	private LocalDate workDate;
 
 	/**
-	 * Constructor.
+	 * Constructs a newly allocated {@code AgWork} object, with the given parameters, note included.
 	 * 
 	 * @param workDesignation name of the work
 	 * @param workPrice	cost of the work
@@ -67,7 +67,7 @@ public class AgWork {
 	}
 	
 	/**
-	 * Constructor.
+	 *  Constructs a newly allocated {@code AgWork} object, with the given parameters without note.
 	 * 
 	 * @param workDesignation name of the work
 	 * @param workPrice	cost of the work
@@ -89,7 +89,7 @@ public class AgWork {
 	private Orchard orchard;
 	
 	/**
-	 * Constructor.
+	 *  Constructs a newly allocated {@code AgWork} object.
 	 */
 	public AgWork() {
 	}

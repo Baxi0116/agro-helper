@@ -40,7 +40,7 @@ public class Crop {
 	private Orchard orchard;
 
 	/**
-	 * Constructor.
+	 *  Constructs a newly allocated {@code Crop} object, with the given parameters.
 	 * 
 	 * @param cropName cropName to set
 	 */
@@ -49,7 +49,7 @@ public class Crop {
 	}
 	
 	/**
-	 * Constructor.
+	 * Constructs a newly allocated {@code Crop} object.
 	 */
 	public Crop(){}
 

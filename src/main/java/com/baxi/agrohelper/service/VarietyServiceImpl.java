@@ -25,7 +25,7 @@ public class VarietyServiceImpl implements VarietyService {
 	private GenericDaoInterface<Variety, Integer> varietyDao;
 	
 	/**
-	 * Constructor.
+	 * Constructs a newly allocated {@code VarietyServiceImpl} object, and initializes its DAO..
 	 * 
 	 * @param varietyDao {@link com.baxi.agrohelper.dao.GenericDaoInterface} object for initialization
 	 */

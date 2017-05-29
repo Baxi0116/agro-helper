@@ -28,7 +28,7 @@ public class OrchardServiceImpl implements OrchardService{
 	private GenericDaoInterface<Orchard, Integer> orchardDao;
 	
 	/**
-	 * Constructor.
+	 * Constructs a newly allocated {@code OrchardServiceImpl} object, and initializes its DAO.
 	 * 
 	 * @param orchardDao {@link com.baxi.agrohelper.dao.GenericDaoInterface} object for initialization
 	 */

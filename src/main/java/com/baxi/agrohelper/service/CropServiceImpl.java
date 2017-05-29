@@ -29,7 +29,7 @@ public class CropServiceImpl implements CropService{
 	private GenericDaoInterface<Crop, Integer> cropDao;
 	
 	/**
-	 * Constructor.
+	 * Constructs a newly allocated {@code CropServiceImpl} object, and initializes its DAO.
 	 * 
 	 * @param cropDao {@link com.baxi.agrohelper.dao.GenericDaoInterface} object for initialization
 	 */

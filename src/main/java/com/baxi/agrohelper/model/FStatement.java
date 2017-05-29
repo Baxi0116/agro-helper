@@ -60,12 +60,12 @@ public class FStatement {
 	private Orchard orchard;
 	
 	/**
-	 * Constructor.
+	 * Constructs a newly allocated {@code FStatement} object.
 	 */
 	public FStatement(){}
 	
 	/**
-	 * Constructor.
+	 * Constructs a newly allocated {@code FStatement} object, with the given parameters.
 	 * 
 	 * @param date date of creation
 	 * @param expenses expenses of the orchard

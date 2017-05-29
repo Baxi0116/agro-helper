@@ -6,7 +6,7 @@ import com.baxi.agrohelper.model.Crop;
 
 /**
  * 
- * Service using Data Access Object to reach the database.
+ * Service using Data Access Object to reach the database, manages the {@code Crop} entities.
  * 
  * @author Gergely Szabó
  *

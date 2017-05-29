@@ -21,7 +21,7 @@ public class CropDao implements GenericDaoInterface<Crop, Integer>{
 	private EntityManager entityManager;
 	
 	/**
-	 * Constructor.
+	 * Constructs a newly allocated {@code CropDao} object, and initializes its connection to the database.
 	 * 
 	 * @param entityManager  EntityManager for database access
 	 */

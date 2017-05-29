@@ -6,7 +6,7 @@ import com.baxi.agrohelper.model.AgWork;
 
 /**
  * 
- * Service using Data Access Object to reach the database.
+ * Service using Data Access Object to reach the database, manages {@code AgWork} entities.
  * 
  * @author Gergely Szabó
  *

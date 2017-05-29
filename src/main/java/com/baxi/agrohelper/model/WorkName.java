@@ -32,7 +32,7 @@ public class WorkName {
 	private String name;
 	
 	/**
-	 * Constructor.
+	 * Constructs a newly allocated {@code WorkName} object, with the given parameters.
 	 * 
 	 * @param name name to set for this entity
 	 */
@@ -41,7 +41,7 @@ public class WorkName {
 	}
 	
 	/**
-	 * Constructor.
+	 * Constructs a newly allocated {@code WorkName} object, with the given parameters.
 	 */
 	public WorkName(){
 		

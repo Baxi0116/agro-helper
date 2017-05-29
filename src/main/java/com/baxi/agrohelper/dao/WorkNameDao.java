@@ -21,7 +21,7 @@ public class WorkNameDao implements GenericDaoInterface<WorkName, Integer> {
 	private EntityManager entityManager;
 	
 	/**
-	 * Constructor.
+	 * Constructs a newly allocated {@code WorkNameDao} object, and initializes its connection to the database.
 	 * 
 	 * @param entityManager  EntityManager for database access
 	 */

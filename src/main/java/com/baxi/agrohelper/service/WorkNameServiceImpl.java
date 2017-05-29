@@ -29,7 +29,7 @@ public class WorkNameServiceImpl implements WorkNameService {
 	private GenericDaoInterface<WorkName, Integer> workNameDao;
 	
 	/**
-	 * Constructor.
+	 * Constructs a newly allocated {@code WorkNameService} object, and initializes its DAO..
 	 * 
 	 * @param workNameDao {@link com.baxi.agrohelper.dao.GenericDaoInterface} object for initialization
 	 */

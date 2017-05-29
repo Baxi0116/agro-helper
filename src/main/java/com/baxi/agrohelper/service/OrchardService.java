@@ -6,7 +6,7 @@ import com.baxi.agrohelper.model.Orchard;
 
 /**
  * 
- * Service using Data Access Object to reach the database.
+ * Service using Data Access Object to reach the database, manages the {@code Orchard} entities.
  * 
  * @author Gergely Szabó
  *

@@ -58,14 +58,14 @@ public class Variety {
 	private Orchard orchard;
 	
 	/**
-	 * Constructor.
+	 * Constructs a newly allocated {@code Variety} object.
 	 */
 	public Variety() {
 		this.varietyArea = 0;
 	}
 
 	/**
-	 * Constructor.
+	 * Constructs a newly allocated {@code Variety} object, with the given parameters.
 	 * 
 	 * @param name name to set
 	 * @param varietyArea area to set
