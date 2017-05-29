@@ -52,7 +52,7 @@ public class VarietyNameServiceImpl implements VarietyNameService {
 	}
 
 	@Override
-	public VarietyName updateVariety(VarietyName varietyName) {
+	public VarietyName updateVarietyName(VarietyName varietyName) {
 		logger.info("Updating VARIETYNAME {}", varietyName.getName());
 		varietyNameDao.update(varietyName);
 		return varietyName;

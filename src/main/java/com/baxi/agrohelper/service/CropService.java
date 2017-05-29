@@ -53,8 +53,9 @@ public interface CropService {
 	 * Method for removing all {@link com.baxi.agrohelper.model.Crop} objects that have the same {@link com.baxi.agrohelper.model.Orchard}.
 	 * 
 	 * @param id of the target Orchard
+	 * @return List with the deleted Crops
 	 */
-	public void deleteAllCropsForOrchard(int id);
+	public List<Crop> deleteAllCropsForOrchard(int id);
 
 }
 

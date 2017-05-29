@@ -1,6 +1,6 @@
 /**
  * 
- * Main class of the application.
+ * Contains the Main class of the application.
  * <p>
  * The classes of this package are meant to provide a controller for the application.
  * 

@@ -1,5 +1,6 @@
 package com.baxi.agrohelper.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -69,14 +70,16 @@ public class CropServiceImpl implements CropService{
 	}
 	
 	@Override
-	public void deleteAllCropsForOrchard(int id) {
+	public List<Crop> deleteAllCropsForOrchard(int id) {
 		List<Crop> cropList = findAllCrops();
+		List<Crop> resultList = new ArrayList<Crop>();
 		List<Crop> forDelete = cropList.stream()
 			.filter(c -> c.getOrchard().getId() == id)
 			.collect(Collectors.toList());
 		for(Crop crop : forDelete){
 			cropDao.delete(crop);
-		}
+			resultList.add(crop);
+		}return resultList;
 	}
 
 }

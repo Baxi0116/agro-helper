@@ -41,7 +41,7 @@ public interface VarietyNameService {
 	 * @param varietyName target varietyName object
 	 * @return the updated VarietyName object
 	 */
-	public VarietyName updateVariety(VarietyName varietyName);
+	public VarietyName updateVarietyName(VarietyName varietyName);
 	
 	/**
 	 * Method for finding all {@link com.baxi.agrohelper.model.VarietyName} objects.

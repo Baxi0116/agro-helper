@@ -58,7 +58,7 @@ public class WorkNameServiceImpl implements WorkNameService {
 	}
 
 	@Override
-	public WorkName updateWork(WorkName workName) {
+	public WorkName updateWorkName(WorkName workName) {
 		logger.info("Updating WORKNAME {}", workName.getName());
 		workNameDao.update(workName);
 		return workName;

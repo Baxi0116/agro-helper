@@ -40,7 +40,7 @@ public interface WorkNameService {
 	 * @param workName the target WorkName object
 	 * @return the updated WorkName object
 	 */
-	public WorkName updateWork(WorkName workName);
+	public WorkName updateWorkName(WorkName workName);
 	
 	/**
 	 * Method for finding all {@link com.baxi.agrohelper.model.WorkName} objects.

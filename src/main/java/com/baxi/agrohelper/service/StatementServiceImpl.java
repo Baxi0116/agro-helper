@@ -35,14 +35,14 @@ public class StatementServiceImpl implements StatementService {
 
 	@Override
 	public FStatement createStatement(FStatement statement) {
-		logger.info("Creating STATEMENT for orchard: {}", statement.getOrchard());
+		logger.info("Creating STATEMENT for orchard: {}", statement.getOrchard().getOrchardName());
 		statementDao.persist(statement);
 		return statement;
 	}
 
 	@Override
 	public FStatement updateStatement(FStatement statement) {
-		logger.info("Updating STATEMENT for orchard: {}", statement.getOrchard());
+		logger.info("Updating STATEMENT for orchard: {}", statement.getOrchard().getOrchardName());
 		statementDao.update(statement);
 		return statement;
 	}
@@ -50,7 +50,7 @@ public class StatementServiceImpl implements StatementService {
 	@Override
 	public FStatement removeStatement(int id) {
 		FStatement statement = statementDao.findById(id);
-		logger.warn("Removing STATEMENT for orchard: {}", statement.getOrchard());
+		logger.warn("Removing STATEMENT for orchard: {}", statement.getOrchard().getOrchardName());
 		statementDao.delete(statement);
 		return statement;
 	}
@@ -67,7 +67,7 @@ public class StatementServiceImpl implements StatementService {
 
 	@Override
 	public double countExpensesForOrchard(Orchard orchard) {
-		logger.warn("Counting expenses for Orchard: {}", orchard.getOrchardName());
+		logger.info("Counting expenses for Orchard: {}", orchard.getOrchardName());
 		List<AgWork> workList = orchard.getWorks();
 		double expenses = 0;
 		for(AgWork work : workList){
@@ -78,7 +78,7 @@ public class StatementServiceImpl implements StatementService {
 
 	@Override
 	public double countIncomeForOrchard(Orchard orchard) {
-		logger.warn("Counting income for Orchard: {}", orchard.getOrchardName());
+		logger.info("Counting income for Orchard: {}", orchard.getOrchardName());
 		List<Variety> varietyList = orchard.getVarieties();
 		double income = 0;
 		for(Variety variety : varietyList){
@@ -90,7 +90,7 @@ public class StatementServiceImpl implements StatementService {
 
 	@Override
 	public double countProfitForOrchard(Orchard orchard) {
-		logger.warn("Counting profit for Orchard: {}", orchard.getOrchardName());
+		logger.info("Counting profit for Orchard: {}", orchard.getOrchardName());
 		double profit = countIncomeForOrchard(orchard) - countExpensesForOrchard(orchard);
 		return profit;
 	}
