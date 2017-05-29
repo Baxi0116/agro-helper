@@ -9,7 +9,7 @@ You need JDK 1.8.x and Apache Maven 3.x version to run this project.
 ### Getting started
 
 After downloading the project you can make the jar file with the mvn package command.
-You can run the jar with java -jar target/<jar-with-dependencies file name>
+You can run the jar with java -jar target/file-name-jar-with-dependencies.jar
 
 ### About the program
 This program meant to make the life of farmers easier. It combines the standard records they have to manage in one place where it is easier to handle.
