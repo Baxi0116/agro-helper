@@ -55,7 +55,7 @@ public class Crop {
 
 	/**
 	 * Getter method for {@code id}.
-	 * @return id
+	 * @return id of this object
 	 */
 	public int getId() {
 		return id;
@@ -71,7 +71,7 @@ public class Crop {
 
 	/**
 	 * Getter method for {@code cropName}.
-	 * @return cropName
+	 * @return cropName of this object
 	 */
 	public String getCropName() {
 		return cropName;
@@ -89,7 +89,7 @@ public class Crop {
 	/**
 	 * Getter method for {@code orchard}.
 	 * 
-	 * @return orchard
+	 * @return orchard of this object
 	 */
 	public Orchard getOrchard() {
 		return orchard;

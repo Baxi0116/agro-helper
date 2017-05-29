@@ -47,7 +47,7 @@ public class VarietyName {
 
 	/**
 	 * Getter method for the {@code id}.
-	 * @return id
+	 * @return id of this object
 	 */
 	public int getId() {
 		return id;
@@ -65,7 +65,7 @@ public class VarietyName {
 	/**
 	 * Getter method for {@code name}.
 	 * 
-	 * @return name
+	 * @return name of this object
 	 */
 	public String getName() {
 		return name;

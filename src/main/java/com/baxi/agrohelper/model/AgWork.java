@@ -112,7 +112,7 @@ public class AgWork {
 
 	/**
 	 * Getter method for the {@code workDesignation}.
-	 * @return workDesignation
+	 * @return workDesignation of this object
 	 */
 	public String getWorkDesignation() {
 		return workDesignation;
@@ -128,7 +128,7 @@ public class AgWork {
 
 	/**
 	 * Getter method for the {@code workPrice}.
-	 * @return workPrice
+	 * @return workPrice of this object
 	 */
 	public int getWorkPrice() {
 		return workPrice;
@@ -144,7 +144,7 @@ public class AgWork {
 
 	/**
 	 * Getter method for the {@code orchard}.
-	 * @return orchard
+	 * @return orchard of this object
 	 */
 	public Orchard getOrchard() {
 		return orchard;
@@ -160,7 +160,7 @@ public class AgWork {
 
 	/**
 	 * Getter method for {@code workDate}.
-	 * @return workDate;
+	 * @return workDate of this object
 	 */
 	public LocalDate getWorkDate() {
 		return workDate;
@@ -176,7 +176,7 @@ public class AgWork {
 
 	/**
 	 * Getter method for {@code workNote}.
-	 * @return workNote
+	 * @return workNote of this object
 	 */
 	public String getWorkNote() {
 		return workNote;

@@ -2,6 +2,9 @@ package com.baxi.agrohelper;
 
 import java.io.IOException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.baxi.agrohelper.util.EntityManagerProvider;
 
 import javafx.application.Application;
@@ -19,6 +22,8 @@ import javafx.stage.Stage;
  */
 
 public class MainApp extends Application {
+	
+	private static Logger logger = LoggerFactory.getLogger(MainApp.class);
 
 	/**
 	 * Primary stage of this application.
@@ -42,6 +47,7 @@ public class MainApp extends Application {
      */
     @Override
     public void start(Stage primaryStage) {
+    	logger.info("Starting application...");
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle("AgroHelper");
         initRootLayout();
@@ -61,11 +67,13 @@ public class MainApp extends Application {
      */
     public void initRootLayout() {
         try {
+        	logger.info("Initializing layout...");
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainApp.class.getResource("/view/OrchardOverview.fxml"));
             rootLayout = (BorderPane) loader.load();
             Scene scene = new Scene(rootLayout);
             primaryStage.setScene(scene);
+            logger.info("Showing scene");
             primaryStage.show();
         } catch (IOException e) {
             e.printStackTrace();

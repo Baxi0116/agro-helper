@@ -161,6 +161,7 @@ public class OrchardOverviewController {
 	 @FXML
 	 public void initialize(){
 
+		 logger.info("Initializing controller...");
 		 orchardService = new OrchardServiceImpl(new OrchardDao(EntityManagerProvider.provideEntityManager()));
 		 workService = new WorkServiceImpl(new WorkDao(EntityManagerProvider.provideEntityManager()));
 		 varietyService = new VarietyServiceImpl(new VarietyDao(EntityManagerProvider.provideEntityManager()));
@@ -234,6 +235,7 @@ public class OrchardOverviewController {
 
 	 public void showOrchardDetails(Orchard orchard){
 		 if(orchard != null){
+			 logger.info("Showing details for Orchard: {}", orchard.getOrchardName());
 			 nameLabel.setText(orchard.getOrchardName());
 			 topographicNumberLabel.setText(orchard.getTopographicNumber());
 			 meparCodeLabel.setText(orchard.getMeparCode());
@@ -261,6 +263,7 @@ public class OrchardOverviewController {
 
 	 public boolean showOrchardEditDialog(Orchard orchard) {
 		 try {
+			 logger.info("Showing Orchard Edit Dialog");
 			 FXMLLoader loader = new FXMLLoader();
 			 loader.setLocation(OrchardOverviewController.class.getResource("/view/OrchardEditDialog.fxml"));
 			 AnchorPane page = (AnchorPane) loader.load();
@@ -286,6 +289,7 @@ public class OrchardOverviewController {
 
 	 public boolean showWorkEditDialog(Orchard orchard){
 		 try {
+			 logger.info("Showing Work Edit Dialog");
 			 FXMLLoader loader = new FXMLLoader();
 			 loader.setLocation(OrchardOverviewController.class.getResource("/view/WorkEditDialog.fxml"));
 			 AnchorPane page = (AnchorPane) loader.load();
@@ -311,6 +315,7 @@ public class OrchardOverviewController {
 
 	 public boolean showVarietyEditDialog(Variety variety){
 		 try {
+			 logger.info("Showing Variety Edit Dialog");
 			 FXMLLoader loader = new FXMLLoader();
 			 loader.setLocation(OrchardOverviewController.class.getResource("/view/VarietyEditDialog.fxml"));
 			 AnchorPane page = (AnchorPane) loader.load();
@@ -445,7 +450,7 @@ public class OrchardOverviewController {
 			 });
 
 		 } else {
-			 logger.warn("No orchard selected");
+			 logger.warn("No work selected");
 			 Alert alert = new Alert(AlertType.WARNING);
 			 alert.setTitle("Hiba");
 			 alert.setHeaderText("Nincs kiválasztva munka");
@@ -458,6 +463,7 @@ public class OrchardOverviewController {
 	 @FXML
 	 private void handleWorks(){
 		 try {
+			 logger.info("Showing Work Handling Dialog");
 			 FXMLLoader loader = new FXMLLoader();
 			 loader.setLocation(OrchardOverviewController.class.getResource("/view/WorkHandlerDialog.fxml"));
 			 AnchorPane page = (AnchorPane) loader.load();
@@ -483,6 +489,7 @@ public class OrchardOverviewController {
 	 @FXML
 	 private void handleVarieties(){
 		 try {
+			 logger.info("Showing Variety Handling Dialog");
 			 FXMLLoader loader = new FXMLLoader();
 			 loader.setLocation(OrchardOverviewController.class.getResource("/view/VarietyHandlerDialog.fxml"));
 			 AnchorPane page = (AnchorPane) loader.load();

@@ -77,7 +77,7 @@ public class Variety {
 
 	/**
 	 * Getter method for {@code id}.
-	 * @return id
+	 * @return id of this object
 	 */
 	public int getId() {
 		return id;
@@ -93,7 +93,7 @@ public class Variety {
 
 	/**
 	 * Getter method for {@code varietyName}.
-	 * @return varietyName
+	 * @return varietyName of this object
 	 */
 	public String getVarietyName() {
 		return varietyName;
@@ -109,7 +109,7 @@ public class Variety {
 
 	/**
 	 * Getter method for {@code orchard}.
-	 * @return orchard
+	 * @return orchard of this object
 	 */
 	public Orchard getOrchard() {
 		return orchard;
@@ -125,7 +125,7 @@ public class Variety {
 
 	/**
 	 * Getter method for {@code varietyYield}.
-	 * @return varietyYield
+	 * @return varietyYield of this object
 	 */
 	public double getVarietyYield() {
 		return varietyYield;
@@ -141,7 +141,7 @@ public class Variety {
 
 	/**
 	 * Getter method for {@code varietyPrice}.
-	 * @return varietyPrice
+	 * @return varietyPrice of this object
 	 */
 	public int getVarietyPrice() {
 		return varietyPrice;
@@ -157,7 +157,7 @@ public class Variety {
 
 	/**
 	 * Getter method for {@code varietyArea}.
-	 * @return varietyArea
+	 * @return varietyArea of this object
 	 */
 	public double getVarietyArea() {
 		return varietyArea;

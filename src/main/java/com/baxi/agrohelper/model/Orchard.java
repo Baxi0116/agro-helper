@@ -121,7 +121,7 @@ public class Orchard {
 	/**
 	 * Getter method for the {@code id}.
 	 * 
-	 * @return id
+	 * @return id of this object
 	 */
 	public int getId() {
 		return id;
@@ -139,7 +139,7 @@ public class Orchard {
 	/**
 	 * Getter method for the {@code orchardName}.
 	 * 
-	 * @return orchardName
+	 * @return orchardName of this object
 	 */
 	public String getOrchardName() {
 		return orchardName;
@@ -157,7 +157,7 @@ public class Orchard {
 	/**
 	 * Getter method for the {@code yearOfPlantation}.
 	 * 
-	 * @return yearOfPlantation
+	 * @return yearOfPlantation of this object
 	 */
 	public LocalDate getYearOfPlantation() {
 		return yearOfPlantation;
@@ -175,7 +175,7 @@ public class Orchard {
 	/**
 	 * Getter method for the {@code topographicNumber}.
 	 * 
-	 * @return topographicNumber
+	 * @return topographicNumber of this object
 	 */
 	public String getTopographicNumber() {
 		return topographicNumber;
@@ -193,7 +193,7 @@ public class Orchard {
 	/**
 	 * Getter method for the {@code meparCode}.
 	 * 
-	 * @return meparCode
+	 * @return meparCode of this object
 	 */
 	public String getMeparCode() {
 		return meparCode;
@@ -211,7 +211,7 @@ public class Orchard {
 	/**
 	 * Getter method for the {@code crops}.
 	 * 
-	 * @return crops
+	 * @return crops of this object
 	 */
 	public List<Crop> getCrops() {
 		return crops;
@@ -229,7 +229,7 @@ public class Orchard {
 	/**
 	 * Getter method for the {@code numberOfTrees}.
 	 * 
-	 * @return numberOfTrees
+	 * @return numberOfTrees of this object
 	 */
 	public int getNumberOfTrees() {
 		return numberOfTrees;
@@ -246,8 +246,8 @@ public class Orchard {
 
 	/**
 	 * Getter method for the {@code works}.
-	 * 
-	 * @return works
+	 *  
+	 * @return works of this object
 	 */
 	public List<AgWork> getWorks() {
 		return works;
@@ -265,7 +265,7 @@ public class Orchard {
 	/**
 	 * Getter method for the {@code varieties}.
 	 * 
-	 * @return varieties
+	 * @return varieties of this object
 	 */
 	public List<Variety> getVarieties() {
 		return varieties;
@@ -283,7 +283,7 @@ public class Orchard {
 	/**
 	 * Getter method for the {@code statements}.
 	 * 
-	 * @return statements
+	 * @return statements of this object
 	 */
 	public List<FStatement> getStatements() {
 		return statements;

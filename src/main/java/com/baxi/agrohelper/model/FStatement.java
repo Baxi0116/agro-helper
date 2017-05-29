@@ -82,7 +82,7 @@ public class FStatement {
 	/**
 	 * Getter method for the {@code id}.
 	 * 
-	 * @return id
+	 * @return id of this object
 	 */
 	public int getId() {
 		return id;
@@ -100,7 +100,7 @@ public class FStatement {
 	/**
 	 * Getter method for the {@code statementDate}.
 	 *  
-	 * @return statementDate
+	 * @return statementDate of this object
 	 */
 	public LocalDate getStatementDate() {
 		return statementDate;
@@ -118,7 +118,7 @@ public class FStatement {
 	/**
 	 * Getter method for {@code expenses}.
 	 *  
-	 * @return expenses
+	 * @return expenses of this object
 	 */
 	public double getExpenses() {
 		return expenses;
@@ -136,7 +136,7 @@ public class FStatement {
 	/**
 	 * Getter method for {@code income}.
 	 *  
-	 * @return income
+	 * @return income of this object
 	 */
 	public double getIncome() {
 		return income;
@@ -154,7 +154,7 @@ public class FStatement {
 	/**
 	 * Getter method for {@code profit}.
 	 *  
-	 * @return profit
+	 * @return profit of this object
 	 */
 	public double getProfit() {
 		return profit;
@@ -172,7 +172,7 @@ public class FStatement {
 	/**
 	 * Getter method for {@code orchard}.
 	 *  
-	 * @return orchard
+	 * @return orchard of this object
 	 */
 	public Orchard getOrchard() {
 		return orchard;

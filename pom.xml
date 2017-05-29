@@ -11,10 +11,11 @@
 			<id>BaximusTheGreat</id>
 			<name>Gergely Szabó</name>
 			<email>gergely0116@freemail.hu</email>
+			<organization>University of Debrecen, Faculty of Informatics</organization>
 		</developer>
 	</developers>
 	<organization>
-		<name>Debreceni Egyetem, Faculty of Informatics</name>
+		<name>University of Debrecen, Faculty of Informatics</name>
 	</organization>
 	<inceptionYear>2017</inceptionYear>
 	<scm>
