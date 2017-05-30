@@ -53,6 +53,8 @@ public class VarietyEditDialogController {
 		nameBox.getItems().addAll(varietyNameService.getAllVarietyNames());
 		nameBox.setValue(this.variety.getVarietyName());
 		areaTextField.setText(Double.toString(this.variety.getVarietyArea()));
+		priceTextField.setText(Integer.toString(this.variety.getVarietyPrice()));
+		yieldTextField.setText(Double.toString(this.variety.getVarietyYield()));
 	}
 	
 	public boolean isOkClicked(){

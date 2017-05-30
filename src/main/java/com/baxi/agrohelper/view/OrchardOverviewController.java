@@ -331,6 +331,9 @@ public class OrchardOverviewController {
 			 controller.setVariety(variety);
 
 			 dialogStage.showAndWait();
+			 
+			 refreshVarietyTable(orchardTable.getSelectionModel().getSelectedItem());
+
 
 			 return controller.isOkClicked();
 		 } catch (IOException e) {
@@ -529,6 +532,7 @@ public class OrchardOverviewController {
 					 varietyService.createVariety(variety);
 					 selectedOrchard.getVarieties().add(variety);
 					 showOrchardDetails(selectedOrchard);
+					 varietyData.add(variety);
 				 }catch(NumberFormatException e){
 					 logger.error("Invalid area value");
 					 Alert alert = new Alert(AlertType.ERROR);
