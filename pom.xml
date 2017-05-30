@@ -5,6 +5,7 @@
 	<artifactId>agro-helper</artifactId>
 	<version>1.0</version>
 	<packaging>jar</packaging>
+	<name>agro-helper</name>
 	<description>Provides financial statement utility for agricultural activities.</description>
 	<developers>
 		<developer>
