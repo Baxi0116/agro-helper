@@ -212,6 +212,7 @@ public class OrchardOverviewController {
 	 }
 
 	 public void refreshVarietyTable(Orchard orchard){
+		 varietyData.clear();
 		 varietyData = FXCollections.observableArrayList(orchard.getVarieties());
 		 varietyTable.setItems(varietyData);
 	 }
