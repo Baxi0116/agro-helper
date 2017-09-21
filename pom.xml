@@ -156,6 +156,48 @@
 					</execution>
 				</executions>
 			</plugin>
+			 <plugin>
+            <groupId>com.akathist.maven.plugins.launch4j</groupId>
+            <artifactId>launch4j-maven-plugin</artifactId>
+            <version>1.7.19</version>
+            <executions>
+                <execution>
+                    <id>l4j-gui</id>
+                    <phase>package</phase>
+                    <goals>
+                        <goal>launch4j</goal>
+                    </goals>
+                    <configuration>
+                        <headerType>gui</headerType>
+                        <jar>${project.build.directory}/agro-helper-1.0-jar-with-dependencies.jar</jar>
+                        <outfile>${project.build.directory}/agro-helper.exe</outfile>
+                        <downloadUrl>http://java.com/download</downloadUrl>
+                        <classPath>
+                            <mainClass>com.baxi.agrohelper.MainApp</mainClass>
+                            <preCp>anything</preCp>
+                        </classPath>
+                        <icon>src/main/resources/images/icon.ico</icon>
+                        <jre>
+                        	<path>../jre</path>
+                            <minVersion>1.8.0</minVersion>
+                            <jdkPreference>jdkOnly</jdkPreference>
+                        </jre>
+                        <versionInfo>
+                            <fileVersion>1.0.0.0</fileVersion>
+                            <txtFileVersion>${project.version}</txtFileVersion>
+                            <fileDescription>agroHelperApp</fileDescription>
+                            <copyright>2017 Baxi</copyright>
+                            <productVersion>1.0.0.0</productVersion>
+                            <txtProductVersion>1.0.0.0</txtProductVersion>
+                            <productName>agrohelper</productName>
+                            <companyName>baxi</companyName>
+                            <internalName>agrohelper</internalName>
+                            <originalFilename>agro-helper.exe</originalFilename>
+                        </versionInfo>
+                    </configuration>
+                </execution>
+            </executions>
+        </plugin>
 		</plugins> 
 	</build>
 	<reporting>
