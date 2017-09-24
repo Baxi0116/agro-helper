@@ -30,7 +30,7 @@ import com.baxi.agrohelper.util.EntityManagerProvider;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 /**
@@ -53,8 +53,9 @@ public class MainApp extends Application {
 	/**
 	 * Root layout of this application.
 	 */
-    private BorderPane rootLayout;
- 
+   // private BorderPane rootLayout;
+	private AnchorPane rootLayout;	
+	
     /**
      * Constructor.
      */
@@ -65,6 +66,12 @@ public class MainApp extends Application {
      * 
      * @param primaryStage {@link javafx.stage.Stage} for the application
      */
+    
+    @Override
+    public void init() {
+    	EntityManagerProvider.provideEntityManager();
+    }
+    
     @Override
     public void start(Stage primaryStage) {
     	logger.info("Starting application...");
@@ -85,12 +92,27 @@ public class MainApp extends Application {
     /**
      * Initializes the root layout.
      */
-    public void initRootLayout() {
+   /* public void initRootLayout() {
         try {
         	logger.info("Initializing layout...");
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainApp.class.getResource("/view/OrchardOverview.fxml"));
             rootLayout = (BorderPane) loader.load();
+            Scene scene = new Scene(rootLayout);
+            primaryStage.setScene(scene);
+            logger.info("Showing scene");
+            primaryStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }*/
+    
+    public void initRootLayout() {
+        try {
+        	logger.info("Initializing layout...");
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainApp.class.getResource("/view/MainMenu.fxml"));
+            rootLayout = (AnchorPane) loader.load();
             Scene scene = new Scene(rootLayout);
             primaryStage.setScene(scene);
             logger.info("Showing scene");

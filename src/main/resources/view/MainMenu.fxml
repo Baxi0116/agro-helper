@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="700.0" prefWidth="1000.0" style="-fx-background-image: url(&quot;/images/background.png&quot;); -fx-background-repeat: stretch;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.baxi.agrohelper.view.MainMenuController">
+   <children>
+      <Button layoutX="350.0" layoutY="263.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0" style="-fx-background-radius: 10px; -fx-background-color: #DDDDDD;" text="Kertek kezelése" textFill="#724814">
+         <font>
+            <Font name="Calibri Light Italic" size="24.0" />
+         </font>
+      </Button>
+      <Button layoutX="350.0" layoutY="337.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0" style="-fx-background-radius: 10px; -fx-background-color: #DDDDDD;" text="Kimutatások" textFill="#724814">
+         <font>
+            <Font name="Calibri Light Italic" size="24.0" />
+         </font>
+      </Button>
+      <Button layoutX="350.0" layoutY="413.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0" style="-fx-background-radius: 10px; -fx-background-color: #DDDDDD;" text="Kilépés" textFill="#724814">
+         <font>
+            <Font name="Calibri Light Italic" size="24.0" />
+         </font>
+      </Button>
+      <Label layoutX="278.0" layoutY="63.0" text="Alkalmazás neve" textFill="#c64242">
+         <font>
+            <Font name="Sitka Display Bold Italic" size="64.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
