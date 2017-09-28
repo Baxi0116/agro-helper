@@ -26,7 +26,9 @@ limitations under the License.
 		<class>com.baxi.agrohelper.model.Crop</class>
 		<class>com.baxi.agrohelper.model.AgWork</class>
 		<class>com.baxi.agrohelper.model.Variety</class>
-		<class>com.baxi.agrohelper.model.WorkNames</class>
+		<class>com.baxi.agrohelper.model.WorkName</class>
+		<class>com.baxi.agrohelper.model.VarietyName</class>
+		<class>com.baxi.agrohelper.model.FStatement</class>
 		<properties>
 			<property name="hibernate.archive.autodetection" value="class" />
 			<property name="hibernate.dialect" value="org.hibernate.dialect.DerbyTenSevenDialect"/>

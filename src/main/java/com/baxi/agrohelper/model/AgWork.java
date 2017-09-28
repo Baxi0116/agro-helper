@@ -37,6 +37,8 @@ import javax.persistence.ManyToOne;
  * @author Gergely Szabó
  *
  */
+
+//TODO OPTIONAL EXPENSES
 @Entity
 public class AgWork {
 

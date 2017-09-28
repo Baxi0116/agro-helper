@@ -146,7 +146,7 @@
 						<configuration>
 							<archive>
 								<manifest>
-									<mainClass>com.baxi.agrohelper.MainApp</mainClass>
+									<mainClass>com.baxi.agrohelper.Main</mainClass>
 								</manifest>
 							</archive>	
 							<descriptorRefs>
@@ -173,7 +173,7 @@
                         <outfile>${project.build.directory}/agro-helper.exe</outfile>
                         <downloadUrl>http://java.com/download</downloadUrl>
                         <classPath>
-                            <mainClass>com.baxi.agrohelper.MainApp</mainClass>
+                            <mainClass>com.baxi.agrohelper.Main</mainClass>
                             <preCp>anything</preCp>
                         </classPath>
                         <icon>src/main/resources/images/icon.ico</icon>
