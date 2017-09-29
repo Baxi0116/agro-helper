@@ -51,6 +51,9 @@ public class WorkEditDialogController {
 	private DatePicker datePicker;
 	
 	@FXML
+	private TextField materialPriceTextField;
+	
+	@FXML
 	private ChoiceBox<String> nameBox;
 	
 	private Stage dialogStage;
@@ -73,6 +76,7 @@ public class WorkEditDialogController {
 	public void setOrchard(Orchard orchard){
 		this.orchard = orchard;
 		priceTextField.setText("0");
+		materialPriceTextField.setText("0");
 		nameBox.getItems().addAll(workNameService.getAllWorkNames());
 		nameBox.setTooltip(new Tooltip("Válasszon a listából"));
 	}
@@ -91,6 +95,8 @@ public class WorkEditDialogController {
 			work.setWorkDate(datePicker.getValue());
 			work.setWorkNote(noteTextField.getText());
 			work.setWorkPrice(Integer.parseInt(priceTextField.getText()));
+			work.setMaterialPrice(Integer.parseInt(materialPriceTextField.getText()));
+			work.setTotalPrice(Integer.parseInt(priceTextField.getText()) + Integer.parseInt(materialPriceTextField.getText()));
 			work.setOrchard(orchard);
 			workService.createWork(work);
 			orchard.getWorks().add(work);
@@ -119,6 +125,11 @@ public class WorkEditDialogController {
 			Integer.parseInt(priceTextField.getText());
 		}catch(NumberFormatException e){
 			errorMessage += "Hibás érték az ár mezőben!";
+		}
+		try{
+			Integer.parseInt(materialPriceTextField.getText());
+		}catch(NumberFormatException e){
+			errorMessage += "Hibás érték az anyagköltség mezőben!";
 		}
 		
 		if(errorMessage.length() == 0){

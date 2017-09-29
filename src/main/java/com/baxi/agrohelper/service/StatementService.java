@@ -97,4 +97,18 @@ public interface StatementService {
 	 */
 	public double countProfitForOrchard(Orchard orchard);
 	
+	public double countExpensesForAllOrchard(List<Orchard> orchardList);
+	
+	public double countIncomeForAllOrchard(List<Orchard> orchardList);
+	
+	public double countProfitForAllOrchard(List<Orchard> orchardList);
+	
+	public double countMaterialExpensesForOrchard(Orchard orchard);
+	
+	public double countMaterialExpensesForAllOrchard(List<Orchard> orchardList);
+	
+	public double countWorkExpensesForOrchard(Orchard orchard);
+	
+	public double countWorkExpensesForAllOrchard(List<Orchard> orchardList);
+	
 }

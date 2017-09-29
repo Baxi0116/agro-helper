@@ -1,91 +1,24 @@
-package com.baxi.agrohelper.service;
+package com.baxi.agrohelper.util;
 
-/*-
- * #%L
- * agro-helper
- * %%
- * Copyright (C) 2017 University of Debrecen, Faculty of Informatics
- * %%
- * Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-     http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
- * #L%
- */
-
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.baxi.agrohelper.dao.GenericDaoInterface;
+import com.baxi.agrohelper.dao.WorkNameDao;
 import com.baxi.agrohelper.model.AgWork;
-import com.baxi.agrohelper.model.FStatement;
 import com.baxi.agrohelper.model.Orchard;
 import com.baxi.agrohelper.model.Variety;
+import com.baxi.agrohelper.service.WorkNameServiceImpl;
 
-/**
- * 
- * Implementation of the {@code StatementService} interface.
- * 
- * @author Gergely Szabó
- *
- */
-public class StatementServiceImpl implements StatementService {
+public class StatementUtil {
 	
-	private static Logger logger = LoggerFactory.getLogger(StatementServiceImpl.class);
-
-	private GenericDaoInterface<FStatement, Integer> statementDao;
+	private static Logger logger = LoggerFactory.getLogger(StatementUtil.class);
 	
-	/**
-	 * Constructs a newly allocated {@code StatementServiceImpl} object, and initializes its DAO..
-	 * 
-	 * @param statementDao {@link com.baxi.agrohelper.dao.GenericDaoInterface} object for initializtaion
-	 */
-	public StatementServiceImpl(GenericDaoInterface<FStatement, Integer> statementDao){
-		this.statementDao = statementDao;
-	}
-
-	@Override
-	public FStatement createStatement(FStatement statement) {
-		logger.info("Creating STATEMENT for orchard: {}", statement.getOrchard().getOrchardName());
-		statementDao.persist(statement);
-		return statement;
-	}
-
-	@Override
-	public FStatement updateStatement(FStatement statement) {
-		logger.info("Updating STATEMENT for orchard: {}", statement.getOrchard().getOrchardName());
-		statementDao.update(statement);
-		return statement;
-	}
-
-	@Override
-	public FStatement removeStatement(int id) {
-		FStatement statement = statementDao.findById(id);
-		logger.warn("Removing STATEMENT for orchard: {}", statement.getOrchard().getOrchardName());
-		statementDao.delete(statement);
-		return statement;
-	}
-
-	@Override
-	public FStatement findStatementById(int id) {
-		return statementDao.findById(id);
-	}
-
-	@Override
-	public List<FStatement> findAllStatement() {
-		return statementDao.findAll();
-	}
-
-	@Override
+	WorkNameServiceImpl nameService = new WorkNameServiceImpl(new WorkNameDao(EntityManagerProvider.provideEntityManager()));
+	
 	public double countExpensesForOrchard(Orchard orchard) {
 		logger.info("Counting expenses for Orchard: {}", orchard.getOrchardName());
 		List<AgWork> workList = orchard.getWorks();
@@ -96,7 +29,6 @@ public class StatementServiceImpl implements StatementService {
 		return expenses;
 	}
 
-	@Override
 	public double countIncomeForOrchard(Orchard orchard) {
 		logger.info("Counting income for Orchard: {}", orchard.getOrchardName());
 		List<Variety> varietyList = orchard.getVarieties();
@@ -108,14 +40,12 @@ public class StatementServiceImpl implements StatementService {
 		return income;
 	}
 
-	@Override
 	public double countProfitForOrchard(Orchard orchard) {
 		logger.info("Counting profit for Orchard: {}", orchard.getOrchardName());
 		double profit = countIncomeForOrchard(orchard) - countExpensesForOrchard(orchard);
 		return profit;
 	}
 
-	@Override
 	public double countExpensesForAllOrchard(List<Orchard> orchardList) {
 		logger.info("Counting expenses for all Orchard");
 		double expenses = 0;
@@ -125,7 +55,6 @@ public class StatementServiceImpl implements StatementService {
 		return expenses;
 	}
 
-	@Override
 	public double countIncomeForAllOrchard(List<Orchard> orchardList) {
 		logger.info("Counting income for all Orchard");
 		double income = 0;
@@ -135,7 +64,6 @@ public class StatementServiceImpl implements StatementService {
 		return income;
 	}
 
-	@Override
 	public double countProfitForAllOrchard(List<Orchard> orchardList) {
 		logger.info("Counting profit for all Orchard");
 		double profit = 0;
@@ -145,7 +73,6 @@ public class StatementServiceImpl implements StatementService {
 		return profit;
 	}
 
-	@Override
 	public double countMaterialExpensesForOrchard(Orchard orchard) {
 		logger.info("Counting material expenses for Orchard: {}", orchard.getOrchardName());
 		List<AgWork> workList = orchard.getWorks();
@@ -156,7 +83,6 @@ public class StatementServiceImpl implements StatementService {
 		return expenses;
 	}
 
-	@Override
 	public double countMaterialExpensesForAllOrchard(List<Orchard> orchardList) {
 		logger.info("Counting material expenses for all Orchard");
 		double expenses = 0;
@@ -166,14 +92,12 @@ public class StatementServiceImpl implements StatementService {
 		return expenses;
 	}
 
-	@Override
 	public double countWorkExpensesForOrchard(Orchard orchard) {
 		double expenses = 0;
 		expenses = countExpensesForOrchard(orchard) - countMaterialExpensesForOrchard(orchard);
 		return expenses;
 	}
 
-	@Override
 	public double countWorkExpensesForAllOrchard(List<Orchard> orchardList) {
 		double expenses = 0;
 		for(Orchard orchard : orchardList){
@@ -181,5 +105,33 @@ public class StatementServiceImpl implements StatementService {
 		}
 		return expenses;
 	}
+
+	public HashMap<String, List<Integer>> groupWorksWithPrices(Orchard orchard){
+		HashMap<String, List<Integer>> workMap = new HashMap<>();
+		List<AgWork> workList = orchard.getWorks();
+		List<String> workNameList = nameService.getAllWorkNames();
+
+		for(String name : workNameList){
+			int workPrice = 0;
+			int materialPrice = 0;
+			int totalPrice = 0;
+			List<Integer> priceList = new ArrayList<Integer>();
+			for(AgWork work : workList){
+				if(work.getWorkDesignation() == name){
+					workPrice += work.getWorkPrice();
+					materialPrice = work.getMaterialPrice();
+					totalPrice += work.getTotalPrice();
+				}
+			}
+			priceList.add(workPrice);
+			priceList.add(materialPrice);
+			priceList.add(totalPrice);
+			workMap.put(name, priceList);
+		}
+				
+		return workMap;
+	}
+
+
 
 }

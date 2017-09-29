@@ -110,6 +110,12 @@ public class OrchardOverviewController {
 
 	@FXML
 	private TableColumn<AgWork, Integer> workPriceColumn;
+	
+	@FXML
+	private TableColumn<AgWork, Integer> materialPriceColumn;
+	
+	@FXML
+	private TableColumn<AgWork, Integer> totalPriceColumn;
 
 	@FXML
 	private TableColumn<AgWork, String> workNoteColumn;
@@ -154,30 +160,6 @@ public class OrchardOverviewController {
 	@FXML
 	private TableView<FStatement> statementTable;
 
-	/*@FXML
-	private TableColumn<FStatement, LocalDate> statementDateColumn;
-
-	@FXML
-	private TableColumn<FStatement, Double> expensesColumn;
-
-	@FXML
-	private TableColumn<FStatement, Double> incomeColumn;
-
-	@FXML
-	private TableColumn<FStatement, Double> profitColumn;
-
-	@FXML
-	private Label expensesLabel;
-
-	@FXML
-	private Label incomeLabel;
-
-	@FXML
-	private Label profitLabel;
-
-	private StatementService statementService;
-	private ObservableList<FStatement> statementData;*/
-
 	 public OrchardOverviewController(){}
 
 	 @FXML
@@ -188,7 +170,6 @@ public class OrchardOverviewController {
 		 workService = new WorkServiceImpl(new WorkDao(EntityManagerProvider.provideEntityManager()));
 		 varietyService = new VarietyServiceImpl(new VarietyDao(EntityManagerProvider.provideEntityManager()));
 		 varietyNameService = new VarietyNameServiceImpl(new VarietyNameDao(EntityManagerProvider.provideEntityManager()));
-		 //statementService = new StatementServiceImpl(new StatementDao(EntityManagerProvider.provideEntityManager()));
 
 		 orchardData = FXCollections.observableArrayList(orchardService.findAllOrchards());
 		 orchardTable.setItems(orchardData);
@@ -196,13 +177,14 @@ public class OrchardOverviewController {
 		 varietyData = FXCollections.observableArrayList();
 		 workTable.setItems(workData);
 		 varietyTable.setItems(varietyData);
-		 //statementData = FXCollections.observableArrayList();
-		 //statementTable.setItems(statementData);
+
 
 		 orchardNameColumn.setCellValueFactory(new PropertyValueFactory<Orchard, String>("orchardName"));
 
 		 workNameColumn.setCellValueFactory(new PropertyValueFactory<AgWork, String>("workDesignation"));
 		 workPriceColumn.setCellValueFactory(new PropertyValueFactory<AgWork, Integer>("workPrice"));
+		 materialPriceColumn.setCellValueFactory(new PropertyValueFactory<AgWork, Integer>("materialPrice"));
+		 totalPriceColumn.setCellValueFactory(new PropertyValueFactory<AgWork, Integer>("totalPrice"));
 		 workNoteColumn.setCellValueFactory(new PropertyValueFactory<AgWork, String>("workNote"));
 		 workDateColumn.setCellValueFactory(new PropertyValueFactory<AgWork, LocalDate>("workDate"));
 
@@ -211,20 +193,12 @@ public class OrchardOverviewController {
 		 varietyPriceColumn.setCellValueFactory(new PropertyValueFactory<Variety, Integer>("varietyPrice"));
 		 varietyAreaColumn.setCellValueFactory(new PropertyValueFactory<Variety, Double>("varietyArea"));
 
-		 //statementDateColumn.setCellValueFactory(new PropertyValueFactory<FStatement, LocalDate>("statementDate"));
-		 //expensesColumn.setCellValueFactory(new PropertyValueFactory<FStatement, Double>("expenses"));
-		 //incomeColumn.setCellValueFactory(new PropertyValueFactory<FStatement, Double>("income"));
-		 //profitColumn.setCellValueFactory(new PropertyValueFactory<FStatement, Double>("profit"));
-
 		 varietyNameBox.getItems().addAll(varietyNameService.getAllVarietyNames());
 
 		 showOrchardDetails(null);
 
 		 orchardTable.getSelectionModel().selectedItemProperty().addListener(
 				 (observable, oldValue, newValue) -> showOrchardDetails(newValue));
-
-		/* statementTable.getSelectionModel().selectedItemProperty().addListener(
-				 (observable, oldValue, newValue) -> showStatements(newValue));*/
 	 }
 
 	 public void refreshVarieties(){
@@ -239,23 +213,6 @@ public class OrchardOverviewController {
 		 varietyTable.setItems(varietyData);
 	 }
 
-	 /*public void refreshStatementTable(Orchard orchard){
-		 statementData = FXCollections.observableArrayList(orchard.getStatements());
-		 statementTable.setItems(statementData);
-	 }*/
-
-	 /*public void showStatements(FStatement statement){
-		 if(statement != null){
-			 expensesLabel.setText(Double.toString(statement.getExpenses()));
-			 incomeLabel.setText(Double.toString(statement.getIncome()));
-			 profitLabel.setText(Double.toString(statement.getProfit()));
-		 }else{
-			 expensesLabel.setText("");
-			 incomeLabel.setText("");
-			 profitLabel.setText("");
-		 }
-	 }*/
-
 	 public void showOrchardDetails(Orchard orchard){
 		 if(orchard != null){
 			 logger.info("Showing details for Orchard: {}", orchard.getOrchardName());
@@ -268,8 +225,6 @@ public class OrchardOverviewController {
 			 workData = FXCollections.observableArrayList(orchard.getWorks());
 			 workTable.setItems(workData);
 			 refreshVarietyTable(orchard);
-			 //refreshStatementTable(orchard);
-			 //showStatements(statementTable.getSelectionModel().getSelectedItem());
 
 		 }else{
 			 nameLabel.setText("");
@@ -278,7 +233,6 @@ public class OrchardOverviewController {
 			 plantationDateLabel.setText("");
 			 numberOfTreesLabel.setText("");
 			 cropLabel.setText("");
-			 //showStatements(statementTable.getSelectionModel().getSelectedItem());
 			 workData = FXCollections.observableArrayList();
 			 workTable.setItems(workData);
 		 }
@@ -667,58 +621,4 @@ public class OrchardOverviewController {
 			 alert.showAndWait();
 		 }
 	 }
-/*
-	 @FXML
-	 public void createStatement(){
-		 Orchard selectedOrchard = orchardTable.getSelectionModel().getSelectedItem();
-		 if(selectedOrchard != null){
-			 FStatement statement = new FStatement();
-			 statement.setExpenses(statementService.countExpensesForOrchard(selectedOrchard));
-			 statement.setIncome(statementService.countIncomeForOrchard(selectedOrchard));
-			 statement.setProfit(statementService.countProfitForOrchard(selectedOrchard));
-			 statement.setStatementDate(LocalDate.now());
-			 statement.setOrchard(selectedOrchard);
-			 statementService.createStatement(statement);
-			 selectedOrchard.getStatements().add(statement);
-			 showOrchardDetails(selectedOrchard);
-		 }else{
-			 logger.warn("No orchard selected");
-			 Alert alert = new Alert(AlertType.WARNING);
-			 alert.setTitle("Hiba");
-			 alert.setHeaderText("Nincs kiválasztva kert");
-			 alert.setContentText("Válasszon kertet a táblázatból.");
-
-			 alert.showAndWait();
-		 }
-	 }*/
-/*TODO ÁTNÉZNI!!!!
-	 @FXML
-	 private void deleteStatement(){
-		 Orchard selectedOrchard = orchardTable.getSelectionModel().getSelectedItem();
-		 FStatement selectedStatement = statementTable.getSelectionModel().getSelectedItem();
-		 int selectedIndex = statementTable.getSelectionModel().getSelectedIndex();
-		 if (selectedIndex >= 0) {
-			 Alert alert = new Alert(AlertType.CONFIRMATION);
-			 alert.setTitle("");
-			 alert.setHeaderText("Biztosan törli?");
-			 alert.setContentText("Törlés után az adatok végleg elvesznek.");
-			 alert.showAndWait().ifPresent(response -> {
-				 if (response == ButtonType.OK) {
-					 selectedOrchard.getStatements().remove(selectedStatement);
-					 statementService.removeStatement(selectedStatement.getId());
-					 statementTable.getItems().remove(selectedIndex);  
-				 }
-			 });
-		 } else {
-			 logger.warn("No statement selected");
-			 Alert alert = new Alert(AlertType.WARNING);
-			 alert.setTitle("Hiba");
-			 alert.setHeaderText("Nincs kiválasztva kimutatás");
-			 alert.setContentText("Válasszon egyet a táblázatból.");
-
-			 alert.showAndWait();
-		 }
-
-	 }*/
-
 }

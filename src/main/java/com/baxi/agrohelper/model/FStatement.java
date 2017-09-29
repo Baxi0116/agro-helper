@@ -57,8 +57,15 @@ public class FStatement {
 	/**
 	 * Expenses of the {@link com.baxi.agrohelper.model.Orchard} this statement is about.
 	 */
-	@Column(name="EXPENSES")
+	@Column(name="TOTAL_EXPENSES")
 	private double expenses;
+	
+	@Column(name="MATERIAL_EXPENSES")
+	private double materialExpenses;
+	
+	@Column(name="WORK_EXPENSES")
+	private double workExpenses;
+	
 	
 	/**
 	 * Income of the {@link com.baxi.agrohelper.model.Orchard} this statement is about.
@@ -72,6 +79,9 @@ public class FStatement {
 	@Column(name="PROFIT")
 	private double profit;
 	
+	@Column(name="DESCRIPTION")
+	private String description;
+	
 	/**
 	 * Many to one relation with the {@link com.baxi.agrohelper.model.Orchard} entity.
 	 */
@@ -83,21 +93,6 @@ public class FStatement {
 	 * Constructs a newly allocated {@code FStatement} object.
 	 */
 	public FStatement(){}
-	
-	/**
-	 * Constructs a newly allocated {@code FStatement} object, with the given parameters.
-	 * 
-	 * @param date date of creation
-	 * @param expenses expenses of the orchard
-	 * @param incomes income of the orchard
-	 * @param profit profit of the orchard
-	 */
-	public FStatement(LocalDate date, double expenses, double incomes, double profit){
-		this.statementDate = date;
-		this.expenses = expenses;
-		this.income = incomes;
-		this.profit = profit;
-	}
 
 	/**
 	 * Getter method for the {@code id}.
@@ -207,14 +202,37 @@ public class FStatement {
 		this.orchard = orchard;
 	}
 
+	public double getMaterialExpenses() {
+		return materialExpenses;
+	}
+
+	public void setMaterialExpenses(double materialExpenses) {
+		this.materialExpenses = materialExpenses;
+	}
+
+	public double getWorkExpenses() {
+		return workExpenses;
+	}
+
+	public void setWorkExpenses(double workExpenses) {
+		this.workExpenses = workExpenses;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
 	/**
 	 * Creates a {@code String} representation for the object.
 	 * @return the String representation of the object
 	 */
 	@Override
 	public String toString() {
-		return "Statement [statementDate=" + statementDate + ", expenses=" + expenses + ", incomes=" + income
-				+ ", profit=" + profit + "]";
+		return description;
 	}
 
 }

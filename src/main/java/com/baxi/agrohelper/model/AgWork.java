@@ -62,46 +62,17 @@ public class AgWork {
 	@Column(name="WORK_PRICE", nullable=false)
 	private int workPrice;
 	
-	/**
-	 * Notes given to this work.
-	 */
+	@Column(name="MATERIAL_PRICE", nullable=false)
+	private int materialPrice;
+	
+	@Column(name="TOTAL_PRICE")
+	private int totalPrice;
+	
 	@Column(name="WORK_NOTE")
 	private String workNote;
-	
-	/**
-	 * Date of the work.
-	 */
+
 	@Column(name="WORK_DATE", nullable=false)
 	private LocalDate workDate;
-
-	/**
-	 * Constructs a newly allocated {@code AgWork} object, with the given parameters, note included.
-	 * 
-	 * @param workDesignation name of the work
-	 * @param workPrice	cost of the work
-	 * @param workDate	date of the work
-	 */
-	public AgWork(String workDesignation, int workPrice, LocalDate workDate) {
-		this.workDesignation = workDesignation;
-		this.workPrice = workPrice;
-		this.workNote = "";
-		this.workDate = workDate;
-	}
-	
-	/**
-	 *  Constructs a newly allocated {@code AgWork} object, with the given parameters without note.
-	 * 
-	 * @param workDesignation name of the work
-	 * @param workPrice	cost of the work
-	 * @param workNote notes given to the work
-	 * @param workDate	date of the work
-	 */
-	public AgWork(String workDesignation, int workPrice, String workNote, LocalDate workDate) {
-		this.workDesignation = workDesignation;
-		this.workPrice = workPrice;
-		this.workNote = workNote;
-		this.workDate = workDate;
-	}
 	
 	/**
 	 * Many to one relation with the {@link com.baxi.agrohelper.model.Orchard} Entity.
@@ -210,6 +181,22 @@ public class AgWork {
 	 */
 	public void setWorkNote(String workNote) {
 		this.workNote = workNote;
+	}
+
+	public int getMaterialPrice() {
+		return materialPrice;
+	}
+
+	public void setMaterialPrice(int materialPrice) {
+		this.materialPrice = materialPrice;
+	}
+	
+	public void setTotalPrice(int totalPrice){
+		this.totalPrice = totalPrice;
+	}
+	
+	public int getTotalPrice(){
+		return totalPrice;
 	}
 
 	/**

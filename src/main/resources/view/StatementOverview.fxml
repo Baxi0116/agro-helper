@@ -8,8 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="700.0" prefWidth="1000.0" style="-fx-background-image: url(&quot;/images/background.png&quot;);" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.111">
+<AnchorPane prefHeight="700.0" prefWidth="1000.0" style="-fx-background-image: url(&quot;/images/background.png&quot;);" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label alignment="TOP_LEFT" layoutX="100.0" layoutY="313.0" prefHeight="300.0" prefWidth="800.0" style="-fx-border-color: black;" text="Új Kimutatások">
          <font>
@@ -26,7 +25,7 @@
             <Font size="18.0" />
          </font>
       </Button>
-      <Button layoutX="832.0" layoutY="265.0" mnemonicParsing="false" text="Szerkeszt" />
+      <Button layoutX="854.0" layoutY="265.0" mnemonicParsing="false" text="Töröl" />
       <ScrollPane layoutX="100.0" layoutY="65.0" prefHeight="200.0" prefWidth="800.0">
          <content>
             <TableView prefHeight="200.0" prefWidth="800.0">
@@ -41,5 +40,6 @@
          </content>
       </ScrollPane>
       <Button layoutX="848.0" layoutY="644.0" mnemonicParsing="false" prefWidth="100.0" text="Vissza" />
+      <Button layoutX="777.0" layoutY="265.0" mnemonicParsing="false" text="Megtekint" />
    </children>
 </AnchorPane>

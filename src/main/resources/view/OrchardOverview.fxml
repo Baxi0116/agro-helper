@@ -186,8 +186,10 @@
                                                 <TableView fx:id="workTable" prefHeight="378.0" prefWidth="664.0">
                                                   <columns>
                                                     <TableColumn fx:id="workNameColumn" prefWidth="75.0" text="Munka megnevezése" />
-                                                    <TableColumn fx:id="workPriceColumn" prefWidth="75.0" text="Ár" />
                                                       <TableColumn fx:id="workDateColumn" prefWidth="75.0" text="Dátum" />
+                                                    <TableColumn fx:id="workPriceColumn" prefWidth="75.0" text="Munkavégzés ára" />
+                                                      <TableColumn fx:id="materialPriceColumn" prefWidth="75.0" text="Anyagköltség" />
+                                                      <TableColumn fx:id="totalPriceColumn" prefWidth="75.0" text="Összköltség" />
                                                       <TableColumn fx:id="workNoteColumn" prefWidth="75.0" text="Megjegyzés" />
                                                   </columns>
                                                    <columnResizePolicy>
@@ -206,7 +208,7 @@
                                                 <Font size="14.0" />
                                              </font>
                                           </Button>
-                                          <Button layoutX="80.0" layoutY="8.0" mnemonicParsing="false" onAction="#handleWorks" text="Munkák kezelése" />
+                                          <Button layoutX="80.0" layoutY="8.0" mnemonicParsing="false" onAction="#handleWorks" text="Munkatípus felvétele" />
                                        </children>
                                     </AnchorPane>
                               </content>
