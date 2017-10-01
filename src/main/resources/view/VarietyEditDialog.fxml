@@ -12,7 +12,7 @@
       <TextField fx:id="priceTextField" layoutX="200.0" layoutY="181.0" />
       <ChoiceBox fx:id="nameBox" layoutX="200.0" layoutY="40.0" prefWidth="150.0" />
       <Label layoutX="63.0" layoutY="44.0" text="Fajta:" />
-      <Label layoutX="63.0" layoutY="142.0" text="Hozam(kg/ha):" />
+      <Label layoutX="63.0" layoutY="142.0" text="Össztermés(kg):" />
       <Label layoutX="63.0" layoutY="185.0" text="Ár(Ft/kg):" />
       <Button layoutX="275.0" layoutY="250.0" mnemonicParsing="false" onAction="#handleOk" text="OK" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="88.0" />
       <Button layoutX="323.0" layoutY="250.0" mnemonicParsing="false" onAction="#handleCancel" text="Vissza" AnchorPane.bottomAnchor="25.0" AnchorPane.rightAnchor="28.0" />

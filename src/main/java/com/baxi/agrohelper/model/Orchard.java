@@ -97,12 +97,6 @@ public class Orchard {
 	 */
 	@OneToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "orchard")
 	private List<Variety> varieties;
-
-	/**
-	 * One to many relation with {@link com.baxi.agrohelper.model.FStatement} objects.
-	 */
-	@OneToMany(cascade=CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "orchard")
-	private List<FStatement> statements;
 	
 	/**
 	 * Constructs a newly allocated {@code Orchard} object, with the given parameters.
@@ -122,7 +116,6 @@ public class Orchard {
 		this.works = new ArrayList<AgWork>();
 		this.crops = new ArrayList<Crop>();
 		this.varieties = new ArrayList<Variety>();
-		this.statements = new ArrayList<FStatement>();
 	}
 	
 	/**
@@ -135,7 +128,6 @@ public class Orchard {
 		this.works = new ArrayList<AgWork>();
 		this.crops = new ArrayList<Crop>();
 		this.varieties = new ArrayList<Variety>();
-		this.statements = new ArrayList<FStatement>();
 	}
 	
 	/**
@@ -300,23 +292,6 @@ public class Orchard {
 		this.varieties = varieties;
 	}
 
-	/**
-	 * Getter method for the {@code statements}.
-	 * 
-	 * @return statements of this object
-	 */
-	public List<FStatement> getStatements() {
-		return statements;
-	}
-
-	/**
-	 * Setter method for the {@code statements}.
-	 * 
-	 * @param statements list of statements to set
-	 */
-	public void setStatements(List<FStatement> statements) {
-		this.statements = statements;
-	}
 	
 	/**
 	 * Creates a {@code String} representation for the object.

@@ -70,6 +70,9 @@ public class Variety {
 	@Column(name="VARIETY_AREA")
 	private double varietyArea;
 	
+	@Column(name="TOTAL_HARVEST")
+	private double totalHarvest;
+	
 	/**
 	 * Many to one relation with the {@link com.baxi.agrohelper.model.Orchard} entity.
 	 */
@@ -190,6 +193,16 @@ public class Variety {
 	public void setVarietyArea(double varietyArea) {
 		this.varietyArea = varietyArea;
 	}
+	
+	
+	public double getTotalHarvest() {
+		return totalHarvest;
+	}
+
+	public void setTotalHarvest(double totalHarvest) {
+		this.totalHarvest = totalHarvest;
+	}
+
 	/**
 	 * Creates a {@code String} representation for the object.
 	 * @return the String representation of the object

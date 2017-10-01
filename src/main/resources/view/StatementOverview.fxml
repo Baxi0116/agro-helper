@@ -2,44 +2,26 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="700.0" prefWidth="1000.0" style="-fx-background-image: url(&quot;/images/background.png&quot;);" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="700.0" prefWidth="1000.0" style="-fx-background-image: url(&quot;/images/background.png&quot;);" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.baxi.agrohelper.view.StatementOverviewController">
    <children>
-      <Label alignment="TOP_LEFT" layoutX="100.0" layoutY="313.0" prefHeight="300.0" prefWidth="800.0" style="-fx-border-color: black;" text="Új Kimutatások">
+      <Button fx:id="statementForOrchardButton" layoutX="350.0" layoutY="268.0" mnemonicParsing="false" onAction="#handleStatementForOrchardButton" prefHeight="50.0" prefWidth="300.0" text="Kimutatás kertre" textFill="#724814">
          <font>
-            <Font size="24.0" />
+            <Font name="Sitka Display Italic" size="24.0" />
+         </font>
+      </Button>
+      <Button fx:id="statementForAllButton" layoutX="350.0" layoutY="370.0" mnemonicParsing="false" onAction="#handleStatementForAllButton" prefHeight="50.0" prefWidth="300.0" text="Kimutatás minden kertre" textFill="#724814">
+         <font>
+            <Font name="Sitka Display Italic" size="24.0" />
+         </font>
+      </Button>
+      <Button fx:id="backButton" layoutX="848.0" layoutY="644.0" mnemonicParsing="false" onAction="#handleBackButton" prefWidth="100.0" text="Vissza" />
+      <Label layoutX="212.0" layoutY="97.0" text="Kimutatások kezelése" textFill="#c64242">
+         <font>
+            <Font name="Sitka Display Bold Italic" size="64.0" />
          </font>
       </Label>
-      <Button layoutX="350.0" layoutY="387.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0" text="Kimutatás kertre">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Button>
-      <Button layoutX="350.0" layoutY="483.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0" text="Kimutatás minden kertre">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Button>
-      <Button layoutX="854.0" layoutY="265.0" mnemonicParsing="false" text="Töröl" />
-      <ScrollPane layoutX="100.0" layoutY="65.0" prefHeight="200.0" prefWidth="800.0">
-         <content>
-            <TableView prefHeight="200.0" prefWidth="800.0">
-              <columns>
-                <TableColumn minWidth="160.0" prefWidth="75.0" text="Kert" />
-                <TableColumn minWidth="160.0" prefWidth="75.0" text="Dátum" />
-                  <TableColumn minWidth="160.0" prefWidth="75.0" text="Kiadások" />
-                  <TableColumn minWidth="160.0" prefWidth="75.0" text="Bevételek" />
-                  <TableColumn minWidth="160.0" prefWidth="75.0" text="Haszon" />
-              </columns>
-            </TableView>
-         </content>
-      </ScrollPane>
-      <Button layoutX="848.0" layoutY="644.0" mnemonicParsing="false" prefWidth="100.0" text="Vissza" />
-      <Button layoutX="777.0" layoutY="265.0" mnemonicParsing="false" text="Megtekint" />
    </children>
 </AnchorPane>

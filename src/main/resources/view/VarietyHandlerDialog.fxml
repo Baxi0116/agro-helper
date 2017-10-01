@@ -28,8 +28,9 @@
                <children>
                   <TextField fx:id="newNameTextField" layoutX="25.0" layoutY="58.0" AnchorPane.bottomAnchor="310.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="70.0" AnchorPane.topAnchor="60.0" />
                   <Button layoutX="183.0" layoutY="66.0" mnemonicParsing="false" onAction="#handleAdd" text="+" AnchorPane.bottomAnchor="310.0" AnchorPane.leftAnchor="180.0" AnchorPane.rightAnchor="30.0" AnchorPane.topAnchor="60.0" />
-                  <Button layoutX="167.0" layoutY="346.0" mnemonicParsing="false" onAction="#handleDelete" text="Töröl" AnchorPane.bottomAnchor="26.0" AnchorPane.leftAnchor="167.0" AnchorPane.rightAnchor="27.0" AnchorPane.topAnchor="346.0" />
+                  <Button layoutX="108.0" layoutY="348.0" mnemonicParsing="false" onAction="#handleDelete" text="Töröl" AnchorPane.bottomAnchor="24.0" AnchorPane.leftAnchor="108.0" AnchorPane.rightAnchor="86.0" AnchorPane.topAnchor="348.0" />
                   <Label layoutX="25.0" layoutY="38.0" prefHeight="16.0" prefWidth="150.0" text="Fajta neve:" AnchorPane.bottomAnchor="344.0" AnchorPane.leftAnchor="25.0" AnchorPane.rightAnchor="70.0" AnchorPane.topAnchor="38.0" />
+                  <Button fx:id="cancelButton" layoutX="172.0" layoutY="348.0" mnemonicParsing="false" onAction="#handleCancelButton" text="Vissza" />
                </children>
             </AnchorPane>
         </items>

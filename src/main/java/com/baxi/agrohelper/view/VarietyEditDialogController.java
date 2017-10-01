@@ -89,6 +89,7 @@ public class VarietyEditDialogController {
 				variety.setVarietyPrice(Integer.parseInt(priceTextField.getText()));
 				variety.setVarietyYield(Double.parseDouble(yieldTextField.getText()));
 				variety.setVarietyArea(Double.parseDouble(areaTextField.getText()));
+				variety.setTotalHarvest((this.variety.getVarietyYield() / 1000) / this.variety.getVarietyArea());
 			}catch(NumberFormatException e){
 				
 			}

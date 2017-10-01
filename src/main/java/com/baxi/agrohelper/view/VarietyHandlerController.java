@@ -26,11 +26,13 @@ import com.baxi.agrohelper.service.VarietyNameService;
 import com.baxi.agrohelper.service.VarietyNameServiceImpl;
 import com.baxi.agrohelper.util.EntityManagerProvider;
 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -53,6 +55,9 @@ public class VarietyHandlerController {
 	private ObservableList<VarietyName> varietyNameData;
 	
 	private VarietyNameService varietyNameService;
+	
+	@FXML
+	private Button cancelButton;
 	
 	@FXML
 	private void initialize(){
@@ -98,17 +103,23 @@ public class VarietyHandlerController {
             // Nothing selected.
             Alert alert = new Alert(AlertType.WARNING);
             alert.setTitle("Hiba");
-            alert.setHeaderText("Nincs kiválasztva munka");
-            alert.setContentText("Válasszon munkát a táblázatból.");
+            alert.setHeaderText("Nincs kiválasztva fajta");
+            alert.setContentText("Válasszon fajtát a táblázatból.");
             alert.showAndWait();
         }
 	}
+	
+	@FXML
+	private void handleCancelButton() {
+		Platform.exit();
+	}
+	
 	
 	public boolean isInputValid(){
 		String errorMessage = "";
 		
 		if(newNameTextField.getText() == null || newNameTextField.getText().length() == 0){
-			errorMessage += "Hibás munkanév!";
+			errorMessage += "Hibás fajtanév!";
 		}
 		
 		if(errorMessage.length() == 0){

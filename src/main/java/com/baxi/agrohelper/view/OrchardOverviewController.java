@@ -32,7 +32,6 @@ import com.baxi.agrohelper.dao.VarietyDao;
 import com.baxi.agrohelper.dao.VarietyNameDao;
 import com.baxi.agrohelper.dao.WorkDao;
 import com.baxi.agrohelper.model.AgWork;
-import com.baxi.agrohelper.model.FStatement;
 import com.baxi.agrohelper.model.Orchard;
 import com.baxi.agrohelper.model.Variety;
 import com.baxi.agrohelper.service.OrchardService;
@@ -140,6 +139,9 @@ public class OrchardOverviewController {
 
 	@FXML
 	private TableColumn<Variety, Double> varietyAreaColumn;
+	
+	@FXML
+	private TableColumn<Variety, Double> totalHarvestColumn;
 
 	@FXML
 	private ChoiceBox<String> varietyNameBox;
@@ -156,9 +158,6 @@ public class OrchardOverviewController {
 	private ObservableList<Variety> varietyData;
 	private VarietyService varietyService;
 	private VarietyNameService varietyNameService;
-
-	@FXML
-	private TableView<FStatement> statementTable;
 
 	 public OrchardOverviewController(){}
 
@@ -192,6 +191,7 @@ public class OrchardOverviewController {
 		 varietyYieldColumn.setCellValueFactory(new PropertyValueFactory<Variety, Double>("varietyYield"));
 		 varietyPriceColumn.setCellValueFactory(new PropertyValueFactory<Variety, Integer>("varietyPrice"));
 		 varietyAreaColumn.setCellValueFactory(new PropertyValueFactory<Variety, Double>("varietyArea"));
+		 totalHarvestColumn.setCellValueFactory(new PropertyValueFactory<Variety, Double>("totalHarvest"));
 
 		 varietyNameBox.getItems().addAll(varietyNameService.getAllVarietyNames());
 
@@ -211,6 +211,12 @@ public class OrchardOverviewController {
 		 varietyData.clear();
 		 varietyData = FXCollections.observableArrayList(orchard.getVarieties());
 		 varietyTable.setItems(varietyData);
+	 }
+	 
+	 public void refreshWorks(Orchard orchard) {
+		 workData.clear();
+		 workData = FXCollections.observableArrayList(orchard.getWorks());
+		 workTable.setItems(workData);
 	 }
 
 	 public void showOrchardDetails(Orchard orchard){
@@ -524,12 +530,14 @@ public class OrchardOverviewController {
 					 try{
 						 variety.setVarietyPrice(Integer.parseInt(varietyPriceTextfield.getText()));
 						 variety.setVarietyYield(Double.parseDouble(varietyYieldTextField.getText()));
+						 variety.setTotalHarvest((variety.getVarietyYield() / 1000)/variety.getVarietyArea());
 					 }catch(NumberFormatException e){}
 					 variety.setOrchard(selectedOrchard);
 					 varietyService.createVariety(variety);
 					 selectedOrchard.getVarieties().add(variety);
-					 showOrchardDetails(selectedOrchard);
 					 varietyData.add(variety);
+					 showOrchardDetails(selectedOrchard);
+					
 				 }catch(NumberFormatException e){
 					 logger.error("Invalid area value");
 					 Alert alert = new Alert(AlertType.ERROR);
