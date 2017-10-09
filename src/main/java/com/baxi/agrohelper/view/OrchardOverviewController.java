@@ -42,9 +42,9 @@ import com.baxi.agrohelper.service.VarietyService;
 import com.baxi.agrohelper.service.VarietyServiceImpl;
 import com.baxi.agrohelper.service.WorkService;
 import com.baxi.agrohelper.service.WorkServiceImpl;
-import com.baxi.agrohelper.util.DateUtil;
 import com.baxi.agrohelper.util.EntityManagerProvider;
 import com.baxi.agrohelper.util.ListUtil;
+import com.baxi.agrohelper.util.StatementUtil;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -225,7 +225,7 @@ public class OrchardOverviewController {
 			 nameLabel.setText(orchard.getOrchardName());
 			 topographicNumberLabel.setText(orchard.getTopographicNumber());
 			 meparCodeLabel.setText(orchard.getMeparCode());
-			 plantationDateLabel.setText(DateUtil.format(orchard.getYearOfPlantation()));
+			 plantationDateLabel.setText(Integer.toString(orchard.getYearOfPlantation().getYear()));
 			 numberOfTreesLabel.setText(Integer.toString(orchard.getNumberOfTrees()));
 			 cropLabel.setText(ListUtil.formatOutput(orchard.getCrops()));
 			 workData = FXCollections.observableArrayList(orchard.getWorks());
@@ -530,7 +530,8 @@ public class OrchardOverviewController {
 					 try{
 						 variety.setVarietyPrice(Integer.parseInt(varietyPriceTextfield.getText()));
 						 variety.setVarietyYield(Double.parseDouble(varietyYieldTextField.getText()));
-						 variety.setTotalHarvest((variety.getVarietyYield() / 1000)/variety.getVarietyArea());
+						 variety.setTotalHarvest(StatementUtil.countVarietyHarvest(variety));
+						 variety.setTotalIncome(StatementUtil.countVarietyIncome(variety));
 					 }catch(NumberFormatException e){}
 					 variety.setOrchard(selectedOrchard);
 					 varietyService.createVariety(variety);

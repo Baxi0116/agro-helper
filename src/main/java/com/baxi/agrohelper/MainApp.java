@@ -1,5 +1,7 @@
 package com.baxi.agrohelper;
 
+import java.io.File;
+
 /*-
  * #%L
  * agro-helper
@@ -70,7 +72,9 @@ public class MainApp extends Application {
     
     @Override
     public void init() {
+    	String filename = "kimutatasok";
     	EntityManagerProvider.provideEntityManager();
+    	(new File(filename)).mkdirs();
     }
     
     @Override

@@ -28,6 +28,7 @@ import com.baxi.agrohelper.service.VarietyNameServiceImpl;
 import com.baxi.agrohelper.service.VarietyService;
 import com.baxi.agrohelper.service.VarietyServiceImpl;
 import com.baxi.agrohelper.util.EntityManagerProvider;
+import com.baxi.agrohelper.util.StatementUtil;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -89,7 +90,8 @@ public class VarietyEditDialogController {
 				variety.setVarietyPrice(Integer.parseInt(priceTextField.getText()));
 				variety.setVarietyYield(Double.parseDouble(yieldTextField.getText()));
 				variety.setVarietyArea(Double.parseDouble(areaTextField.getText()));
-				variety.setTotalHarvest((this.variety.getVarietyYield() / 1000) / this.variety.getVarietyArea());
+				variety.setTotalHarvest(StatementUtil.countVarietyHarvest(this.variety));
+				variety.setTotalIncome(StatementUtil.countVarietyIncome(this.variety));
 			}catch(NumberFormatException e){
 				
 			}

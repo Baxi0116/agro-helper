@@ -81,7 +81,7 @@ public class OrchardEditDialogController {
 		topographicNumberTextField.setText(orchard.getTopographicNumber());
 		meparCodeTextField.setText(orchard.getMeparCode());
 		plantationYearTextField.setText(DateUtil.format(orchard.getYearOfPlantation()));
-		plantationYearTextField.setPromptText("éééé.hh.nn.");
+		plantationYearTextField.setPromptText("éééé");
 		numberOfTreesTextField.setText(Integer.toString(orchard.getNumberOfTrees()));
 		cropsTextField.setText(ListUtil.formatOutput(orchard.getCrops()));
 	}

@@ -9,16 +9,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.baxi.agrohelper.dao.OrchardDao;
-import com.baxi.agrohelper.dao.VarietyDao;
-import com.baxi.agrohelper.dao.WorkDao;
 import com.baxi.agrohelper.model.AgWork;
+import com.baxi.agrohelper.model.Orchard;
 import com.baxi.agrohelper.model.Variety;
 import com.baxi.agrohelper.service.OrchardService;
 import com.baxi.agrohelper.service.OrchardServiceImpl;
-import com.baxi.agrohelper.service.VarietyService;
-import com.baxi.agrohelper.service.VarietyServiceImpl;
-import com.baxi.agrohelper.service.WorkService;
-import com.baxi.agrohelper.service.WorkServiceImpl;
 import com.baxi.agrohelper.util.EntityManagerProvider;
 import com.baxi.agrohelper.util.PDFUtil;
 import com.baxi.agrohelper.util.StatementUtil;
@@ -32,6 +27,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -39,9 +36,10 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
-public class StatementAllController {
+public class StatementOrchardController {
+	private static Logger logger = LoggerFactory.getLogger(StatementOrchardController.class);
 	
-	private static Logger logger = LoggerFactory.getLogger(StatementAllController.class);
+	public static int counter = 1;
 	
 	@FXML
 	private Button backButton;
@@ -53,6 +51,14 @@ public class StatementAllController {
 	private Button importToPdfButton;
 	
 	private OrchardService orchardService;
+	
+	@FXML
+	private TableView<Orchard> orchardTable;
+
+	@FXML
+	private TableColumn<Orchard, String> orchardNameColumn;
+	
+	private ObservableList<Orchard> orchardData;
 	
 	//First tab
 	
@@ -89,13 +95,9 @@ public class StatementAllController {
 	private TableColumn<AgWork, Integer> totalPriceColumn;
 
 	@FXML
-	private TableColumn<AgWork, String> wOrchardColumn;
-
-	@FXML
 	private TableColumn<AgWork, LocalDate> workDateColumn;
 	
 	private ObservableList<AgWork> workData;
-	private WorkService workService;
 	//Third tab
 	
 	@FXML
@@ -109,9 +111,6 @@ public class StatementAllController {
 
 	@FXML
 	private TableColumn<Variety, Integer> varietyPriceColumn;
-
-	@FXML
-	private TableColumn<Variety, String> vOrchardColumn;
 	
 	@FXML
 	private TableColumn<Variety, Double> totalHarvestColumn;
@@ -120,62 +119,77 @@ public class StatementAllController {
 	private TableColumn<Variety, Double> totalIncomeColumn;
 	
 	private ObservableList<Variety> varietyData;
-	private VarietyService varietyService;
 	
 	@FXML
 	 public void initialize(){
 
 		 logger.info("Initializing controller...");
 		 
+		 
 		 orchardService = new OrchardServiceImpl(new OrchardDao(EntityManagerProvider.provideEntityManager()));
-		 workService = new WorkServiceImpl(new WorkDao(EntityManagerProvider.provideEntityManager()));
-		 varietyService = new VarietyServiceImpl(new VarietyDao(EntityManagerProvider.provideEntityManager()));
 
+		 orchardData = FXCollections.observableArrayList(orchardService.findAllOrchards());
+		 orchardTable.setItems(orchardData);
 		 workData = FXCollections.observableArrayList();
 		 varietyData = FXCollections.observableArrayList();
 		 expensesTable.setItems(workData);
 		 varietyTable.setItems(varietyData);
+		 
+		 orchardNameColumn.setCellValueFactory(new PropertyValueFactory<Orchard, String>("orchardName"));
 
 		 workNameColumn.setCellValueFactory(new PropertyValueFactory<AgWork, String>("workDesignation"));
 		 workPriceColumn.setCellValueFactory(new PropertyValueFactory<AgWork, Integer>("workPrice"));
 		 materialPriceColumn.setCellValueFactory(new PropertyValueFactory<AgWork, Integer>("materialPrice"));
 		 totalPriceColumn.setCellValueFactory(new PropertyValueFactory<AgWork, Integer>("totalPrice"));
 		 workDateColumn.setCellValueFactory(new PropertyValueFactory<AgWork, LocalDate>("workDate"));
-		 wOrchardColumn.setCellValueFactory(new PropertyValueFactory<AgWork, String>("orchard"));
 
 		 varietyNameColumn.setCellValueFactory(new PropertyValueFactory<Variety, String>("varietyName"));
 		 varietyYieldColumn.setCellValueFactory(new PropertyValueFactory<Variety, Double>("varietyYield"));
 		 varietyPriceColumn.setCellValueFactory(new PropertyValueFactory<Variety, Integer>("varietyPrice"));
 		 totalHarvestColumn.setCellValueFactory(new PropertyValueFactory<Variety, Double>("totalHarvest"));
 		 totalIncomeColumn.setCellValueFactory(new PropertyValueFactory<Variety, Double>("totalIncome"));
-		 vOrchardColumn.setCellValueFactory(new PropertyValueFactory<Variety, String>("orchard"));
 		 
 		 totalIncomeLabel.setText("");
 		 totalExpensesLabel.setText("");
 		 totalProfitLabel.setText("");
 		 totalWorkPriceLabel.setText("");
 		 totalMaterialPriceLabel.setText("");
+		 
 	 }
+	
 	
 	@FXML
 	private void handleMakeStatementsButton() {
 		logger.debug("making Statements");
 		
-		if(importToPdfButton.isDisabled()) {
-			importToPdfButton.setDisable(false);
-		}
+		Orchard orchard = orchardTable.getSelectionModel().getSelectedItem();
 		
-		totalIncomeLabel.setText(Double.toString(StatementUtil.countIncomeForAllOrchard(orchardService.findAllOrchards())) + " Ft");
-		totalExpensesLabel.setText(Double.toString(StatementUtil.countExpensesForAllOrchard(orchardService.findAllOrchards())) + " Ft");
-		totalProfitLabel.setText(Double.toString(StatementUtil.countProfitForAllOrchard(orchardService.findAllOrchards())) + " Ft");
-		totalWorkPriceLabel.setText(Double.toString(StatementUtil.countWorkExpensesForAllOrchard(orchardService.findAllOrchards())) + " Ft");
-		totalMaterialPriceLabel.setText(Double.toString(StatementUtil.countMaterialExpensesForAllOrchard(orchardService.findAllOrchards())) + " Ft");
-		
-		workData = FXCollections.observableArrayList(workService.findAllWorks());
-		varietyData = FXCollections.observableArrayList(varietyService.findAllVarieties());
-		expensesTable.setItems(workData);
-		varietyTable.setItems(varietyData);
-		
+		 if (orchard != null) {
+			
+				if(importToPdfButton.isDisabled()) {
+					importToPdfButton.setDisable(false);
+				}
+			 
+				totalIncomeLabel.setText(Double.toString(StatementUtil.countIncomeForOrchard(orchard)) + " Ft");
+				totalExpensesLabel.setText(Double.toString(StatementUtil.countExpensesForOrchard(orchard)) + " Ft");
+				totalProfitLabel.setText(Double.toString(StatementUtil.countProfitForOrchard(orchard)) + " Ft");
+				totalWorkPriceLabel.setText(Double.toString(StatementUtil.countWorkExpensesForOrchard(orchard)) + " Ft");
+				totalMaterialPriceLabel.setText(Double.toString(StatementUtil.countMaterialExpensesForOrchard(orchard)) + " Ft");
+				
+				workData = FXCollections.observableArrayList(orchard.getWorks());
+				varietyData = FXCollections.observableArrayList(orchard.getVarieties());
+				expensesTable.setItems(workData);
+				varietyTable.setItems(varietyData);
+		 }
+		 else {
+			 Alert alert = new Alert(AlertType.WARNING);
+			 alert.setTitle("");
+			 alert.setHeaderText("Nincs kiválasztva kert");
+			 alert.setContentText("Válasszon kertet a listából");
+
+			 alert.showAndWait();
+		 }
+
 		
 	}
 	
@@ -202,24 +216,40 @@ public class StatementAllController {
 	@FXML
 	private void handleImportToPdfButton() {
 		logger.debug("importing to pdf");
-		String dirpath = "kimutatasok";
-		 String filename = dirpath + "/kimutatas_uzemi_" + LocalDate.now() + ".pdf";			 
-		 try {
-			Document document = new Document();
-			PdfWriter.getInstance(document, new FileOutputStream(filename));
-			document.open();
-			PDFUtil.addMetaData(document, "Kimutatás üzemi szinten");
-			PDFUtil.addTitle(document);
-			PDFUtil.addContent(document, orchardService.findAllOrchards());
-			document.close();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (DocumentException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		 importToPdfButton.setDisable(true);
+		
+		Orchard selectedOrchard = orchardTable.getSelectionModel().getSelectedItem();
+		
+		 if (selectedOrchard != null) {
+			 String dirpath = "kimutatasok";
+			 String filename = dirpath + "/" + selectedOrchard.getOrchardName() + "_" + LocalDate.now() + ".pdf";			 
+			 try {
+				Document document = new Document();
+				PdfWriter.getInstance(document, new FileOutputStream(filename));
+				document.open();
+				PDFUtil.addMetaData(document, "Kimutatás a(z) " + selectedOrchard.getOrchardName() + " kertre");
+				PDFUtil.addTitle(document, selectedOrchard);
+				PDFUtil.addContent(document, selectedOrchard);
+				document.close();
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (DocumentException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			 importToPdfButton.setDisable(true);
+			 
+		 }
+		 else {
+			 Alert alert = new Alert(AlertType.WARNING);
+			 alert.setTitle("");
+			 alert.setHeaderText("Nincs kiválasztva kert");
+			 alert.setContentText("Válasszon kertet a listából");
+
+			 alert.showAndWait();
+		 }
+		
+		
 	}
 	
 	

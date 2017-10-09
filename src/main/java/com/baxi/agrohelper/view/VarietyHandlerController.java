@@ -26,7 +26,6 @@ import com.baxi.agrohelper.service.VarietyNameService;
 import com.baxi.agrohelper.service.VarietyNameServiceImpl;
 import com.baxi.agrohelper.util.EntityManagerProvider;
 
-import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -111,7 +110,7 @@ public class VarietyHandlerController {
 	
 	@FXML
 	private void handleCancelButton() {
-		Platform.exit();
+		dialogStage.close();
 	}
 	
 	

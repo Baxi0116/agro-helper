@@ -32,7 +32,7 @@ public class DateUtil {
     /**
      * The date pattern that is used for conversion. 
      */
-    private static final String DATE_PATTERN = "yyyy.MM.dd.";
+    private static final String DATE_PATTERN = "yyyy.MM.DD.";
 
     /** 
      * The date formatter. 
@@ -64,8 +64,9 @@ public class DateUtil {
      * @return the date object or null if it could not be converted
      */
     public static LocalDate parse(String dateString) {
+    	String pattern = dateString + ".01.01.";
     	try {
-    		return DATE_FORMATTER.parse(dateString, LocalDate::from);
+    		return DATE_FORMATTER.parse(pattern, LocalDate::from);
     	} catch (DateTimeParseException | NullPointerException e) {
     		return null;
     	}

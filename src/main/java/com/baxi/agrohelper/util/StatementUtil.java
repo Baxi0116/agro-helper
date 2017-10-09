@@ -13,34 +13,33 @@ public class StatementUtil {
 	
 	private static Logger logger = LoggerFactory.getLogger(StatementUtil.class);
 	
-	public double countExpensesForOrchard(Orchard orchard) {
+	public static double countExpensesForOrchard(Orchard orchard) {
 		logger.info("Counting expenses for Orchard: {}", orchard.getOrchardName());
 		List<AgWork> workList = orchard.getWorks();
 		double expenses = 0;
 		for(AgWork work : workList){
-			expenses += work.getWorkPrice();
+			expenses += work.getTotalPrice();
 		}
 		return expenses;
 	}
 
-	public double countIncomeForOrchard(Orchard orchard) {
+	public static double countIncomeForOrchard(Orchard orchard) {
 		logger.info("Counting income for Orchard: {}", orchard.getOrchardName());
 		List<Variety> varietyList = orchard.getVarieties();
 		double income = 0;
 		for(Variety variety : varietyList){
-			double varietyYieldForHectars = variety.getVarietyArea() * variety.getVarietyYield();
-			income += (varietyYieldForHectars * variety.getVarietyPrice());
+			income += countVarietyIncome(variety);
 		}
 		return income;
 	}
 
-	public double countProfitForOrchard(Orchard orchard) {
+	public static double countProfitForOrchard(Orchard orchard) {
 		logger.info("Counting profit for Orchard: {}", orchard.getOrchardName());
 		double profit = countIncomeForOrchard(orchard) - countExpensesForOrchard(orchard);
 		return profit;
 	}
 
-	public double countExpensesForAllOrchard(List<Orchard> orchardList) {
+	public static double countExpensesForAllOrchard(List<Orchard> orchardList) {
 		logger.info("Counting expenses for all Orchard");
 		double expenses = 0;
 		for(Orchard orchard : orchardList){
@@ -49,7 +48,7 @@ public class StatementUtil {
 		return expenses;
 	}
 
-	public double countIncomeForAllOrchard(List<Orchard> orchardList) {
+	public static double countIncomeForAllOrchard(List<Orchard> orchardList) {
 		logger.info("Counting income for all Orchard");
 		double income = 0;
 		for(Orchard orchard : orchardList){
@@ -58,7 +57,7 @@ public class StatementUtil {
 		return income;
 	}
 
-	public double countProfitForAllOrchard(List<Orchard> orchardList) {
+	public static double countProfitForAllOrchard(List<Orchard> orchardList) {
 		logger.info("Counting profit for all Orchard");
 		double profit = 0;
 		for(Orchard orchard : orchardList){
@@ -67,7 +66,7 @@ public class StatementUtil {
 		return profit;
 	}
 
-	public double countMaterialExpensesForOrchard(Orchard orchard) {
+	public static double countMaterialExpensesForOrchard(Orchard orchard) {
 		logger.info("Counting material expenses for Orchard: {}", orchard.getOrchardName());
 		List<AgWork> workList = orchard.getWorks();
 		double expenses = 0;
@@ -77,7 +76,7 @@ public class StatementUtil {
 		return expenses;
 	}
 
-	public double countMaterialExpensesForAllOrchard(List<Orchard> orchardList) {
+	public static double countMaterialExpensesForAllOrchard(List<Orchard> orchardList) {
 		logger.info("Counting material expenses for all Orchard");
 		double expenses = 0;
 		for(Orchard orchard : orchardList){
@@ -86,13 +85,13 @@ public class StatementUtil {
 		return expenses;
 	}
 
-	public double countWorkExpensesForOrchard(Orchard orchard) {
+	public static double countWorkExpensesForOrchard(Orchard orchard) {
 		double expenses = 0;
 		expenses = countExpensesForOrchard(orchard) - countMaterialExpensesForOrchard(orchard);
 		return expenses;
 	}
 
-	public double countWorkExpensesForAllOrchard(List<Orchard> orchardList) {
+	public static double countWorkExpensesForAllOrchard(List<Orchard> orchardList) {
 		double expenses = 0;
 		for(Orchard orchard : orchardList){
 			expenses += countWorkExpensesForOrchard(orchard);
@@ -100,7 +99,15 @@ public class StatementUtil {
 		return expenses;
 	}
 
-
+	public static double countVarietyIncome(Variety variety) {
+		
+		return (variety.getVarietyYield() * variety.getVarietyPrice());
+	}
+	
+	public static double countVarietyHarvest(Variety variety) {
+		
+		return (variety.getVarietyYield() / 1000)/variety.getVarietyArea();
+	}
 
 
 }
